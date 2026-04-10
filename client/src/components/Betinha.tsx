@@ -1,9 +1,43 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Volume2, VolumeX, Loader2 } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BETINHA_AVATAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-avatar_0d442e08.jpg";
+
+// Web Speech API TTS helper — works natively in the browser, no API key needed
+function speakText(text: string, onEnd?: () => void, onError?: () => void): SpeechSynthesisUtterance | null {
+  if (typeof window === "undefined" || !window.speechSynthesis) return null;
+
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "pt-BR";
+  utterance.rate = 0.95;
+  utterance.pitch = 1.05;
+  utterance.volume = 1;
+
+  // Try to find a Portuguese voice
+  const voices = window.speechSynthesis.getVoices();
+  const ptVoice = voices.find(
+    (v) =>
+      v.lang.startsWith("pt") &&
+      (v.name.toLowerCase().includes("female") ||
+        v.name.toLowerCase().includes("feminino") ||
+        v.name.toLowerCase().includes("francisca") ||
+        v.name.toLowerCase().includes("luciana") ||
+        v.name.toLowerCase().includes("vitoria") ||
+        v.name.toLowerCase().includes("google"))
+  ) || voices.find((v) => v.lang.startsWith("pt"));
+
+  if (ptVoice) utterance.voice = ptVoice;
+
+  if (onEnd) utterance.onend = onEnd;
+  if (onError) utterance.onerror = onError;
+
+  window.speechSynthesis.speak(utterance);
+  return utterance;
+}
 
 interface BetinhaProps {
   speech: string;
@@ -26,16 +60,25 @@ export function Betinha({
   const [isMuted, setIsMuted] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const typingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const ttsMutation = trpc.tts.synthesize.useMutation();
+  const [voicesLoaded, setVoicesLoaded] = useState(false);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const sizeMap = {
     sm: "w-16 h-16",
     md: "w-24 h-24",
     lg: "w-32 h-32",
   };
+
+  // Load voices (some browsers load them asynchronously)
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis?.getVoices() ?? [];
+      if (voices.length > 0) setVoicesLoaded(true);
+    };
+    loadVoices();
+    window.speechSynthesis?.addEventListener("voiceschanged", loadVoices);
+    return () => window.speechSynthesis?.removeEventListener("voiceschanged", loadVoices);
+  }, []);
 
   // Typewriter effect
   useEffect(() => {
@@ -55,45 +98,78 @@ export function Betinha({
     return () => clearInterval(interval);
   }, [speech, showBubble]);
 
-  // Auto-play TTS
-  useEffect(() => {
-    if (autoPlay && speech && !isMuted) {
-      handlePlayTTS();
+  const stopSpeech = useCallback(() => {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
     }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, [speech, autoPlay]);
+    setIsPlaying(false);
+  }, []);
 
-  const handlePlayTTS = async () => {
-    if (isPlaying || isMuted) return;
-    try {
-      setIsPlaying(true);
-      const result = await ttsMutation.mutateAsync({ text: speech.slice(0, 500) });
-      if (result.audioUrl) {
-        const audio = new Audio(result.audioUrl);
-        audioRef.current = audio;
-        audio.onended = () => setIsPlaying(false);
-        audio.onerror = () => setIsPlaying(false);
-        await audio.play();
-      } else {
-        setIsPlaying(false);
-      }
-    } catch {
-      setIsPlaying(false);
+  const handlePlayTTS = useCallback(() => {
+    if (isMuted || !speech) return;
+    if (isPlaying) {
+      stopSpeech();
+      return;
     }
-  };
+    setIsPlaying(true);
+    const utt = speakText(
+      speech.slice(0, 600),
+      () => setIsPlaying(false),
+      () => setIsPlaying(false)
+    );
+    utteranceRef.current = utt;
+  }, [speech, isMuted, isPlaying, stopSpeech]);
+
+  // Auto-play TTS when speech changes
+  useEffect(() => {
+    if (!autoPlay || !speech || isMuted) return;
+    // Small delay to let the typewriter start first
+    const timer = setTimeout(() => {
+      setIsPlaying(true);
+      const utt = speakText(
+        speech.slice(0, 600),
+        () => setIsPlaying(false),
+        () => setIsPlaying(false)
+      );
+      utteranceRef.current = utt;
+    }, 400);
+
+    return () => {
+      clearTimeout(timer);
+      stopSpeech();
+    };
+  }, [speech, autoPlay, isMuted, stopSpeech]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => stopSpeech();
+  }, [stopSpeech]);
 
   const handleToggleMute = () => {
-    if (isPlaying && audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-      setIsPlaying(false);
+    if (isPlaying) {
+      stopSpeech();
     }
-    setIsMuted(!isMuted);
+    setIsMuted((prev) => !prev);
+  };
+
+  const handleAudioButton = () => {
+    if (isMuted) {
+      // Unmute and start playing
+      setIsMuted(false);
+      setIsPlaying(true);
+      const utt = speakText(
+        speech.slice(0, 600),
+        () => setIsPlaying(false),
+        () => setIsPlaying(false)
+      );
+      utteranceRef.current = utt;
+    } else if (isPlaying) {
+      // Stop playing
+      stopSpeech();
+    } else {
+      // Start playing
+      handlePlayTTS();
+    }
   };
 
   return (
@@ -117,14 +193,15 @@ export function Betinha({
         )}
         {/* Audio control */}
         <button
-          onClick={isPlaying ? handleToggleMute : handlePlayTTS}
+          onClick={handleAudioButton}
           className="absolute -bottom-1 -right-1 w-6 h-6 bg-card border border-border rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-          title={isPlaying ? "Pausar" : isMuted ? "Ativar som" : "Ouvir Betinha"}
+          title={isPlaying ? "Pausar narração" : isMuted ? "Ativar som" : "Ouvir Betinha"}
+          aria-label={isPlaying ? "Pausar narração" : isMuted ? "Ativar som" : "Ouvir Betinha"}
         >
-          {ttsMutation.isPending ? (
-            <Loader2 className="w-3 h-3 animate-spin" />
-          ) : isMuted ? (
+          {isMuted ? (
             <VolumeX className="w-3 h-3" />
+          ) : isPlaying ? (
+            <Loader2 className="w-3 h-3 animate-spin" />
           ) : (
             <Volume2 className="w-3 h-3" />
           )}

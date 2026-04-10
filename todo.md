@@ -37,3 +37,8 @@
 - [ ] Notificações de prazo para conclusão de módulos
 - [ ] Certificado de conclusão da trilha
 - [ ] Modo de revisão dos módulos já concluídos
+
+## Bugs Reportados
+
+- [x] TTS da Betinha não está emitindo som (corrigido: usando Web Speech API nativa do navegador)
+- [x] Conteúdo dos módulos da TBI Gente e Cultura estava duplicado (corrigido: removidas 18 duplicatas do banco, adicionada constraint UNIQUE em modules.slug)

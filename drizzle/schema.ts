@@ -51,7 +51,7 @@ export type Trail = typeof trails.$inferSelect;
 export const modules = mysqlTable("modules", {
   id: int("id").autoincrement().primaryKey(),
   trailId: int("trailId").notNull(),
-  slug: varchar("slug", { length: 128 }).notNull(),
+  slug: varchar("slug", { length: 128 }).notNull().unique(),
   title: varchar("title", { length: 256 }).notNull(),
   subtitle: varchar("subtitle", { length: 256 }),
   description: text("description"),
