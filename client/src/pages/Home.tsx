@@ -1,5 +1,4 @@
 import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Star, BookOpen, Trophy, Zap, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
@@ -52,11 +51,11 @@ export default function Home() {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <Star className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="font-bold text-foreground">Stellar Gaming</span>
+            <span className="font-bold text-foreground">Stellar Space</span>
             <span className="text-muted-foreground text-sm hidden sm:block">| Plataforma de Treinamentos</span>
           </div>
-          <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href={getLoginUrl()}>Entrar</a>
+          <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => navigate("/")}>
+            Entrar
           </Button>
         </div>
       </header>
@@ -73,7 +72,7 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-medium">
                 <Star className="w-3 h-3 fill-primary" />
-                Bem-vindo ao TBI Stellar Gaming
+                Bem-vindo ao TBI Stellar Space
               </div>
               <h1 className="text-4xl lg:text-5xl font-black text-foreground leading-tight">
                 Sua jornada de
@@ -81,14 +80,12 @@ export default function Home() {
                 começa aqui
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Conheça a Stellar Gaming, nossa cultura e nosso jeito de trabalhar através de trilhas interativas guiadas pela Betinha, sua companheira de aprendizado.
+                Conheça a Stellar Space, nossa cultura e nosso jeito de trabalhar através de trilhas interativas guiadas pela Betinha, sua companheira de aprendizado.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 stellar-glow">
-                  <a href={getLoginUrl()}>
-                    Começar Agora
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 stellar-glow" onClick={() => navigate("/")}>
+                  Começar Agora
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
               <div className="flex items-center gap-6 pt-2">
@@ -146,7 +143,7 @@ export default function Home() {
               {/* Speech bubble */}
               <div className="betinha-bubble px-5 py-4 max-w-sm">
                 <p className="text-sm text-foreground leading-relaxed">
-                  Oi! Eu sou a <strong className="text-primary">Betinha</strong>, sua guia de aprendizado na Stellar Gaming! Vou te acompanhar em toda a sua jornada de integração. Vamos juntos? 🚀
+                  Oi! Eu sou a <strong className="text-primary">Betinha</strong>, sua guia de aprendizado na Stellar Space! Vou te acompanhar em toda a sua jornada de integração. Vamos juntos? 🚀
                 </p>
                 <p className="text-xs text-primary font-semibold mt-2">Betinha</p>
               </div>
@@ -188,12 +185,10 @@ export default function Home() {
           <div className="bg-card border border-primary/30 rounded-2xl p-10 stellar-glow">
             <img src={BETINHA_AVATAR} alt="Betinha" className="w-16 h-16 rounded-full object-cover object-top mx-auto mb-4 border-2 border-primary" />
             <h2 className="text-2xl font-black text-foreground mb-3">Pronto para começar?</h2>
-            <p className="text-muted-foreground mb-6">Faça login com sua conta Stellar Gaming e inicie sua trilha de integração hoje mesmo.</p>
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <a href={getLoginUrl()}>
-                Entrar na Plataforma
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
+            <p className="text-muted-foreground mb-6">Faça login com sua conta Stellar Space e inicie sua trilha de integração hoje mesmo.</p>
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => navigate("/")}>
+              Entrar na Plataforma
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
         </div>
@@ -202,7 +197,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border py-6 px-4">
         <div className="container text-center">
-          <p className="text-sm text-muted-foreground">© 2025 Stellar Gaming · Plataforma de Treinamentos TBI</p>
+          <p className="text-sm text-muted-foreground">© 2026 Stellar Space · Plataforma de Treinamentos TBI</p>
         </div>
       </footer>
     </div>

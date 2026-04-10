@@ -42,3 +42,19 @@
 
 - [x] TTS da Betinha não está emitindo som (corrigido: usando Web Speech API nativa do navegador)
 - [x] Conteúdo dos módulos da TBI Gente e Cultura estava duplicado (corrigido: removidas 18 duplicatas do banco, adicionada constraint UNIQUE em modules.slug)
+
+## Integração com StellarHub
+
+- [x] Replicar identidade visual do StellarHub: paleta de cores, fonte Barlow, variáveis CSS
+- [x] Adaptar layout da plataforma TBI para usar sidebar e estrutura de navegação do StellarHub
+- [x] Substituir logo/marca "Stellar Gaming" por "Stellar Space" com ícone correto (S estilizado idêntico ao StellarHub)
+- [x] Ajustar PlatformLayout para ser compatível com o visual do StellarHub
+- [x] Garantir que todas as páginas (trilhas, módulos, quiz, dashboard, admin) usem o novo visual
+
+## Acesso Livre (sem OAuth)
+
+- [x] Remover obrigatoriedade de login Manus OAuth
+- [x] Criar tela de login simples com nome + email (nome + e-mail corporativo)
+- [x] Adaptar backend para sessão por cookie simples (JWT local via loginSimple)
+- [x] Remover redirecionamentos para tela de login OAuth em todas as páginas
+- [x] 21 testes Vitest passando (inclui 3 novos testes para loginSimple)

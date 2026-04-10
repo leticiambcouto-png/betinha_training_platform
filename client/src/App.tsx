@@ -4,7 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Trails from "./pages/Trails";
 import TrailDetail from "./pages/TrailDetail";
@@ -16,7 +16,7 @@ import Admin from "./pages/Admin";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/trilhas" component={Trails} />
       <Route path="/trilhas/:slug" component={TrailDetail} />

@@ -43,43 +43,50 @@
 }
 
 :root {
+  /* ── Stellar Space — identidade visual idêntica ao StellarHub ── */
+  --stellar-lime: 66 87% 55%;
+  --stellar-cream: 60 100% 93%;
+  --stellar-blue: 228 85% 50%;
+  --stellar-dark: 210 100% 7%;
+  --stellar-surface: 210 80% 10%;
+  --stellar-surface-hover: 210 60% 14%;
+
   --radius: 0.75rem;
-  /* Stellar Gaming — Dark Theme */
-  --background: oklch(0.10 0.01 240);
-  --foreground: oklch(0.97 0.01 240);
-  --card: oklch(0.14 0.015 240);
-  --card-foreground: oklch(0.97 0.01 240);
-  --popover: oklch(0.14 0.015 240);
-  --popover-foreground: oklch(0.97 0.01 240);
-  --primary: oklch(0.75 0.22 145);
-  --primary-foreground: oklch(0.10 0.01 240);
-  --secondary: oklch(0.20 0.02 240);
-  --secondary-foreground: oklch(0.97 0.01 240);
-  --muted: oklch(0.18 0.015 240);
-  --muted-foreground: oklch(0.60 0.02 240);
-  --accent: oklch(0.22 0.03 240);
-  --accent-foreground: oklch(0.97 0.01 240);
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.97 0.01 240);
-  --border: oklch(0.22 0.02 240);
-  --input: oklch(0.20 0.02 240);
-  --ring: oklch(0.75 0.22 145);
-  --chart-1: oklch(0.75 0.22 145);
-  --chart-2: oklch(0.65 0.20 200);
-  --chart-3: oklch(0.70 0.18 280);
-  --chart-4: oklch(0.75 0.20 60);
-  --chart-5: oklch(0.65 0.22 25);
-  --sidebar: oklch(0.12 0.015 240);
-  --sidebar-foreground: oklch(0.97 0.01 240);
-  --sidebar-primary: oklch(0.75 0.22 145);
-  --sidebar-primary-foreground: oklch(0.10 0.01 240);
-  --sidebar-accent: oklch(0.18 0.02 240);
-  --sidebar-accent-foreground: oklch(0.97 0.01 240);
-  --sidebar-border: oklch(0.20 0.02 240);
-  --sidebar-ring: oklch(0.75 0.22 145);
+  --background: hsl(210 100% 7%);
+  --foreground: hsl(60 100% 93%);
+  --card: hsl(210 80% 10%);
+  --card-foreground: hsl(60 100% 93%);
+  --popover: hsl(210 80% 10%);
+  --popover-foreground: hsl(60 100% 93%);
+  --primary: hsl(66 87% 55%);
+  --primary-foreground: hsl(210 100% 7%);
+  --secondary: hsl(210 60% 14%);
+  --secondary-foreground: hsl(60 100% 93%);
+  --muted: hsl(210 50% 16%);
+  --muted-foreground: hsl(210 20% 55%);
+  --accent: hsl(228 85% 50%);
+  --accent-foreground: hsl(60 100% 93%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(60 100% 93%);
+  --border: hsl(210 40% 18%);
+  --input: hsl(210 40% 18%);
+  --ring: hsl(66 87% 55%);
+  --chart-1: hsl(228 85% 50%);
+  --chart-2: hsl(66 87% 55%);
+  --chart-3: hsl(210 80% 10%);
+  --chart-4: hsl(210 60% 14%);
+  --chart-5: hsl(210 40% 18%);
+  --sidebar: hsl(210 90% 8%);
+  --sidebar-foreground: hsl(210 20% 55%);
+  --sidebar-primary: hsl(66 87% 55%);
+  --sidebar-primary-foreground: hsl(210 100% 7%);
+  --sidebar-accent: hsl(210 60% 14%);
+  --sidebar-accent-foreground: hsl(60 100% 93%);
+  --sidebar-border: hsl(210 40% 15%);
+  --sidebar-ring: hsl(66 87% 55%);
 }
 
-/* Dark mode inherits from :root — Stellar Gaming is always dark */
+/* Dark mode inherits from :root — Stellar Space is always dark */
 
 @layer base {
   * {
@@ -87,6 +94,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Barlow', sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -144,37 +152,37 @@
   }
 }
 
-/* ─── Stellar Gaming Custom Styles ─────────────────────────────────────────── */
+/* ─── Stellar Space Custom Styles ─────────────────────────────────────────── */
 
 .stellar-glow {
-  box-shadow: 0 0 20px oklch(0.75 0.22 145 / 0.4), 0 0 40px oklch(0.75 0.22 145 / 0.2);
+  box-shadow: 0 0 20px hsl(66 87% 55% / 0.4), 0 0 40px hsl(66 87% 55% / 0.2);
 }
 
 .stellar-glow-text {
-  text-shadow: 0 0 20px oklch(0.75 0.22 145 / 0.8);
+  text-shadow: 0 0 20px hsl(66 87% 55% / 0.8);
 }
 
 .stellar-hero-bg {
-  background: radial-gradient(ellipse at 50% 0%, oklch(0.75 0.22 145 / 0.15) 0%, transparent 70%),
-              linear-gradient(180deg, oklch(0.12 0.015 240) 0%, oklch(0.10 0.01 240) 100%);
+  background: radial-gradient(ellipse at 50% 0%, hsl(66 87% 55% / 0.12) 0%, transparent 70%),
+              linear-gradient(180deg, hsl(210 90% 8%) 0%, hsl(210 100% 7%) 100%);
 }
 
 .stellar-card {
   transition: all 0.3s ease;
-  background: oklch(0.14 0.015 240);
-  border: 1px solid oklch(0.22 0.02 240);
+  background: hsl(210 80% 10%);
+  border: 1px solid hsl(210 40% 18%);
 }
 
 .stellar-card:hover {
-  border-color: oklch(0.75 0.22 145 / 0.5);
-  box-shadow: 0 0 20px oklch(0.75 0.22 145 / 0.1);
+  border-color: hsl(66 87% 55% / 0.5);
+  box-shadow: 0 0 20px hsl(66 87% 55% / 0.1);
   transform: translateY(-2px);
 }
 
 .betinha-bubble {
   position: relative;
-  background: oklch(0.18 0.02 240);
-  border: 1px solid oklch(0.75 0.22 145 / 0.4);
+  background: hsl(210 50% 16%);
+  border: 1px solid hsl(66 87% 55% / 0.4);
   border-radius: 1rem;
 }
 .betinha-bubble::before {
@@ -186,7 +194,7 @@
   height: 0;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-top: 12px solid oklch(0.75 0.22 145 / 0.4);
+  border-top: 12px solid hsl(66 87% 55% / 0.4);
 }
 .betinha-bubble::after {
   content: '';
@@ -197,13 +205,13 @@
   height: 0;
   border-left: 11px solid transparent;
   border-right: 11px solid transparent;
-  border-top: 11px solid oklch(0.18 0.02 240);
+  border-top: 11px solid hsl(210 50% 16%);
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: oklch(0.12 0.015 240); }
-::-webkit-scrollbar-thumb { background: oklch(0.30 0.03 240); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.75 0.22 145 / 0.6); }
+::-webkit-scrollbar-track { background: hsl(210 90% 8%); }
+::-webkit-scrollbar-thumb { background: hsl(210 40% 25%); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(66 87% 55% / 0.6); }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -212,8 +220,8 @@
 .animate-float { animation: float 3s ease-in-out infinite; }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 10px oklch(0.75 0.22 145 / 0.3); }
-  50% { box-shadow: 0 0 25px oklch(0.75 0.22 145 / 0.7); }
+  0%, 100% { box-shadow: 0 0 10px hsl(66 87% 55% / 0.3); }
+  50% { box-shadow: 0 0 25px hsl(66 87% 55% / 0.7); }
 }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 

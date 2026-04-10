@@ -1,4 +1,4 @@
-import { COOKIE_NAME } from "@shared/const";
+import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
@@ -89,6 +89,45 @@ export const appRouter = router({
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+
+    // ─── Login simples (sem OAuth) ────────────────────────────────────────────
+    loginSimple: publicProcedure
+      .input(z.object({
+        name: z.string().min(2, "Nome obrigatório"),
+        email: z.string().email("E-mail inválido"),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { sdk } = await import("./_core/sdk");
+        const { upsertUser, getUserByOpenId } = await import("./db");
+
+        // Use email as stable openId for simple login
+        const openId = `simple:${input.email.toLowerCase().trim()}`;
+
+        await upsertUser({
+          openId,
+          name: input.name.trim(),
+          email: input.email.toLowerCase().trim(),
+          loginMethod: "simple",
+          lastSignedIn: new Date(),
+        });
+
+        const user = await getUserByOpenId(openId);
+        if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Erro ao criar usuário" });
+
+        const token = await sdk.signSession(
+          { openId, appId: "tbi", name: input.name.trim() },
+          { expiresInMs: ONE_YEAR_MS }
+        );
+
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, token, {
+          ...cookieOptions,
+          maxAge: ONE_YEAR_MS,
+        });
+
+        return { success: true, user };
+      }),
+
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

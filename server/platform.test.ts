@@ -85,7 +85,63 @@ function createAdminContext(): TrpcContext {
 }
 
 // ─── Tests ────────────────────────────────────────────────────────────────────
+// ─── Mock SDK ────────────────────────────────────────────────────────────────
+vi.mock("./_core/sdk", () => ({
+  sdk: {
+    signSession: vi.fn().mockResolvedValue("mock-jwt-token"),
+    verifySession: vi.fn().mockResolvedValue(null),
+    authenticateRequest: vi.fn().mockRejectedValue(new Error("no session")),
+  },
+}));
+
 describe("auth", () => {
+  it("loginSimple cria sessão e retorna usuário", async () => {
+    const { getUserByOpenId, upsertUser } = await import("./db");
+    (getUserByOpenId as any).mockResolvedValueOnce({
+      id: 99, openId: "simple:novo@stellar.com", name: "Novo Colaborador",
+      email: "novo@stellar.com", loginMethod: "simple", role: "user",
+      totalPoints: 0, level: 1, createdAt: new Date(), updatedAt: new Date(), lastSignedIn: new Date(),
+    });
+
+    const setCookies: string[] = [];
+    const ctx: TrpcContext = {
+      user: null,
+      req: { protocol: "https", headers: {} } as TrpcContext["req"],
+      res: {
+        clearCookie: vi.fn(),
+        cookie: (_name: string, _val: string) => setCookies.push(_name),
+      } as unknown as TrpcContext["res"],
+    };
+
+    const caller = appRouter.createCaller(ctx);
+    const result = await caller.auth.loginSimple({ name: "Novo Colaborador", email: "novo@stellar.com" });
+
+    expect(result.success).toBe(true);
+    expect(result.user.email).toBe("novo@stellar.com");
+    expect(upsertUser).toHaveBeenCalled();
+    expect(setCookies).toContain(COOKIE_NAME);
+  });
+
+  it("loginSimple rejeita nome muito curto", async () => {
+    const ctx: TrpcContext = {
+      user: null,
+      req: { protocol: "https", headers: {} } as TrpcContext["req"],
+      res: { clearCookie: vi.fn(), cookie: vi.fn() } as unknown as TrpcContext["res"],
+    };
+    const caller = appRouter.createCaller(ctx);
+    await expect(caller.auth.loginSimple({ name: "A", email: "a@b.com" })).rejects.toThrow();
+  });
+
+  it("loginSimple rejeita e-mail inválido", async () => {
+    const ctx: TrpcContext = {
+      user: null,
+      req: { protocol: "https", headers: {} } as TrpcContext["req"],
+      res: { clearCookie: vi.fn(), cookie: vi.fn() } as unknown as TrpcContext["res"],
+    };
+    const caller = appRouter.createCaller(ctx);
+    await expect(caller.auth.loginSimple({ name: "Nome Valido", email: "nao-e-email" })).rejects.toThrow();
+  });
+
   it("logout clears session cookie", async () => {
     const ctx = createUserContext();
     const clearedCookies: string[] = [];

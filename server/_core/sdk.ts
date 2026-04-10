@@ -236,6 +236,9 @@ class SDKServer {
         return null;
       }
 
+      // Accept both OAuth appId and simple login appId ('tbi')
+      // No appId validation needed — JWT signature already guarantees authenticity
+
       return {
         openId,
         appId,
@@ -285,8 +288,13 @@ class SDKServer {
     const signedInAt = new Date();
     let user = await db.getUserByOpenId(sessionUserId);
 
-    // If user not in DB, sync from OAuth server automatically
+    // If user not in DB, try to sync — but only for OAuth sessions (not simple login)
     if (!user) {
+      const isSimpleLogin = sessionUserId.startsWith("simple:");
+      if (isSimpleLogin) {
+        // Simple login users must exist in DB (created by loginSimple mutation)
+        throw ForbiddenError("User not found — please login again");
+      }
       try {
         const userInfo = await this.getUserInfoWithJwt(sessionCookie ?? "");
         await db.upsertUser({
