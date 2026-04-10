@@ -2,7 +2,8 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Star, BookOpen, Trophy, Zap, ArrowRight, CheckCircle } from "lucide-react";
+import { Star, BookOpen, Trophy, Zap, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { useLocation } from "wouter";
 
 const BETINHA_AVATAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-avatar_0d442e08.jpg";
@@ -18,8 +19,27 @@ export default function Home() {
   const { isAuthenticated, loading } = useAuth();
   const [, navigate] = useLocation();
 
-  if (!loading && isAuthenticated) {
-    navigate("/dashboard");
+  // Redirect authenticated users to dashboard (in useEffect to avoid render-phase side effects)
+  useEffect(() => {
+    if (!loading && isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [loading, isAuthenticated, navigate]);
+
+  // Show spinner while checking auth
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-10 h-10 text-primary animate-spin mx-auto" />
+          <p className="text-muted-foreground text-sm">Verificando sessão...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If already authenticated, show nothing while redirecting
+  if (isAuthenticated) {
     return null;
   }
 

@@ -29,7 +29,7 @@
 - [x] Controle de acesso: admin vs. usuário comum
 - [x] Testes Vitest: 18 testes passando (auth, trails, modules, quiz, dashboard, admin)
 
-## Melhorias Futuras
+## Roadmap (Melhorias Futuras)
 
 - [ ] Conteúdo completo para TBI de DP
 - [ ] Conteúdo completo para TBI de Segurança do Trabalho
