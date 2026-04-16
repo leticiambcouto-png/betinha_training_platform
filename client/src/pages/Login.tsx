@@ -53,7 +53,7 @@ export default function Login() {
             Stellar Space
           </span>
           <span className="text-sm" style={{ color: "hsl(210 20% 50%)" }}>
-            | TBI
+            | Boas-vindas
           </span>
         </div>
 
@@ -74,30 +74,29 @@ export default function Login() {
               }}
             >
               <Star className="w-3 h-3 fill-current" />
-              Treinamento de Integração
+              ONBOARDING
             </div>
 
             <h1
               className="text-4xl font-black leading-tight"
               style={{ color: "hsl(60 100% 93%)" }}
             >
-              Sua jornada de{" "}
-              <span style={{ color: "hsl(66 87% 55%)" }}>aprendizado</span>
-              <br />começa aqui
+              A sua jornada{" "}
+              <span style={{ color: "hsl(66 87% 55%)" }}>Stellar</span>
+              <br />começa aqui.
             </h1>
 
             <p className="text-base leading-relaxed" style={{ color: "hsl(210 20% 60%)" }}>
-              Conheça a Stellar Space, nossa cultura e nosso jeito de trabalhar
-              através de trilhas interativas guiadas pela Betinha.
+              Conheça a Stellar Gaming, nossa cultura e nosso jeito de trabalhar através de trilhas interativas guiadas pela Betinha, nossa agente de Gente &amp; Cultura.
             </p>
           </motion.div>
 
           {/* Feature pills */}
           <div className="space-y-3">
             {[
-              { icon: BookOpen, label: "Trilhas interativas com conteúdo rico" },
-              { icon: Trophy, label: "Gamificação com pontos, badges e ranking" },
-              { icon: Zap, label: "Quizzes gerados por inteligência artificial" },
+              { icon: BookOpen, label: "Trilhas interativas pra você ficar por dentro" },
+              { icon: Trophy, label: "Ganhe pontos e lidere o ranking realizando as trilhas" },
+              { icon: Zap, label: "Quizzes para você testar seus conhecimentos de forma leve e divertida" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-3">
                 <div
@@ -167,8 +166,7 @@ export default function Login() {
                 color: "hsl(60 100% 93%)",
               }}
             >
-              Oi! Eu sou a <strong style={{ color: "hsl(66 87% 55%)" }}>Betinha</strong>, sua guia de
-              aprendizado! Informe seu nome e e-mail para começarmos sua jornada. 🚀
+              Oi! Eu sou a <strong style={{ color: "hsl(66 87% 55%)" }}>Betinha</strong>, sua agente de Gente &amp; Cultura! Informe seu nome e e-mail para começarmos sua jornada. 🚀
             </div>
           </div>
 
@@ -182,7 +180,7 @@ export default function Login() {
           >
             <div className="space-y-1">
               <h2 className="text-xl font-bold" style={{ color: "hsl(60 100% 93%)" }}>
-                Bem-vindo ao TBI!
+                Bem-vindo ao Onboarding!
               </h2>
               <p className="text-sm" style={{ color: "hsl(210 20% 55%)" }}>
                 Informe seus dados para acessar a plataforma
@@ -254,7 +252,7 @@ export default function Login() {
                   </>
                 ) : (
                   <>
-                    Começar minha jornada
+                    Clique aqui e dê o play na sua jornada
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </>
                 )}
