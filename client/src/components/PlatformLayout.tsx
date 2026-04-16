@@ -148,7 +148,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
                       onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
                     >
-                      TBI Gente e Cultura
+                      Gente e Cultura
                     </div>
                   </Link>
                   <Link href="/trilhas">
@@ -158,7 +158,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
                       onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
                     >
-                      TBI de DP
+                      Departamento Pessoal
                     </div>
                   </Link>
                   <Link href="/trilhas">
@@ -168,7 +168,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
                       onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
                     >
-                      TBI Seg. do Trabalho
+                      Segurança do Trabalho
                     </div>
                   </Link>
                 </div>
