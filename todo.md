@@ -51,6 +51,10 @@
 - [x] Ajustar PlatformLayout para ser compatível com o visual do StellarHub
 - [x] Garantir que todas as páginas (trilhas, módulos, quiz, dashboard, admin) usem o novo visual
 
+## Ajustes de UX
+
+- [x] Remover TTS (Web Speech API) da Betinha — manter apenas balão de texto animado (typewriter), sem voz
+
 ## Acesso Livre (sem OAuth)
 
 - [x] Remover obrigatoriedade de login Manus OAuth
