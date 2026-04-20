@@ -5,13 +5,21 @@ import { useLocation, useParams } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, ArrowRight, CheckCircle, Star, Zap,
-  ChevronLeft, ChevronRight, BookOpen, Trophy
+  ChevronLeft, ChevronRight, BookOpen, Trophy,
+  Users, UserCheck, Briefcase, Crown, List, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Betinha } from "@/components/Betinha";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
+
+const profileConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
+  todos: { label: "Todos", color: "text-blue-400", icon: <Users className="w-3 h-3" /> },
+  clt: { label: "CLT", color: "text-green-400", icon: <UserCheck className="w-3 h-3" /> },
+  pj: { label: "PJ", color: "text-orange-400", icon: <Briefcase className="w-3 h-3" /> },
+  lideranca: { label: "Liderança", color: "text-purple-400", icon: <Crown className="w-3 h-3" /> },
+};
 
 
 export default function ModuleViewer() {
@@ -26,11 +34,17 @@ export default function ModuleViewer() {
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [earnedBonus, setEarnedBonus] = useState(0);
   const [newBadges, setNewBadges] = useState<string[]>([]);
+  const [showChapterPanel, setShowChapterPanel] = useState(false);
 
   const { data, isLoading } = trpc.modules.detail.useQuery(
     { moduleId },
     { enabled: !!moduleId && !isNaN(moduleId) }
   );
+
+  const { data: chapters } = trpc.chapters.byModule.useQuery(
+    { moduleId },
+    { enabled: !!moduleId && !isNaN(moduleId) }
+  ) as { data: any[] | undefined };
 
   const startMutation = trpc.modules.start.useMutation();
   const updateProgressMutation = trpc.modules.updateProgress.useMutation();
@@ -116,8 +130,51 @@ export default function ModuleViewer() {
             <span className="text-xs text-muted-foreground whitespace-nowrap">
               {currentSlide + 1} / {slides.length}
             </span>
+            {chapters && chapters.length > 0 && (
+              <button
+                onClick={() => setShowChapterPanel(!showChapterPanel)}
+                className="p-1.5 rounded-lg hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground"
+                title="Ver capítulos"
+              >
+                {showChapterPanel ? <X className="w-4 h-4" /> : <List className="w-4 h-4" />}
+              </button>
+            )}
           </div>
         </div>
+
+        {/* Chapter panel */}
+        <AnimatePresence>
+          {showChapterPanel && chapters && chapters.length > 0 && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden border-b border-border bg-card/50"
+            >
+              <div className="max-w-4xl mx-auto px-4 py-3">
+                <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-2">Capítulos deste módulo</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                  {chapters.map((chapter: any) => {
+                    const profile = profileConfig[chapter.profileType] ?? profileConfig.todos;
+                    return (
+                      <div key={chapter.id} className="flex items-start gap-2 p-2 rounded-lg bg-muted/20">
+                        <BookOpen className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-foreground/80 leading-snug">{chapter.title}</p>
+                        </div>
+                        <span className={`inline-flex items-center gap-1 text-xs font-medium flex-shrink-0 ${profile.color}`}>
+                          {profile.icon}
+                          {profile.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Slide content */}
         <div className="flex-1 p-4 lg:p-8 max-w-4xl mx-auto w-full">

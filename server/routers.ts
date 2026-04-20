@@ -9,6 +9,9 @@ import {
   getTrailBySlug,
   getModulesByTrail,
   getModuleById,
+  getChaptersByModule,
+  getChaptersByModuleAndProfile,
+  getChapterBySlug,
   getSlidesByModule,
   getQuizByModule,
   getUserProgressForTrail,
@@ -160,7 +163,30 @@ export const appRouter = router({
       }),
   }),
 
-  // ─── Modules ────────────────────────────────────────────────────────────────
+  // ─── Chapters ─────────────────────────────────────────────────────────────────────────────
+  chapters: router({
+    byModule: protectedProcedure
+      .input(z.object({
+        moduleId: z.number(),
+        profileType: z.enum(["todos", "clt", "pj", "lideranca"]).optional(),
+      }))
+      .query(async ({ input }) => {
+        if (input.profileType && input.profileType !== "todos") {
+          return getChaptersByModuleAndProfile(input.moduleId, input.profileType);
+        }
+        return getChaptersByModule(input.moduleId);
+      }),
+
+    bySlug: protectedProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        const chapter = await getChapterBySlug(input.slug);
+        if (!chapter) throw new TRPCError({ code: "NOT_FOUND" });
+        return chapter;
+      }),
+  }),
+
+  // ─── Modules ─────────────────────────────────────────────────────────────────────────────
   modules: router({
     byTrail: protectedProcedure
       .input(z.object({ trailId: z.number() }))

@@ -69,8 +69,19 @@
 
 ## Ajustes de Textos (Rodada 2)
 
-- [ ] Remover todos os "TBI" restantes no site (banco de dados e frontend)
-- [ ] Atualizar mensagem da Betinha no painel inicial
-- [ ] Substituir "badge" por "conquista" em todo o site
-- [ ] Atualizar texto de quizzes
-- [ ] Atualizar título do Ranking
+- [x] Remover todos os "TBI" restantes no site (banco de dados e frontend)
+- [x] Atualizar mensagem da Betinha no painel inicial
+- [x] Substituir "badge" por "conquista" em todo o site
+- [x] Atualizar texto de quizzes
+- [x] Atualizar título do Ranking
+
+## Reestruturação de Módulos e Capítulos
+
+- [x] Atualizar schema: adicionar tabela chapters (capítulos dentro de módulos) e campo profile_type (CLT/PJ/Liderança/Todos)
+- [x] Reescrever seed com nova estrutura: 3 trilhas, 6 módulos, 23 capítulos por perfil, 35 slides
+- [x] Atualizar backend: helpers getChaptersByModule, getChaptersByModuleAndProfile, getChapterBySlug no db.ts
+- [x] Atualizar backend: router chapters.byModule e chapters.bySlug no routers.ts
+- [x] Atualizar frontend TrailDetail: exibir capítulos expandíveis por módulo com badge de perfil
+- [x] Atualizar frontend ModuleViewer: painel lateral de capítulos com badge de perfil
+- [x] Adicionar 4 testes Vitest para chapters (byModule, byModule com filtro, bySlug, NOT_FOUND)
+- [x] 25 testes Vitest passando

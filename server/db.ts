@@ -5,6 +5,7 @@ import {
   users,
   trails,
   modules,
+  chapters,
   slides,
   quizQuestions,
   userProgress,
@@ -173,6 +174,41 @@ export async function createModule(data: {
   const db = await getDb();
   if (!db) return;
   await db.insert(modules).values(data);
+}
+
+// ─── Chapters ────────────────────────────────────────────────────────────────
+export async function getChaptersByModule(moduleId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(chapters)
+    .where(and(eq(chapters.moduleId, moduleId), eq(chapters.isActive, true)))
+    .orderBy(asc(chapters.orderIndex));
+}
+
+export async function getChaptersByModuleAndProfile(
+  moduleId: number,
+  profileType: "todos" | "clt" | "pj" | "lideranca"
+) {
+  const db = await getDb();
+  if (!db) return [];
+  // Return chapters that match the profile OR are for 'todos'
+  const allChapters = await db
+    .select()
+    .from(chapters)
+    .where(and(eq(chapters.moduleId, moduleId), eq(chapters.isActive, true)))
+    .orderBy(asc(chapters.orderIndex));
+  return allChapters.filter(
+    (c) => c.profileType === "todos" || c.profileType === profileType
+  );
+}
+
+export async function getChapterBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(chapters).where(eq(chapters.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
 }
 
 // ─── Slides ───────────────────────────────────────────────────────────────────

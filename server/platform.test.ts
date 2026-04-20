@@ -59,6 +59,17 @@ vi.mock("./db", () => ({
   createSlide: vi.fn().mockResolvedValue(undefined),
   createQuizQuestion: vi.fn().mockResolvedValue(undefined),
   deleteQuizQuestionsByModule: vi.fn().mockResolvedValue(undefined),
+  getChaptersByModule: vi.fn().mockResolvedValue([
+    { id: 1, moduleId: 1, slug: "institucional-boas-vindas", title: "Capítulo 1: Boas-vindas", description: "Boas-vindas Betinha", profileType: "todos", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, moduleId: 1, slug: "institucional-valores-lideranca", title: "Capítulo 3 (Liderança): Modelando os Valores", description: "Para líderes", profileType: "lideranca", orderIndex: 2, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  ]),
+  getChaptersByModuleAndProfile: vi.fn().mockResolvedValue([
+    { id: 1, moduleId: 1, slug: "institucional-boas-vindas", title: "Capítulo 1: Boas-vindas", description: "Boas-vindas Betinha", profileType: "todos", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  ]),
+  getChapterBySlug: vi.fn().mockImplementation(async (slug: string) => {
+    if (slug === "institucional-boas-vindas") return { id: 1, moduleId: 1, slug, title: "Capítulo 1: Boas-vindas", description: "Boas-vindas Betinha", profileType: "todos", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() };
+    return null;
+  }),
 }));
 
 // ─── Context factories ────────────────────────────────────────────────────────
@@ -297,5 +308,55 @@ describe("admin", () => {
     const ctx = createUserContext();
     const caller = appRouter.createCaller(ctx);
     await expect(caller.admin.users()).rejects.toThrow("Acesso restrito a administradores.");
+  });
+});
+
+describe("chapters", () => {
+  it("byModule returns all chapters for a module", async () => {
+    const ctx = createUserContext();
+    const caller = appRouter.createCaller(ctx);
+    const chapters = await caller.chapters.byModule({ moduleId: 1 });
+    expect(chapters).toHaveLength(2);
+    expect(chapters[0].slug).toBe("institucional-boas-vindas");
+    expect(chapters[0].profileType).toBe("todos");
+    expect(chapters[1].profileType).toBe("lideranca");
+  });
+
+  it("byModule with profileType 'lideranca' returns only todos chapters (mock returns 1)", async () => {
+    const ctx = createUserContext();
+    const caller = appRouter.createCaller(ctx);
+    // When profileType is provided, getChaptersByModuleAndProfile is called
+    // Mock returns 1 chapter with profileType 'todos' (simulating filter result)
+    const chapters = await caller.chapters.byModule({ moduleId: 1, profileType: "lideranca" });
+    expect(chapters).toHaveLength(1);
+    // All returned chapters should be either 'todos' or the requested profile
+    chapters.forEach((c: any) => {
+      expect(["todos", "lideranca"]).toContain(c.profileType);
+    });
+  });
+
+  it("byModule without profileType returns all chapters including profile-specific ones", async () => {
+    const ctx = createUserContext();
+    const caller = appRouter.createCaller(ctx);
+    // Without profileType, getChaptersByModule is called (returns all)
+    const chapters = await caller.chapters.byModule({ moduleId: 1 });
+    expect(chapters).toHaveLength(2);
+    const profileTypes = chapters.map((c: any) => c.profileType);
+    expect(profileTypes).toContain("todos");
+    expect(profileTypes).toContain("lideranca");
+  });
+
+  it("bySlug returns chapter by slug", async () => {
+    const ctx = createUserContext();
+    const caller = appRouter.createCaller(ctx);
+    const chapter = await caller.chapters.bySlug({ slug: "institucional-boas-vindas" });
+    expect(chapter.id).toBe(1);
+    expect(chapter.title).toBe("Capítulo 1: Boas-vindas");
+  });
+
+  it("bySlug throws NOT_FOUND for unknown slug", async () => {
+    const ctx = createUserContext();
+    const caller = appRouter.createCaller(ctx);
+    await expect(caller.chapters.bySlug({ slug: "slug-inexistente" })).rejects.toThrow();
   });
 });

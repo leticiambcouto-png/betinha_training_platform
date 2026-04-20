@@ -67,6 +67,23 @@ export const modules = mysqlTable("modules", {
 
 export type Module = typeof modules.$inferSelect;
 
+// // ─── Chapters (Capítulos dentro dos módulos) ─────────────────────────────────
+export const chapters = mysqlTable("chapters", {
+  id: int("id").autoincrement().primaryKey(),
+  moduleId: int("moduleId").notNull(),
+  slug: varchar("slug", { length: 128 }).notNull().unique(),
+  title: varchar("title", { length: 256 }).notNull(),
+  description: text("description"),
+  profileType: mysqlEnum("profileType", ["todos", "clt", "pj", "lideranca"]).default("todos").notNull(),
+  orderIndex: int("orderIndex").default(0).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Chapter = typeof chapters.$inferSelect;
+export type InsertChapter = typeof chapters.$inferInsert;
+
 // ─── Slides (Conteúdo dos módulos) ────────────────────────────────────────────
 export const slides = mysqlTable("slides", {
   id: int("id").autoincrement().primaryKey(),
