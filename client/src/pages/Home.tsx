@@ -72,7 +72,7 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-medium">
                 <Star className="w-3 h-3 fill-primary" />
-                Bem-vindo ao TBI Stellar Space
+                Bem-vindo ao Trilha de Onboarding Stellar Space
               </div>
               <h1 className="text-4xl lg:text-5xl font-black text-foreground leading-tight">
                 Sua jornada de
@@ -197,7 +197,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border py-6 px-4">
         <div className="container text-center">
-          <p className="text-sm text-muted-foreground">© 2026 Stellar Space · Plataforma de Treinamentos TBI</p>
+          <p className="text-sm text-muted-foreground">© 2026 Stellar Space · Plataforma de Onboarding</p>
         </div>
       </footer>
     </div>

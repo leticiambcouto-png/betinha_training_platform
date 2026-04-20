@@ -73,7 +73,7 @@ export default function Trails() {
           className="mb-8"
         >
           <Betinha
-            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela TBI Gente e Cultura — ela foi feita especialmente para o seu primeiro dia. As outras trilhas chegarão em breve!"
+            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela Trilha de Onboarding: Gente e Cultura — ela foi feita especialmente para o seu primeiro dia. As outras trilhas chegarão em breve!"
             size="md"
           />
         </motion.div>

@@ -15,9 +15,9 @@ async function run(sql, params = []) {
 
 // ─── Trails ───────────────────────────────────────────────────────────────────
 const trailsData = [
-  { slug: "tbi-gente-cultura", title: "TBI Gente e Cultura", description: "Trilha de integração sobre a cultura, valores e jeito de trabalhar da Stellar Space.", icon: "Star", color: "#00C853", orderIndex: 0 },
-  { slug: "tbi-dp", title: "TBI de DP", description: "Trilha de integração sobre Departamento Pessoal, benefícios e políticas de RH.", icon: "FileText", color: "#2979FF", orderIndex: 1 },
-  { slug: "tbi-seguranca", title: "TBI de Segurança do Trabalho", description: "Trilha de integração sobre saúde, segurança e bem-estar no trabalho.", icon: "Shield", color: "#FF6D00", orderIndex: 2 },
+  { slug: "tbi-gente-cultura", title: "Trilha de Onboarding: Gente e Cultura", description: "Trilha de integração sobre a cultura, valores e jeito de trabalhar da Stellar Space.", icon: "Star", color: "#00C853", orderIndex: 0 },
+  { slug: "tbi-dp", title: "Trilha de Onboarding: Departamento Pessoal", description: "Trilha de integração sobre Departamento Pessoal, benefícios e políticas de RH.", icon: "FileText", color: "#2979FF", orderIndex: 1 },
+  { slug: "tbi-seguranca", title: "Trilha de Onboarding: Segurança do Trabalho", description: "Trilha de integração sobre saúde, segurança e bem-estar no trabalho.", icon: "Shield", color: "#FF6D00", orderIndex: 2 },
 ];
 
 for (const t of trailsData) {
@@ -191,12 +191,12 @@ console.log("✅ Slides: Nossos Canais");
 
 // ─── Slides: Orientações Gerais ────────────────────────────────────────────────
 await insertSlides("orientacoes-gerais", [
-  { orderIndex: 0, title: "Orientações Gerais", content: "Aqui você encontra tudo que precisa saber para o seu dia a dia na Stellar Space: dress code, combinados importantes, escritórios e canais de suporte.", betinhaSpeech: "Chegamos ao último módulo do TBI Gente e Cultura! Aqui vou te passar as orientações práticas do dia a dia. Fique atento, são informações importantes!", layout: "highlight" },
+  { orderIndex: 0, title: "Orientações Gerais", content: "Aqui você encontra tudo que precisa saber para o seu dia a dia na Stellar Space: dress code, combinados importantes, escritórios e canais de suporte.", betinhaSpeech: "Chegamos ao último módulo do Trilha de Onboarding: Gente e Cultura! Aqui vou te passar as orientações práticas do dia a dia. Fique atento, são informações importantes!", layout: "highlight" },
   { orderIndex: 1, title: "Dress Code", content: "Por aqui, você pode se vestir da maneira que se sentir mais confortável! Temos uma camisa corporativa que é brinde — mas não é de uso obrigatório.\n\n**Única regra**: Não vale usar roupas com logo da concorrência.", betinhaSpeech: "Boa notícia: dress code livre! Vista-se como se sentir bem. A única regra é não usar logo da concorrência. Simples assim!", layout: "default" },
   { orderIndex: 2, title: "Combinados Importantes", content: "Alguns combinados essenciais:\n\n• **Confidencialidade**: Não exponha dados de clientes, fornecedores, senhas ou planejamento estratégico\n• **Representação**: Não fale em nome da empresa para terceiros ou imprensa sem autorização\n• **Plataforma**: Não realize apostas na plataforma www.estrelabet.bet.br", betinhaSpeech: "Esses combinados são super importantes! Confidencialidade e ética são inegociáveis aqui. Cuide das informações da empresa como se fossem suas.", layout: "list" },
   { orderIndex: 3, title: "Nossos Escritórios", content: "**Belo Horizonte**: Acesso por crachá (pessoal e intransferível) e reconhecimento facial. Em caso de perda: taxa de R$ 40,00. Em caso de furto/roubo: apresente o BO para emissão gratuita.\n\n**São Paulo**: Acesso por reconhecimento facial. Em caso de dúvidas, contate o Time de Facilities.", betinhaSpeech: "Temos escritórios em BH e São Paulo! O acesso é por crachá e reconhecimento facial. Cuide bem do seu crachá — a reposição tem custo!", layout: "default" },
   { orderIndex: 4, title: "Canal de Denúncia", content: "Tratamos todas as denúncias com imparcialidade e sigilo.\n\n**E-mail**: denuncia@intlmkt.com.br\n\nSe precisar, você pode também conversar com sua liderança ou com o time de Gente e Cultura. Ninguém precisa enfrentar situações difíceis sozinho.", betinhaSpeech: "O canal de denúncia existe para proteger você e todos do time. Qualquer situação de assédio, irregularidade ou problema ético — denuncie. Sua segurança é prioridade.", layout: "default" },
-  { orderIndex: 5, title: "Parabéns! Você concluiu o TBI Gente e Cultura!", content: "Você agora conhece a Stellar Space de dentro para fora! Valores, história, cultura, estratégia, canais e orientações — você está pronto para começar essa jornada incrível.\n\nBem-vindo ao time!", betinhaSpeech: "PARABÉNS! Você concluiu o TBI Gente e Cultura! Agora você conhece nossa história, nossos valores e nosso jeito de trabalhar. Estou muito orgulhosa de você! Bem-vindo à família Stellar Space!", layout: "highlight" },
+  { orderIndex: 5, title: "Parabéns! Você concluiu o Trilha de Onboarding: Gente e Cultura!", content: "Você agora conhece a Stellar Space de dentro para fora! Valores, história, cultura, estratégia, canais e orientações — você está pronto para começar essa jornada incrível.\n\nBem-vindo ao time!", betinhaSpeech: "PARABÉNS! Você concluiu o Trilha de Onboarding: Gente e Cultura! Agora você conhece nossa história, nossos valores e nosso jeito de trabalhar. Estou muito orgulhosa de você! Bem-vindo à família Stellar Space!", layout: "highlight" },
 ]);
 console.log("✅ Slides: Orientações Gerais");
 
@@ -206,7 +206,7 @@ const badgesData = [
   { slug: "estrela-em-ascensao", name: "Estrela em Ascensão", description: "Completou 3 módulos", icon: "Star", color: "#FFC107", condition: "complete_3_modules" },
   { slug: "velocidade-da-luz", name: "Velocidade da Luz", description: "Completou um módulo dentro do prazo", icon: "Zap", color: "#2196F3", condition: "complete_on_time" },
   { slug: "mestre-do-quiz", name: "Mestre do Quiz", description: "Acertou 100% em um quiz", icon: "Trophy", color: "#9C27B0", condition: "perfect_quiz" },
-  { slug: "trilha-completa", name: "Trilha Completa", description: "Completou toda a trilha TBI Gente e Cultura", icon: "Award", color: "#FF5722", condition: "complete_trail_tbi-gente-cultura" },
+  { slug: "trilha-completa", name: "Trilha Completa", description: "Completou toda a trilha Trilha de Onboarding: Gente e Cultura", icon: "Award", color: "#FF5722", condition: "complete_trail_tbi-gente-cultura" },
   { slug: "conhecedor-da-cultura", name: "Conhecedor da Cultura", description: "Completou os módulos de Valores e Cultura AI First", icon: "Heart", color: "#E91E63", condition: "complete_culture_modules" },
   { slug: "bem-vindo-ao-time", name: "Bem-vindo ao Time!", description: "Concluiu o onboarding completo", icon: "Users", color: "#00BCD4", condition: "complete_onboarding" },
   { slug: "pontuacao-500", name: "Acumulador", description: "Atingiu 500 pontos", icon: "Coins", color: "#FF9800", condition: "reach_500_points" },

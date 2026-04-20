@@ -40,9 +40,9 @@ const navItems: NavItem[] = [
     icon: BookOpen,
     label: "Trilhas de Aprendizado",
     children: [
-      { href: "/trilhas", label: "TBI Gente e Cultura" },
-      { href: "/trilhas", label: "TBI de DP" },
-      { href: "/trilhas", label: "TBI Seg. do Trabalho" },
+      { href: "/trilhas", label: "Trilha de Onboarding: Gente e Cultura" },
+      { href: "/trilhas", label: "Trilha de Onboarding: Departamento Pessoal" },
+      { href: "/trilhas", label: "Trilha de Onboarding: Segurança do Trabalho" },
     ],
   },
   { href: "/ranking", icon: Trophy, label: "Ranking" },

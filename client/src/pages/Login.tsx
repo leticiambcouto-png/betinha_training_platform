@@ -127,7 +127,7 @@ export default function Login() {
 
         {/* Footer */}
         <p className="text-xs" style={{ color: "hsl(210 20% 35%)" }}>
-          © 2026 Stellar Space · Plataforma de Treinamentos TBI
+          © 2026 Stellar Space · Plataforma de Onboarding
         </p>
       </div>
 

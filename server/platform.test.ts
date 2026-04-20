@@ -12,12 +12,12 @@ vi.mock("./db", () => ({
     role: "user", totalPoints: 0, level: 1, createdAt: new Date(), updatedAt: new Date(), lastSignedIn: new Date(),
   }),
   getAllTrails: vi.fn().mockResolvedValue([
-    { id: 1, slug: "tbi-gente-cultura", title: "TBI Gente e Cultura", description: "Trilha principal", icon: "Star", color: "#00C853", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() },
-    { id: 2, slug: "tbi-dp", title: "TBI de DP", description: "Em breve", icon: "FileText", color: "#2196F3", orderIndex: 2, isActive: true, createdAt: new Date(), updatedAt: new Date() },
-    { id: 3, slug: "tbi-seguranca", title: "TBI de Segurança do Trabalho", description: "Em breve", icon: "Shield", color: "#FF5722", orderIndex: 3, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+    { id: 1, slug: "tbi-gente-cultura", title: "Trilha de Onboarding: Gente e Cultura", description: "Trilha principal", icon: "Star", color: "#00C853", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, slug: "tbi-dp", title: "Trilha de Onboarding: Departamento Pessoal", description: "Em breve", icon: "FileText", color: "#2196F3", orderIndex: 2, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+    { id: 3, slug: "tbi-seguranca", title: "Trilha de Onboarding: Segurança do Trabalho", description: "Em breve", icon: "Shield", color: "#FF5722", orderIndex: 3, isActive: true, createdAt: new Date(), updatedAt: new Date() },
   ]),
   getTrailBySlug: vi.fn().mockImplementation(async (slug: string) => {
-    if (slug === "tbi-gente-cultura") return { id: 1, slug, title: "TBI Gente e Cultura", description: "Trilha principal", icon: "Star", color: "#00C853", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() };
+    if (slug === "tbi-gente-cultura") return { id: 1, slug, title: "Trilha de Onboarding: Gente e Cultura", description: "Trilha principal", icon: "Star", color: "#00C853", orderIndex: 1, isActive: true, createdAt: new Date(), updatedAt: new Date() };
     return null;
   }),
   getModulesByTrail: vi.fn().mockResolvedValue([
@@ -176,7 +176,7 @@ describe("trails", () => {
     const ctx = createUserContext();
     const caller = appRouter.createCaller(ctx);
     const result = await caller.trails.bySlug({ slug: "tbi-gente-cultura" });
-    expect(result.trail.title).toBe("TBI Gente e Cultura");
+    expect(result.trail.title).toBe("Trilha de Onboarding: Gente e Cultura");
     expect(result.modules).toHaveLength(2);
   });
 

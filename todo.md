@@ -62,3 +62,7 @@
 - [x] Adaptar backend para sessão por cookie simples (JWT local via loginSimple)
 - [x] Remover redirecionamentos para tela de login OAuth em todas as páginas
 - [x] 21 testes Vitest passando (inclui 3 novos testes para loginSimple)
+
+## Ajustes de Nomenclatura
+
+- [x] Substituir "TBI" por "Trilha de Onboarding" em todo o site (frontend, banco de dados, seed)
