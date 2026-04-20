@@ -75,14 +75,12 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
   const SidebarContent = () => (
     <>
       {/* Logo */}
-      <div className="px-4 py-5 flex items-center gap-3">
-        <StellarIcon className="w-8 h-8" />
-        <span
-          className="font-bold text-base tracking-tight"
-          style={{ color: "hsl(60 100% 93%)", fontFamily: "'Barlow', sans-serif" }}
-        >
-          Stellar Gaming
-        </span>
+      <div className="px-4 py-5 flex items-center">
+        <img
+          src="/manus-storage/stellar-gaming-logo_7a539a02.svg"
+          alt="Stellar Gaming"
+          className="h-10 w-auto object-contain"
+        />
       </div>
 
       {/* Search */}

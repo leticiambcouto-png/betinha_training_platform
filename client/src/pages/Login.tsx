@@ -43,15 +43,11 @@ export default function Login() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center"
-            style={{ background: "hsl(66 87% 55% / 0.15)", border: "1px solid hsl(66 87% 55% / 0.4)" }}
-          >
-            <Star className="w-5 h-5" style={{ color: "hsl(66 87% 55%)" }} />
-          </div>
-          <span className="font-bold text-lg" style={{ color: "hsl(60 100% 93%)" }}>
-            Stellar Gaming
-          </span>
+          <img
+            src="/manus-storage/stellar-gaming-logo_7a539a02.svg"
+            alt="Stellar Gaming"
+            className="h-10 w-auto object-contain"
+          />
           <span className="text-sm" style={{ color: "hsl(210 20% 50%)" }}>
             | Boas-vindas
           </span>
