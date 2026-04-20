@@ -50,7 +50,7 @@ export default function Login() {
             <Star className="w-5 h-5" style={{ color: "hsl(66 87% 55%)" }} />
           </div>
           <span className="font-bold text-lg" style={{ color: "hsl(60 100% 93%)" }}>
-            Stellar Space
+            Stellar Gaming
           </span>
           <span className="text-sm" style={{ color: "hsl(210 20% 50%)" }}>
             | Boas-vindas
@@ -127,7 +127,7 @@ export default function Login() {
 
         {/* Footer */}
         <p className="text-xs" style={{ color: "hsl(210 20% 35%)" }}>
-          © 2026 Stellar Space · Plataforma de Onboarding
+          © 2026 Stellar Gaming · Plataforma de Onboarding
         </p>
       </div>
 
@@ -141,7 +141,7 @@ export default function Login() {
           >
             <Star className="w-4 h-4" style={{ color: "hsl(66 87% 55%)" }} />
           </div>
-          <span className="font-bold" style={{ color: "hsl(60 100% 93%)" }}>Stellar Space</span>
+          <span className="font-bold" style={{ color: "hsl(60 100% 93%)" }}>Stellar Gaming</span>
         </div>
 
         <motion.div
@@ -260,7 +260,7 @@ export default function Login() {
             </form>
 
             <p className="text-xs text-center" style={{ color: "hsl(210 20% 40%)" }}>
-              Ao entrar, você concorda com as políticas internas da Stellar Space.
+              Ao entrar, você concorda com as políticas internas da Stellar Gaming.
             </p>
           </div>
         </motion.div>

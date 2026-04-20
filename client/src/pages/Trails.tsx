@@ -19,7 +19,7 @@ const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 };
 
 const TRAIL_SPEECHES: Record<string, string> = {
-  "tbi-gente-cultura": "Essa é a trilha principal do seu onboarding! Aqui você vai conhecer tudo sobre a Stellar Space — nossa história, valores, cultura e muito mais. Vamos começar?",
+  "tbi-gente-cultura": "Essa é a trilha principal do seu onboarding! Aqui você vai conhecer tudo sobre a Stellar Gaming — nossa história, valores, cultura e muito mais. Vamos começar?",
   "tbi-dp": "Essa trilha vai te ajudar a entender tudo sobre benefícios, jornada de trabalho e políticas de RH. Em breve disponível!",
   "tbi-seguranca": "Aqui você aprende sobre saúde e segurança no trabalho. Um ambiente seguro é responsabilidade de todos! Em breve disponível.",
 };

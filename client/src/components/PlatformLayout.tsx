@@ -81,7 +81,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
           className="font-bold text-base tracking-tight"
           style={{ color: "hsl(60 100% 93%)", fontFamily: "'Barlow', sans-serif" }}
         >
-          Stellar Space
+          Stellar Gaming
         </span>
       </div>
 
@@ -262,7 +262,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
 
       {/* Footer */}
       <div className="px-4 py-3">
-        <p className="text-xs" style={{ color: "hsl(210 20% 40%)" }}>© 2026 Stellar Space</p>
+        <p className="text-xs" style={{ color: "hsl(210 20% 40%)" }}>© 2026 Stellar Gaming</p>
       </div>
     </>
   );
@@ -290,7 +290,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       >
         <div className="flex items-center gap-2">
           <StellarIcon className="w-7 h-7" />
-          <span className="font-bold text-sm" style={{ color: "hsl(60 100% 93%)" }}>Stellar Space</span>
+          <span className="font-bold text-sm" style={{ color: "hsl(60 100% 93%)" }}>Stellar Gaming</span>
         </div>
         <button onClick={() => setMobileOpen(!mobileOpen)} style={{ color: "hsl(60 100% 93%)" }}>
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -322,7 +322,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
               </div>
               <div>
                 <h1 className="text-2xl font-bold mb-1" style={{ color: "hsl(60 100% 93%)" }}>
-                  Stellar Space
+                  Stellar Gaming
                 </h1>
                 <p className="text-sm" style={{ color: "hsl(210 20% 55%)" }}>
                   Plataforma de Treinamentos

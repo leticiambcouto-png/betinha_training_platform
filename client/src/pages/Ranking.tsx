@@ -34,7 +34,7 @@ export default function Ranking() {
             <Trophy className="w-7 h-7 text-yellow-400" />
             <h1 className="text-3xl font-black text-foreground">Ranking</h1>
           </div>
-          <p className="text-muted-foreground">Os colaboradores mais dedicados da Stellar Space</p>
+          <p className="text-muted-foreground">Os colaboradores mais dedicados da Stellar Gaming</p>
         </motion.div>
 
         {/* Betinha */}
