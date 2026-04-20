@@ -74,13 +74,19 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
 
   const SidebarContent = () => (
     <>
-      {/* Logo */}
-      <div className="px-4 py-5 flex items-center">
+      {/* Logo + Onboarding badge */}
+      <div className="px-4 pt-5 pb-3 flex flex-col gap-2">
         <img
           src="/manus-storage/stellar-gaming-logo_7a539a02.svg"
           alt="Stellar Gaming"
           className="h-10 w-auto object-contain"
         />
+        <div
+          className="w-full flex items-center justify-center py-2 rounded"
+          style={{ backgroundColor: "#d9f22a" }}
+        >
+          <span className="text-xs font-black tracking-widest uppercase" style={{ color: "#0d1117", letterSpacing: "0.12em" }}>Onboarding 2.0</span>
+        </div>
       </div>
 
       {/* Search */}
