@@ -139,32 +139,32 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
                 className="overflow-hidden"
               >
                 <div className="pl-7 pt-0.5 space-y-0.5">
-                  <Link href="/trilhas">
+                  <Link href="/trilhas/gente-cultura">
                     <div
                       className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: "hsl(210 20% 65%)" }}
+                      style={{ color: isActive("/trilhas/gente-cultura") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/gente-cultura") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
                     >
                       Gente e Cultura
                     </div>
                   </Link>
-                  <Link href="/trilhas">
+                  <Link href="/trilhas/departamento-pessoal">
                     <div
                       className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: "hsl(210 20% 65%)" }}
+                      style={{ color: isActive("/trilhas/departamento-pessoal") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/departamento-pessoal") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
                     >
                       Departamento Pessoal
                     </div>
                   </Link>
-                  <Link href="/trilhas">
+                  <Link href="/trilhas/seguranca-trabalho">
                     <div
                       className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: "hsl(210 20% 65%)" }}
+                      style={{ color: isActive("/trilhas/seguranca-trabalho") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
                       onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 65%)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/seguranca-trabalho") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
                     >
                       Segurança do Trabalho
                     </div>

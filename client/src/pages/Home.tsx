@@ -9,8 +9,8 @@ const BETINHA_AVATAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059
 
 const features = [
   { icon: BookOpen, title: "Trilhas Interativas", desc: "Módulos dinâmicos com conteúdo rico e apresentações guiadas pela Betinha." },
-  { icon: Trophy, title: "Gamificação Completa", desc: "Ganhe pontos, desbloqueie badges e suba no ranking da empresa." },
-  { icon: Zap, title: "Quizzes com IA", desc: "Perguntas geradas por inteligência artificial baseadas no conteúdo de cada módulo." },
+  { icon: Trophy, title: "Gamificação Completa", desc: "Ganhe pontos, desbloqueie conquistas e suba no ranking da empresa." },
+  { icon: Zap, title: "Quizzes Interativos", desc: "Quizzes para você testar o seu conhecimento e aprender de forma interativa." },
   { icon: Star, title: "Progresso Visual", desc: "Acompanhe sua evolução com barras de progresso, níveis e conquistas." },
 ];
 
@@ -92,7 +92,7 @@ export default function Home() {
                 {[
                   { value: "3", label: "Trilhas" },
                   { value: "11+", label: "Módulos" },
-                  { value: "8", label: "Badges" },
+                  { value: "8", label: "Conquistas" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-2xl font-black text-primary">{stat.value}</p>

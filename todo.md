@@ -66,3 +66,11 @@
 ## Ajustes de Nomenclatura
 
 - [x] Substituir "TBI" por "Trilha de Onboarding" em todo o site (frontend, banco de dados, seed)
+
+## Ajustes de Textos (Rodada 2)
+
+- [ ] Remover todos os "TBI" restantes no site (banco de dados e frontend)
+- [ ] Atualizar mensagem da Betinha no painel inicial
+- [ ] Substituir "badge" por "conquista" em todo o site
+- [ ] Atualizar texto de quizzes
+- [ ] Atualizar título do Ranking

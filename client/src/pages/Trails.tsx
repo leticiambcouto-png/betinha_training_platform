@@ -19,9 +19,9 @@ const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 };
 
 const TRAIL_SPEECHES: Record<string, string> = {
-  "tbi-gente-cultura": "Essa é a trilha principal do seu onboarding! Aqui você vai conhecer tudo sobre a Stellar Gaming — nossa história, valores, cultura e muito mais. Vamos começar?",
-  "tbi-dp": "Essa trilha vai te ajudar a entender tudo sobre benefícios, jornada de trabalho e políticas de RH. Em breve disponível!",
-  "tbi-seguranca": "Aqui você aprende sobre saúde e segurança no trabalho. Um ambiente seguro é responsabilidade de todos! Em breve disponível.",
+  "gente-cultura": "Essa é a trilha principal do seu onboarding! Aqui você vai conhecer tudo sobre a Stellar Gaming — nossa história, valores, cultura e muito mais. Vamos começar?",
+  "departamento-pessoal": "Essa trilha vai te ajudar a entender tudo sobre benefícios, jornada de trabalho e políticas de RH. Em breve disponível!",
+  "seguranca-trabalho": "Aqui você aprende sobre saúde e segurança no trabalho. Um ambiente seguro é responsabilidade de todos! Em breve disponível.",
 };
 
 export default function Trails() {
@@ -83,7 +83,7 @@ export default function Trails() {
           {trails?.map((trail: any, i: number) => {
             const IconComp = iconMap[trail.icon] || Star;
             const progress = getTrailProgress(trail.id);
-            const isComingSoon = trail.slug !== "tbi-gente-cultura";
+            const isComingSoon = trail.slug !== "gente-cultura";
             const isCompleted = progress.pct === 100;
 
             return (

@@ -36,8 +36,8 @@ export default function Dashboard() {
   const levelProgress = Math.max(0, 100 - (stats.pointsToNextLevel / (stats.level * 500)) * 100);
 
   const getBetinhaSpeech = () => {
-    if (stats.completed === 0) return "Olá! Bem-vindo à plataforma! Comece pela trilha Trilha de Onboarding: Gente e Cultura para dar o primeiro passo na sua jornada. Estou aqui para te ajudar!";
-    if (stats.rank === 1) return `Uau! Você está em 1º lugar no ranking! Que incrível! Com ${stats.totalPoints} pontos, você é o colaborador mais dedicado. Continue assim!`;
+    if (stats.completed === 0) return "Conheça a Stellar Gaming, nossa cultura e nosso jeito de trabalhar através de trilhas interativas guiadas pela Betinha, sua agente de Gente e Cultura.";
+    if (stats.rank === 1) return `Uau! Você está em 1º lugar no ranking! Que incrível! Com ${stats.totalPoints} pontos, você é o colaborador mais dedicado da Stellar Gaming. Continue assim!`;
     if (stats.completed >= 5) return `Você já completou ${stats.completed} módulos! Está indo muito bem! Continue assim para subir ainda mais no ranking.`;
     return `Você já tem ${stats.totalPoints} pontos e completou ${stats.completed} módulos. Continue sua jornada — cada módulo te deixa mais próximo do topo!`;
   };
@@ -124,7 +124,7 @@ export default function Dashboard() {
             </div>
             {stats.badges.length === 0 ? (
               <div className="text-center py-6">
-                <p className="text-muted-foreground text-sm">Complete módulos para desbloquear badges!</p>
+                <p className="text-muted-foreground text-sm">Complete módulos para desbloquear conquistas!</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-3">
@@ -228,7 +228,7 @@ export default function Dashboard() {
           </div>
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={() => navigate("/trilhas/tbi-gente-cultura")}
+            onClick={() => navigate("/trilhas/gente-cultura")}
           >
             <BookOpen className="w-4 h-4 mr-2" />
             Trilha de Onboarding: Gente e Cultura

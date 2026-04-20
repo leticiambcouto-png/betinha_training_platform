@@ -254,9 +254,9 @@ function TrailProgressCard({ trail, users }: { trail: any; users: any[] | undefi
           <span>{users?.length ?? 0} colaboradores</span>
           <span>{totalModules} módulos</span>
         </div>
-        <Progress value={trail.slug === "tbi-gente-cultura" ? 100 : 0} className="h-1.5" />
+        <Progress value={trail.slug === "gente-cultura" ? 100 : 0} className="h-1.5" />
         <p className="text-xs text-muted-foreground">
-          {trail.slug === "tbi-gente-cultura" ? "Conteúdo disponível" : "Em breve"}
+          {trail.slug === "gente-cultura" ? "Conteúdo disponível" : "Em breve"}
         </p>
       </div>
     </div>

@@ -269,10 +269,10 @@ export default function ModuleViewer() {
                 )}
               </div>
 
-              {/* New badges */}
+              {/* New conquistas */}
               {newBadges.length > 0 && (
                 <div className="mb-6">
-                  <p className="text-sm text-muted-foreground mb-2">Badges desbloqueados:</p>
+                  <p className="text-sm text-muted-foreground mb-2">Conquistas desbloqueadas:</p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {newBadges.map((b) => (
                       <span key={b} className="px-3 py-1 bg-primary/15 border border-primary/30 rounded-full text-xs text-primary font-semibold animate-badge-pop">
@@ -287,7 +287,7 @@ export default function ModuleViewer() {
                 <Button
                   variant="outline"
                   className="flex-1 border-border"
-                  onClick={() => { setShowCompletionModal(false); navigate(`/trilhas/tbi-gente-cultura`); }}
+                  onClick={() => { setShowCompletionModal(false); navigate(`/trilhas/gente-cultura`); }}
                 >
                   Ver Trilha
                 </Button>

@@ -92,7 +92,7 @@ export default function Login() {
             {[
               { icon: BookOpen, label: "Trilhas interativas pra você ficar por dentro" },
               { icon: Trophy, label: "Ganhe pontos e lidere o ranking realizando as trilhas" },
-              { icon: Zap, label: "Quizzes para você testar seus conhecimentos de forma leve e divertida" },
+              { icon: Zap, label: "Quizzes para você testar o seu conhecimento e aprender de forma interativa" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-3">
                 <div
@@ -111,7 +111,7 @@ export default function Login() {
             {[
               { value: "3", label: "Trilhas" },
               { value: "11+", label: "Módulos" },
-              { value: "8", label: "Badges" },
+              { value: "8", label: "Conquistas" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="text-2xl font-black" style={{ color: "hsl(66 87% 55%)" }}>{stat.value}</p>
