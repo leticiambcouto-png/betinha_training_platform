@@ -13,6 +13,11 @@ import { Progress } from "@/components/ui/progress";
 import { Betinha } from "@/components/Betinha";
 import { toast } from "sonner";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { TimelineSlide, parseTimelineContent } from "@/components/slides/TimelineSlide";
+import { CardDeckSlide, parseCardDeckContent } from "@/components/slides/CardDeckSlide";
+import { DictionarySlide, parseDictionaryContent } from "@/components/slides/DictionarySlide";
+import { ValuesSlide, parseValuesContent } from "@/components/slides/ValuesSlide";
+import { VideoPlaceholderSlide, parseVideoContent } from "@/components/slides/VideoPlaceholderSlide";
 
 const profileConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
   todos: { label: "Todos", color: "text-blue-400", icon: <Users className="w-3 h-3" /> },
@@ -187,30 +192,61 @@ export default function ModuleViewer() {
               transition={{ duration: 0.3 }}
               className={`rounded-2xl border p-6 lg:p-10 mb-6 min-h-64 ${getLayoutClass(slide?.layout ?? "default")}`}
             >
-              {slide?.title && (
-                <h2 className={`text-2xl lg:text-3xl font-black mb-6 ${
-                  slide.layout === "highlight" ? "text-primary stellar-glow-text" : "text-foreground"
-                }`}>
-                  {slide.title}
-                </h2>
+              {/* Rich slide layouts */}
+              {slide?.layout === "timeline" && (() => {
+                const parsed = parseTimelineContent(slide.content);
+                return <TimelineSlide title={slide.title ?? undefined} years={parsed.years} />;
+              })()}
+
+              {slide?.layout === "card-deck" && (() => {
+                const parsed = parseCardDeckContent(slide.content);
+                return <CardDeckSlide title={slide.title ?? undefined} cards={parsed.cards} columns={parsed.columns} />;
+              })()}
+
+              {slide?.layout === "dictionary" && (() => {
+                const parsed = parseDictionaryContent(slide.content);
+                return <DictionarySlide title={slide.title ?? undefined} entries={parsed.entries} />;
+              })()}
+
+              {slide?.layout === "values" && (() => {
+                const parsed = parseValuesContent(slide.content);
+                return <ValuesSlide title={slide.title ?? undefined} intro={parsed.intro} values={parsed.values} />;
+              })()}
+
+              {slide?.layout === "video-placeholder" && (() => {
+                const parsed = parseVideoContent(slide.content);
+                return <VideoPlaceholderSlide title={slide.title ?? undefined} data={parsed} />;
+              })()}
+
+              {/* Standard text layouts */}
+              {(!slide?.layout || !["timeline","card-deck","dictionary","values","video-placeholder"].includes(slide.layout)) && (
+                <>
+                  {slide?.title && (
+                    <h2 className={`text-2xl lg:text-3xl font-black mb-6 ${
+                      slide.layout === "highlight" ? "text-primary stellar-glow-text" : "text-foreground"
+                    }`}>
+                      {slide.title}
+                    </h2>
+                  )}
+                  <div className="text-foreground/90 leading-relaxed text-base">
+                    {(slide?.content ?? "").split("\n").map((line, i) => {
+                      if (!line.trim()) return <br key={i} />;
+                      const formatted = line
+                        .replace(/\*\*(.+?)\*\*/g, '<strong class="text-primary font-semibold">$1</strong>')
+                        .replace(/^• /, '');
+                      if (line.startsWith('• ') || line.startsWith('* ')) {
+                        return (
+                          <div key={i} className="flex items-start gap-2 mb-2">
+                            <span className="text-primary mt-0.5 flex-shrink-0">•</span>
+                            <span dangerouslySetInnerHTML={{ __html: formatted }} />
+                          </div>
+                        );
+                      }
+                      return <p key={i} className="mb-3" dangerouslySetInnerHTML={{ __html: formatted }} />;
+                    })}
+                  </div>
+                </>
               )}
-              <div className="text-foreground/90 leading-relaxed text-base">
-                {(slide?.content ?? "").split("\n").map((line, i) => {
-                  if (!line.trim()) return <br key={i} />;
-                  const formatted = line
-                    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-primary font-semibold">$1</strong>')
-                    .replace(/^• /, '');
-                  if (line.startsWith('• ') || line.startsWith('* ')) {
-                    return (
-                      <div key={i} className="flex items-start gap-2 mb-2">
-                        <span className="text-primary mt-0.5 flex-shrink-0">•</span>
-                        <span dangerouslySetInnerHTML={{ __html: formatted }} />
-                      </div>
-                    );
-                  }
-                  return <p key={i} className="mb-3" dangerouslySetInnerHTML={{ __html: formatted }} />;
-                })}
-              </div>
             </motion.div>
           </AnimatePresence>
 

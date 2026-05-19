@@ -85,3 +85,20 @@
 - [x] Atualizar frontend ModuleViewer: painel lateral de capítulos com badge de perfil
 - [x] Adicionar 4 testes Vitest para chapters (byModule, byModule com filtro, bySlug, NOT_FOUND)
 - [x] 25 testes Vitest passando
+
+## Revisão de Conteúdo e Formatos (Roteiro Oficial — Opção B)
+
+- [x] Atualizar schema: ampliar enum layout de slides para incluir timeline, card-deck, dictionary, values, video-placeholder
+- [x] Executar migration SQL do novo enum
+- [x] Criar componente TimelineSlide (linha do tempo interativa com marcos e prêmios)
+- [x] Criar componente CardDeckSlide (cards interativos com expansão)
+- [x] Criar componente DictionarySlide (dicionário com termos e definições em cards)
+- [x] Criar componente ValuesSlide (valores com descrição e dilemas interativos)
+- [x] Criar componente VideoPlaceholderSlide (placeholder de vídeo com thumbnail e descrição)
+- [x] Atualizar ModuleViewer para renderizar os novos tipos de slide por layout
+- [x] Reescrever seed Gente e Cultura: 8 módulos (Boas-vindas, História+Prêmios, Falando de Negócio+Dicionário, Planejamento Estratégico, Valores+Patrocínios, AI First, Rituais/Canais/Sistemas, Nossa Rotina)
+- [x] Reescrever seed Departamento Pessoal: 2 módulos (Benefícios de Ser Estrela, Rotinas de DP)
+- [x] Reescrever seed Saúde e Segurança: 4 módulos (Missão e Atuação, Riscos e Perigos, CIPAA e Brigada, Acidentes do Trabalho)
+- [x] Executar seed: 3 trilhas, 14 módulos, 23 capítulos, 48 slides
+- [x] 26 testes Vitest passando
+- [x] Salvar checkpoint

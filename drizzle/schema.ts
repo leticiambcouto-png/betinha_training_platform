@@ -93,7 +93,11 @@ export const slides = mysqlTable("slides", {
   content: text("content").notNull(),
   betinhaSpeech: text("betinhaSpeech"),
   imageUrl: varchar("imageUrl", { length: 512 }),
-  layout: mysqlEnum("layout", ["default", "highlight", "list", "quote", "image-left", "image-right", "full-image"]).default("default").notNull(),
+  layout: mysqlEnum("layout", [
+    "default", "highlight", "list", "quote",
+    "image-left", "image-right", "full-image",
+    "timeline", "card-deck", "dictionary", "values", "video-placeholder"
+  ]).default("default").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
