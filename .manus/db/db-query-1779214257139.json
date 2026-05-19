@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE `users` ADD `contractType` enum('clt','pj') DEFAULT 'clt';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute ALTER TABLE `users` ADD `contractType` enum('clt','pj') DEFAULT 'clt';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 444
+}

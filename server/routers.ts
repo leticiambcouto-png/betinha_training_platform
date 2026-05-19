@@ -94,25 +94,25 @@ export const appRouter = router({
     me: publicProcedure.query(opts => opts.ctx.user),
 
     // ─── Login simples (sem OAuth) ────────────────────────────────────────────
-    loginSimple: publicProcedure
+     loginSimple: publicProcedure
       .input(z.object({
         name: z.string().min(2, "Nome obrigatório"),
         email: z.string().email("E-mail inválido"),
+        contractType: z.enum(["clt", "pj"]).default("clt"),
       }))
       .mutation(async ({ ctx, input }) => {
         const { sdk } = await import("./_core/sdk");
         const { upsertUser, getUserByOpenId } = await import("./db");
-
         // Use email as stable openId for simple login
         const openId = `simple:${input.email.toLowerCase().trim()}`;
-
         await upsertUser({
           openId,
           name: input.name.trim(),
           email: input.email.toLowerCase().trim(),
           loginMethod: "simple",
+          contractType: input.contractType,
           lastSignedIn: new Date(),
-        });
+        });;
 
         const user = await getUserByOpenId(openId);
         if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Erro ao criar usuário" });
@@ -170,9 +170,11 @@ export const appRouter = router({
         moduleId: z.number(),
         profileType: z.enum(["todos", "clt", "pj", "lideranca"]).optional(),
       }))
-      .query(async ({ input }) => {
-        if (input.profileType && input.profileType !== "todos") {
-          return getChaptersByModuleAndProfile(input.moduleId, input.profileType);
+      .query(async ({ ctx, input }) => {
+        // Use explicit profileType if provided, otherwise derive from user's contractType
+        const profile = input.profileType ?? ctx.user.contractType ?? "todos";
+        if (profile && profile !== "todos") {
+          return getChaptersByModuleAndProfile(input.moduleId, profile as "clt" | "pj" | "lideranca");
         }
         return getChaptersByModule(input.moduleId);
       }),

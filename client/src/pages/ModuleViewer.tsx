@@ -200,7 +200,7 @@ export default function ModuleViewer() {
 
               {slide?.layout === "card-deck" && (() => {
                 const parsed = parseCardDeckContent(slide.content);
-                return <CardDeckSlide title={slide.title ?? undefined} cards={parsed.cards} columns={parsed.columns} />;
+                return <CardDeckSlide title={slide.title ?? undefined} cards={parsed.cards} columns={parsed.columns} contractType={(user?.contractType as "clt" | "pj" | null) ?? null} />;
               })()}
 
               {slide?.layout === "dictionary" && (() => {

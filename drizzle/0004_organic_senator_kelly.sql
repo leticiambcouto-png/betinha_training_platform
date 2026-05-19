@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `contractType` enum('clt','pj') DEFAULT 'clt';

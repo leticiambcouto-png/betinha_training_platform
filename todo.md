@@ -103,3 +103,18 @@
 - [x] Executar seed: 3 trilhas, 14 módulos, 23 capítulos, 48 slides
 - [x] 26 testes Vitest passando
 - [x] Salvar checkpoint
+
+## Seleção de Perfil Contratual (CLT / PJ)
+
+- [x] Adicionar campo contractType (enum: clt | pj) na tabela users do banco
+- [x] Executar migration SQL do novo campo
+- [x] Atualizar tela de login: seleção visual "Você é CLT ou PJ?" com cards interativos
+- [x] Betinha muda fala dinamicamente conforme perfil selecionado
+- [x] Botão de submit só ativa com nome, e-mail e perfil preenchidos
+- [x] Atualizar backend loginSimple para salvar contractType no usuário
+- [x] Atualizar upsertUser no db.ts para persistir contractType
+- [x] Backend chapters.byModule filtra automaticamente pelo contractType do usuário logado (todos + perfil)
+- [x] CardDeckSlide filtra cards por tag (CLT/PJ) baseado no contractType do usuário
+- [x] ModuleViewer passa contractType para CardDeckSlide
+- [x] 26 testes Vitest passando
+- [x] Checkpoint salvo

@@ -16,9 +16,19 @@ interface CardDeckSlideProps {
   description?: string;
   cards: InteractiveCard[];
   columns?: 1 | 2 | 3;
+  contractType?: "clt" | "pj" | null;
 }
 
-export function CardDeckSlide({ title, description, cards, columns = 2 }: CardDeckSlideProps) {
+export function CardDeckSlide({ title, description, cards, columns = 2, contractType }: CardDeckSlideProps) {
+  // Filter cards by contractType: show cards with no tag, matching tag, or 'todos'
+  const visibleCards = contractType
+    ? cards.filter((c) => {
+        if (!c.tag) return true;
+        const tag = c.tag.toLowerCase();
+        if (tag === "todos") return true;
+        return tag === contractType.toLowerCase();
+      })
+    : cards;
   const [expanded, setExpanded] = useState<number | null>(null);
 
   const gridClass =
@@ -34,7 +44,7 @@ export function CardDeckSlide({ title, description, cards, columns = 2 }: CardDe
       {description && <p className="text-muted-foreground text-sm mb-5">{description}</p>}
 
       <div className={`grid ${gridClass} gap-3`}>
-        {cards.map((card, i) => {
+        {visibleCards.map((card, i) => {
           const isOpen = expanded === i;
           const accentColor = card.color ?? "#d9f22a";
 
