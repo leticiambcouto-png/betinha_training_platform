@@ -20,8 +20,8 @@ const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 
 const TRAIL_SPEECHES: Record<string, string> = {
   "gente-cultura": "Essa é a trilha principal do seu onboarding! Aqui você vai conhecer tudo sobre a Stellar Gaming — nossa história, valores, cultura e muito mais. Vamos começar?",
-  "departamento-pessoal": "Essa trilha vai te ajudar a entender tudo sobre benefícios, jornada de trabalho e políticas de RH. Em breve disponível!",
-  "seguranca-trabalho": "Aqui você aprende sobre saúde e segurança no trabalho. Um ambiente seguro é responsabilidade de todos! Em breve disponível.",
+  "departamento-pessoal": "Essa trilha tem tudo sobre benefícios, jornada de trabalho, salário e políticas de RH. Conteudo completo esperando por você!",
+  "seguranca-trabalho": "Aqui você aprende sobre saúde e segurança no trabalho. Um ambiente seguro é responsabilidade de todos! Vamos lá?",
 };
 
 export default function Trails() {
@@ -73,7 +73,7 @@ export default function Trails() {
           className="mb-8"
         >
           <Betinha
-            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela Trilha de Onboarding: Gente e Cultura — ela foi feita especialmente para o seu primeiro dia. As outras trilhas chegarão em breve!"
+            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela Trilha de Onboarding: Gente e Cultura — ela foi feita especialmente para o seu primeiro dia. Depois explore as trilhas de Departamento Pessoal e Saúde e Segurança do Trabalho!"
             size="md"
           />
         </motion.div>
@@ -83,7 +83,7 @@ export default function Trails() {
           {trails?.map((trail: any, i: number) => {
             const IconComp = iconMap[trail.icon] || Star;
             const progress = getTrailProgress(trail.id);
-            const isComingSoon = trail.slug !== "gente-cultura";
+            const isComingSoon = !!trail.isComingSoon;
             const isCompleted = progress.pct === 100;
 
             return (
@@ -92,8 +92,8 @@ export default function Trails() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => !isComingSoon && navigate(`/trilhas/${trail.slug}`)}
-                className={`stellar-card rounded-2xl p-6 ${!isComingSoon ? "cursor-pointer" : "opacity-70 cursor-not-allowed"}`}
+                onClick={() => navigate(`/trilhas/${trail.slug}`)}
+                className="stellar-card rounded-2xl p-6 cursor-pointer hover:border-primary/40 transition-colors"
               >
                 {/* Trail icon & status */}
                 <div className="flex items-start justify-between mb-4">

@@ -31,8 +31,9 @@
 
 ## Roadmap (Melhorias Futuras)
 
-- [ ] Conteúdo completo para TBI de DP
-- [ ] Conteúdo completo para TBI de Segurança do Trabalho
+- [x] Conteudo completo para TBI de DP (concluído na revisão do roteiro oficial)
+- [x] Conteudo completo para TBI de Segurança do Trabalho (concluído na revisão do roteiro oficial)
+- [x] Remover gating hardcoded de 'Em breve' nas trilhas DP e SST (Trails, Admin, Dashboard, ModuleViewer)
 - [ ] Upload de novos treinamentos via PPT/PDF pelo admin
 - [ ] Notificações de prazo para conclusão de módulos
 - [ ] Certificado de conclusão da trilha

@@ -228,10 +228,10 @@ export default function Dashboard() {
           </div>
           <Button
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={() => navigate("/trilhas/gente-cultura")}
+            onClick={() => navigate("/trilhas")}
           >
             <BookOpen className="w-4 h-4 mr-2" />
-            Trilha de Onboarding: Gente e Cultura
+            Ver Todas as Trilhas
             <ChevronRight className="w-4 h-4 ml-auto" />
           </Button>
         </motion.div>

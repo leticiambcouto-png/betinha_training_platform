@@ -380,7 +380,7 @@ export default function ModuleViewer() {
                 <Button
                   variant="outline"
                   className="flex-1 border-border"
-                  onClick={() => { setShowCompletionModal(false); navigate(`/trilhas/gente-cultura`); }}
+                  onClick={() => { setShowCompletionModal(false); navigate("/trilhas"); }}
                 >
                   Ver Trilha
                 </Button>
