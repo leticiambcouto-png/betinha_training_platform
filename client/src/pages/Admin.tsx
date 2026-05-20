@@ -70,10 +70,10 @@ export default function Admin() {
         {!statsLoading && stats && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Users, label: "Colaboradores", value: stats.totalUsers, color: "text-blue-400", bg: "bg-blue-400/10" },
+              { icon: Users, label: "Colaboradores", value: stats.totalUsers, color: "text-[#1840eb]", bg: "bg-[#1840eb]/10" },
               { icon: CheckCircle, label: "Conclusões", value: stats.completedModules, color: "text-primary", bg: "bg-primary/10" },
-              { icon: Clock, label: "Em Andamento", value: stats.inProgressModules, color: "text-yellow-400", bg: "bg-yellow-400/10" },
-              { icon: BarChart3, label: "Total Módulos Iniciados", value: (stats.completedModules ?? 0) + (stats.inProgressModules ?? 0), color: "text-orange-400", bg: "bg-orange-400/10" },
+              { icon: Clock, label: "Em Andamento", value: stats.inProgressModules, color: "text-primary", bg: "bg-primary/10" },
+              { icon: BarChart3, label: "Total Módulos Iniciados", value: (stats.completedModules ?? 0) + (stats.inProgressModules ?? 0), color: "text-primary", bg: "bg-primary/10" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -241,9 +241,9 @@ function TrailProgressCard({ trail, users }: { trail: any; users: any[] | undefi
       <div className="flex items-center gap-2 mb-3">
         <div
           className="w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{ backgroundColor: `${trail.color ?? "#00C853"}20` }}
+          style={{ backgroundColor: `${trail.color ?? "#d9f22a"}20` }}
         >
-          <BookOpen className="w-4 h-4" style={{ color: trail.color ?? "#00C853" }} />
+          <BookOpen className="w-4 h-4" style={{ color: trail.color ?? "#d9f22a" }} />
         </div>
         <div>
           <p className="text-sm font-bold text-foreground">{trail.title}</p>

@@ -119,7 +119,7 @@ export function ValuesSlide({ title, intro, values }: ValuesSlideProps) {
                                 ? "text-background border-transparent"
                                 : "bg-transparent text-muted-foreground border-border hover:border-border/80"
                             }`}
-                            style={tab === key ? { background: accentColor, borderColor: accentColor } : {}}
+                            style={tab === key ? { background: accentColor, borderColor: accentColor, color: accentColor === '#fdffdf' ? '#001023' : '#001023' } : {}}
                           >
                             {icon}
                             {label}

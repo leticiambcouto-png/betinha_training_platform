@@ -26,10 +26,10 @@ function parseBetinhaIntroContent(content: string): { speech: string; imageUrl?:
 }
 
 const profileConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
-  todos: { label: "Todos", color: "text-blue-400", icon: <Users className="w-3 h-3" /> },
-  clt: { label: "CLT", color: "text-green-400", icon: <UserCheck className="w-3 h-3" /> },
-  pj: { label: "PJ", color: "text-orange-400", icon: <Briefcase className="w-3 h-3" /> },
-  lideranca: { label: "Liderança", color: "text-purple-400", icon: <Crown className="w-3 h-3" /> },
+  todos: { label: "Todos", color: "text-primary", icon: <Users className="w-3 h-3" /> },
+  clt: { label: "CLT", color: "text-[#1840eb]", icon: <UserCheck className="w-3 h-3" /> },
+  pj: { label: "PJ", color: "text-[#fdffdf]", icon: <Briefcase className="w-3 h-3" /> },
+  lideranca: { label: "Liderança", color: "text-primary", icon: <Crown className="w-3 h-3" /> },
 };
 
 

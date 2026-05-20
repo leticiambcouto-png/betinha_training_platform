@@ -174,7 +174,7 @@ export default function Home() {
                 className="absolute top-4 -right-2 bg-card border border-primary/30 rounded-xl px-3 py-2 shadow-xl z-10"
               >
                 <div className="flex items-center gap-1.5">
-                  <Trophy className="w-4 h-4 text-yellow-400" />
+                  <Trophy className="w-4 h-4 text-primary" />
                   <span className="text-xs font-bold text-foreground">+150 pts</span>
                 </div>
               </motion.div>

@@ -16,10 +16,10 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { useState } from "react";
 
 const profileColors: Record<string, { bg: string; text: string; label: string; icon: React.ReactNode }> = {
-  todos: { bg: "bg-blue-500/10", text: "text-blue-400", label: "Todos", icon: <Users className="w-3 h-3" /> },
-  clt: { bg: "bg-green-500/10", text: "text-green-400", label: "CLT", icon: <UserCheck className="w-3 h-3" /> },
-  pj: { bg: "bg-orange-500/10", text: "text-orange-400", label: "PJ", icon: <Briefcase className="w-3 h-3" /> },
-  lideranca: { bg: "bg-purple-500/10", text: "text-purple-400", label: "Liderança", icon: <Crown className="w-3 h-3" /> },
+  todos: { bg: "bg-primary/10", text: "text-primary", label: "Todos", icon: <Users className="w-3 h-3" /> },
+  clt: { bg: "bg-[#1840eb]/10", text: "text-[#1840eb]", label: "CLT", icon: <UserCheck className="w-3 h-3" /> },
+  pj: { bg: "bg-[#fdffdf]/10", text: "text-[#fdffdf]", label: "PJ", icon: <Briefcase className="w-3 h-3" /> },
+  lideranca: { bg: "bg-primary/10", text: "text-primary", label: "Liderança", icon: <Crown className="w-3 h-3" /> },
 };
 
 function ModuleChapters({ moduleId }: { moduleId: number }) {
@@ -154,9 +154,9 @@ export default function TrailDetail() {
           <div className="flex items-start gap-4">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: `${trail.color ?? '#00C853'}20`, border: `1px solid ${trail.color ?? '#00C853'}40` }}
+              style={{ backgroundColor: `${trail.color ?? '#d9f22a'}20`, border: `1px solid ${trail.color ?? '#d9f22a'}40` }}
             >
-              <StellarStar size={32} color={trail.color ?? '#00C853'} />
+              <StellarStar size={32} color={trail.color ?? '#d9f22a'} />
             </div>
             <div className="flex-1">
               <h1 className="text-2xl font-black text-foreground mb-1">{trail.title}</h1>
@@ -220,7 +220,7 @@ export default function TrailDetail() {
                   status === "completed"
                     ? "border-primary/30 bg-primary/5"
                     : status === "in_progress"
-                    ? "border-yellow-500/30 bg-yellow-500/5"
+                    ? "border-[#1840eb]/30 bg-[#1840eb]/5"
                     : "border-border bg-card"
                 } ${!canAccess ? "opacity-50" : ""}`}
               >
@@ -234,7 +234,7 @@ export default function TrailDetail() {
                     status === "completed"
                       ? "bg-primary/20 text-primary"
                       : status === "in_progress"
-                      ? "bg-yellow-500/20 text-yellow-400"
+                      ? "bg-[#1840eb]/20 text-[#1840eb]"
                       : canAccess
                       ? "bg-muted text-muted-foreground"
                       : "bg-muted/50 text-muted-foreground/50"
@@ -261,8 +261,8 @@ export default function TrailDetail() {
                     <p className="text-xs text-muted-foreground mt-0.5 truncate">{mod.description}</p>
                     {mod.progress?.quizScore != null && (
                       <div className="flex items-center gap-1 mt-1">
-                        <Trophy className="w-3 h-3 text-yellow-400" />
-                        <span className="text-xs text-yellow-400">Quiz: {mod.progress.quizScore}%</span>
+                        <Trophy className="w-3 h-3 text-primary" />
+                        <span className="text-xs text-primary">Quiz: {mod.progress.quizScore}%</span>
                       </div>
                     )}
                   </div>

@@ -151,7 +151,7 @@ export default function Quiz() {
             <h1 className="text-3xl font-black text-foreground mb-2">
               {passed ? "Parabéns!" : "Continue tentando!"}
             </h1>
-            <div className={`text-6xl font-black mb-2 ${passed ? "text-primary" : "text-yellow-400"}`}>
+            <div className={`text-6xl font-black mb-2 ${passed ? "text-primary" : "text-primary"}`}>
               {score}%
             </div>
             <p className="text-muted-foreground">

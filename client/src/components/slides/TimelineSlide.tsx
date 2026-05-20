@@ -112,8 +112,8 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                       </p>
                       {prizes > 0 && (
                         <div className="flex gap-1 mt-1 items-center">
-                          <Trophy className="w-3 h-3 text-yellow-400" />
-                          <span className="text-[10px] text-yellow-400/80 font-medium">{prizes} prêmio{prizes > 1 ? "s" : ""}</span>
+                          <Trophy className="w-3 h-3 text-primary" />
+                          <span className="text-[10px] text-primary/80 font-medium">{prizes} prêmio{prizes > 1 ? "s" : ""}</span>
                         </div>
                       )}
                     </div>
@@ -152,8 +152,8 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                       </p>
                       {prizes > 0 && (
                         <div className="flex gap-1 mt-1 items-center">
-                          <Trophy className="w-3 h-3 text-yellow-400" />
-                          <span className="text-[10px] text-yellow-400/80 font-medium">{prizes} prêmio{prizes > 1 ? "s" : ""}</span>
+                          <Trophy className="w-3 h-3 text-primary" />
+                          <span className="text-[10px] text-primary/80 font-medium">{prizes} prêmio{prizes > 1 ? "s" : ""}</span>
                         </div>
                       )}
                     </div>
@@ -210,7 +210,7 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
             {/* Prize cards — side by side */}
             {activeData.events.some((e) => typeof e === "object" && e.type === "prize") && (
               <div>
-                <p className="text-xs text-yellow-400 font-bold uppercase tracking-wide mb-3 flex items-center gap-1.5">
+                <p className="text-xs text-primary font-bold uppercase tracking-wide mb-3 flex items-center gap-1.5">
                   <Trophy className="w-3.5 h-3.5" />
                   Prêmios conquistados em {activeData.year}
                 </p>
@@ -226,7 +226,7 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                         initial={{ opacity: 0, scale: 0.92 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: pi * 0.07 }}
-                        className="flex flex-col rounded-xl border border-yellow-500/25 bg-yellow-500/5 overflow-hidden w-44 flex-shrink-0 shadow-md hover:shadow-yellow-500/10 hover:border-yellow-400/50 transition-all duration-200"
+                        className="flex flex-col rounded-xl border border-primary/25 bg-primary/5 overflow-hidden w-44 flex-shrink-0 shadow-md hover:shadow-primary/10 hover:border-primary/50 transition-all duration-200"
                       >
                         {/* Image */}
                         {prize.image ? (
@@ -241,13 +241,13 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                             />
                           </button>
                         ) : (
-                          <div className="w-full aspect-[4/3] bg-yellow-500/10 flex items-center justify-center">
-                            <Trophy className="w-8 h-8 text-yellow-400/40" />
+                          <div className="w-full aspect-[4/3] bg-primary/10 flex items-center justify-center">
+                            <Trophy className="w-8 h-8 text-primary/40" />
                           </div>
                         )}
                         {/* Label */}
                         <div className="p-2.5 flex items-start gap-2">
-                          <Trophy className="w-3.5 h-3.5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                          <Trophy className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
                           <p className="text-xs text-foreground/90 font-medium leading-snug">{prize.label}</p>
                         </div>
                       </motion.div>

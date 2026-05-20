@@ -53,10 +53,10 @@ export default function Dashboard() {
   };
 
   const statCards = [
-    { icon: Star4, label: "Pontos Totais", value: stats.totalPoints, colorClass: "text-yellow-400", bgClass: "bg-yellow-400/10", borderClass: "border-yellow-400/20" },
+    { icon: Star4, label: "Pontos Totais", value: stats.totalPoints, colorClass: "text-primary", bgClass: "bg-primary/10", borderClass: "border-primary/20" },
     { icon: CheckCircle, label: "Módulos Concluídos", value: stats.completed, colorClass: "text-primary", bgClass: "bg-primary/10", borderClass: "border-primary/20" },
-    { icon: TrendingUp, label: "Nível Atual", value: levelName, colorClass: "text-blue-400", bgClass: "bg-blue-400/10", borderClass: "border-blue-400/20" },
-    { icon: Trophy, label: "Posição no Ranking", value: stats.rank > 0 ? `#${stats.rank}` : "N/A", colorClass: "text-orange-400", bgClass: "bg-orange-400/10", borderClass: "border-orange-400/20" },
+    { icon: TrendingUp, label: "Nível Atual", value: levelName, colorClass: "text-[#1840eb]", bgClass: "bg-[#1840eb]/10", borderClass: "border-[#1840eb]/20" },
+    { icon: Trophy, label: "Posição no Ranking", value: stats.rank > 0 ? `#${stats.rank}` : "N/A", colorClass: "text-primary", bgClass: "bg-primary/10", borderClass: "border-primary/20" },
   ];
 
   return (
@@ -205,7 +205,7 @@ export default function Dashboard() {
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-yellow-400" />
+                <Trophy className="w-5 h-5 text-primary" />
                 <h2
                   className="font-black text-foreground uppercase text-sm tracking-wide"
                   style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
@@ -243,7 +243,7 @@ export default function Dashboard() {
                       </p>
                     </div>
                     <div className="flex items-center gap-1 flex-shrink-0">
-                      <Star4 className="w-3 h-3 text-yellow-400" />
+                      <Star4 className="w-3 h-3 text-primary" />
                       <span className="text-sm font-bold text-foreground">{u.totalPoints}</span>
                     </div>
                   </div>
