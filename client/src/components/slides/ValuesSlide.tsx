@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Lightbulb } from "lucide-react";
+import { ChevronDown, ChevronUp, CheckCircle2, XCircle, Zap } from "lucide-react";
 
 export interface ValueItem {
   name: string;
@@ -9,6 +9,9 @@ export interface ValueItem {
   icon?: string;
   color?: string;
   howToLive?: string[];
+  practice?: string[];
+  dos?: string[];
+  donts?: string[];
   dilemma?: {
     question: string;
     stellarWay: string;
@@ -21,9 +24,13 @@ interface ValuesSlideProps {
   values: ValueItem[];
 }
 
+type Tab = "practice" | "dos" | "donts";
+
 export function ValuesSlide({ title, intro, values }: ValuesSlideProps) {
   const [expanded, setExpanded] = useState<number | null>(0);
-  const [showDilemma, setShowDilemma] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<Record<number, Tab>>({});
+
+  const getTab = (i: number): Tab => activeTab[i] ?? "practice";
 
   return (
     <div className="w-full">
@@ -34,6 +41,7 @@ export function ValuesSlide({ title, intro, values }: ValuesSlideProps) {
         {values.map((val, i) => {
           const isOpen = expanded === i;
           const accentColor = val.color ?? "#d9f22a";
+          const tab = getTab(i);
 
           return (
             <motion.div
@@ -41,27 +49,45 @@ export function ValuesSlide({ title, intro, values }: ValuesSlideProps) {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.07 }}
-              className="rounded-xl border border-border overflow-hidden"
-              style={{ borderLeftColor: accentColor, borderLeftWidth: 3 }}
+              className="rounded-2xl border border-border overflow-hidden"
+              style={{ borderLeftColor: accentColor, borderLeftWidth: 4 }}
             >
-              {/* Header */}
+              {/* Card Header */}
               <button
                 onClick={() => setExpanded(isOpen ? null : i)}
-                className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/20 transition-colors"
+                className="w-full flex items-center gap-3 p-4 text-left transition-colors hover:bg-muted/10"
+                style={isOpen ? { background: `${accentColor}10` } : {}}
               >
-                {val.icon && <span className="text-2xl flex-shrink-0">{val.icon}</span>}
-                <div className="flex-1 min-w-0">
-                  <span className="font-black text-foreground">{val.name}</span>
-                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{val.tagline}</p>
-                </div>
-                {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                {val.icon && (
+                  <span
+                    className="text-xl w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0"
+                    style={{ background: `${accentColor}20` }}
+                  >
+                    {val.icon}
+                  </span>
                 )}
+                <div className="flex-1 min-w-0">
+                  <span
+                    className="font-black text-base tracking-tight"
+                    style={{ color: isOpen ? accentColor : "var(--foreground)" }}
+                  >
+                    {val.name}
+                  </span>
+                  <p className="text-xs text-muted-foreground mt-0.5 italic">{val.tagline}</p>
+                </div>
+                <div
+                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
+                  style={{ background: isOpen ? `${accentColor}25` : "transparent" }}
+                >
+                  {isOpen ? (
+                    <ChevronUp className="w-4 h-4" style={{ color: accentColor }} />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                  )}
+                </div>
               </button>
 
-              {/* Body */}
+              {/* Expanded Body */}
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
@@ -71,64 +97,85 @@ export function ValuesSlide({ title, intro, values }: ValuesSlideProps) {
                     transition={{ duration: 0.22 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 space-y-4">
-                      <div className="h-px bg-border/50" />
+                    <div className="px-4 pb-4">
+                      {/* Divider */}
+                      <div className="h-px mb-4" style={{ background: `${accentColor}30` }} />
 
                       {/* Description */}
-                      <p className="text-sm text-foreground/90 leading-relaxed">{val.description}</p>
+                      <p className="text-sm text-foreground/90 leading-relaxed mb-4">{val.description}</p>
 
-                      {/* How to live this value */}
-                      {val.howToLive && val.howToLive.length > 0 && (
-                        <div>
-                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                            Como vivenciar no dia a dia
-                          </p>
-                          <ul className="space-y-1.5">
-                            {val.howToLive.map((item, j) => (
-                              <li key={j} className="flex items-start gap-2 text-sm text-foreground/80">
-                                <span className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }} />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {/* Dilemma */}
-                      {val.dilemma && (
-                        <div>
+                      {/* Tab selector */}
+                      <div className="flex gap-2 mb-4 flex-wrap">
+                        {[
+                          { key: "practice" as Tab, label: "Na Prática", icon: <Zap className="w-3 h-3" /> },
+                          { key: "dos" as Tab, label: "Do's", icon: <CheckCircle2 className="w-3 h-3" /> },
+                          { key: "donts" as Tab, label: "Don'ts", icon: <XCircle className="w-3 h-3" /> },
+                        ].map(({ key, label, icon }) => (
                           <button
-                            onClick={() => setShowDilemma(showDilemma === i ? null : i)}
-                            className="flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg border border-dashed border-primary/40 text-primary hover:bg-primary/5 transition-colors w-full"
+                            key={key}
+                            onClick={() => setActiveTab((prev) => ({ ...prev, [i]: key }))}
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+                              tab === key
+                                ? "text-background border-transparent"
+                                : "bg-transparent text-muted-foreground border-border hover:border-border/80"
+                            }`}
+                            style={tab === key ? { background: accentColor, borderColor: accentColor } : {}}
                           >
-                            <Lightbulb className="w-3.5 h-3.5" />
-                            Dilema: o que você faria?
+                            {icon}
+                            {label}
                           </button>
+                        ))}
+                      </div>
 
-                          <AnimatePresence>
-                            {showDilemma === i && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.18 }}
-                                className="overflow-hidden"
-                              >
-                                <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 space-y-2">
-                                  <p className="text-sm font-medium text-foreground">
-                                    💭 {val.dilemma.question}
-                                  </p>
-                                  <div className="h-px bg-primary/20" />
-                                  <p className="text-xs text-muted-foreground">
-                                    <span className="text-primary font-semibold">O jeito Stellar: </span>
-                                    {val.dilemma.stellarWay}
-                                  </p>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      )}
+                      {/* Tab content */}
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={tab}
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          {tab === "practice" && (
+                            <ul className="space-y-2">
+                              {(val.practice ?? val.howToLive ?? []).map((item, j) => (
+                                <li key={j} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                                  <span
+                                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                    style={{ backgroundColor: accentColor }}
+                                  />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {tab === "dos" && (
+                            <ul className="space-y-2">
+                              {(val.dos ?? []).map((item, j) => (
+                                <li key={j} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                                  <CheckCircle2
+                                    className="w-4 h-4 flex-shrink-0 mt-0.5"
+                                    style={{ color: accentColor }}
+                                  />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {tab === "donts" && (
+                            <ul className="space-y-2">
+                              {(val.donts ?? []).map((item, j) => (
+                                <li key={j} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                                  <XCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-destructive/70" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
                   </motion.div>
                 )}
