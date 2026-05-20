@@ -9,7 +9,7 @@ import { ArrowRight, Loader2, BookOpen, Trophy, Zap, CheckCircle, UserCheck, Bri
 import { toast } from "sonner";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-gaming-logo_0b30ffde.svg";
+const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
 
 type ContractType = "clt" | "pj";
 

@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-gaming-logo_0b30ffde.svg";
+const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
 
 function StellarLogo({ size = 28 }: { size?: number }) {
   return (

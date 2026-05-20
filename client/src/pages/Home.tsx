@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-gaming-logo_0b30ffde.svg";
+const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
 
 const features = [
   { icon: BookOpen, title: "Trilhas Interativas", desc: "Módulos dinâmicos com conteúdo rico e apresentações guiadas pela Betinha." },
