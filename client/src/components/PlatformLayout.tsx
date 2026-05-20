@@ -61,13 +61,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       {/* Logo area */}
       <div className="px-4 pt-5 pb-3 space-y-2 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <StellarLogo size={24} />
-          <span
-            className="font-black text-foreground uppercase tracking-wider text-sm"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Stellar Gaming
-          </span>
+          <StellarLogo size={40} />
         </div>
         <div className="w-full flex items-center justify-center py-1.5 rounded-md bg-primary">
           <span
@@ -270,15 +264,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
 
       {/* Mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 px-4 py-3 flex items-center justify-between bg-card border-b border-border">
-        <div className="flex items-center gap-2">
-          <StellarLogo size={24} />
-          <span
-            className="font-black text-foreground uppercase tracking-wider text-sm"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Stellar Gaming
-          </span>
-        </div>
+        <StellarLogo size={36} />
         <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground">
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -304,16 +290,8 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
         {!isAuthenticated ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-center space-y-6 max-w-sm mx-auto px-6">
-              <StellarLogo size={56} />
-              <div>
-                <h1
-                  className="text-2xl font-black text-foreground uppercase"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                >
-                  Stellar Gaming
-                </h1>
-                <p className="text-sm text-muted-foreground mt-1">Plataforma de Treinamentos</p>
-              </div>
+              <StellarLogo size={72} />
+              <p className="text-sm text-muted-foreground mt-1">Plataforma de Treinamentos</p>
               <div className="flex justify-center">
                 <img
                   src={BETINHA_FULL}

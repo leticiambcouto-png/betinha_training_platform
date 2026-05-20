@@ -61,12 +61,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5">
-              <StellarLogo size={22} />
-              <span className="font-black text-foreground tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.1rem", letterSpacing: "0.04em" }}>
-                STELLAR GAMING
-              </span>
-            </div>
+            <StellarLogo size={36} />
             <span className="text-muted-foreground text-xs hidden sm:block border-l border-border pl-3">Plataforma de Treinamentos</span>
           </div>
           <Button
@@ -306,10 +301,7 @@ export default function Home() {
       <footer className="border-t border-border py-6 px-4">
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <StellarLogo size={18} />
-            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Stellar Gaming
-            </span>
+            <StellarLogo size={28} />
           </div>
           <p className="text-xs text-muted-foreground">© 2026 · Plataforma de Onboarding</p>
         </div>
