@@ -211,7 +211,7 @@ export default function ModuleViewer() {
 
               {slide?.layout === "dictionary" && (() => {
                 const parsed = parseDictionaryContent(slide.content);
-                return <DictionarySlide title={slide.title ?? undefined} description={parsed.description} entries={parsed.entries} />;
+                return <DictionarySlide title={slide.title ?? undefined} description={parsed.description} entries={parsed.entries} betinhaSpeech={slide.betinhaSpeech ?? undefined} />;
               })()}
 
               {slide?.layout === "values" && (() => {
@@ -260,8 +260,8 @@ export default function ModuleViewer() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Betinha speech — below card for all layouts */}
-          {slide?.betinhaSpeech && (
+          {/* Betinha speech — below card for all layouts except dictionary (handled inside component) */}
+          {slide?.betinhaSpeech && slide?.layout !== "dictionary" && (
             <motion.div
               key={`betinha-${currentSlide}`}
               initial={{ opacity: 0, y: 10 }}
@@ -278,12 +278,17 @@ export default function ModuleViewer() {
             {moduleId !== 1 ? (
               <Button
                 variant="outline"
-                onClick={() => handleSlideChange(Math.max(0, currentSlide - 1))}
-                disabled={currentSlide === 0}
+                onClick={() => {
+                  if (currentSlide === 0) {
+                    navigate("/trilhas");
+                  } else {
+                    handleSlideChange(Math.max(0, currentSlide - 1));
+                  }
+                }}
                 className="border-border"
               >
                 <ChevronLeft className="w-4 h-4 mr-1" />
-                Anterior
+                {currentSlide === 0 ? "Voltar" : "Anterior"}
               </Button>
             ) : (
               <div />
