@@ -70,13 +70,7 @@ export default function Login() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-3"
         >
-          <StellarLogo size={28} />
-          <span
-            className="font-black text-foreground uppercase tracking-wider"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.15rem" }}
-          >
-            Stellar Gaming
-          </span>
+          <StellarLogo size={40} />
           <span className="text-muted-foreground text-xs border-l border-border pl-3">Plataforma de Onboarding</span>
         </motion.div>
 
@@ -170,10 +164,7 @@ export default function Login() {
 
         {/* Mobile logo */}
         <div className="lg:hidden flex items-center gap-2 mb-8">
-          <StellarLogo size={22} />
-          <span className="font-black text-foreground uppercase tracking-wider" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            Stellar Gaming
-          </span>
+          <StellarLogo size={36} />
         </div>
 
         <motion.div
