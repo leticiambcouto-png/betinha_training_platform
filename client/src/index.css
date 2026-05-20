@@ -43,47 +43,60 @@
 }
 
 :root {
-  /* ── Stellar Space — identidade visual idêntica ao StellarHub ── */
-  --stellar-lime: 66 87% 55%;
-  --stellar-cream: 60 100% 93%;
-  --stellar-blue: 228 85% 50%;
-  --stellar-dark: 210 100% 7%;
-  --stellar-surface: 210 80% 10%;
-  --stellar-surface-hover: 210 60% 14%;
+  /* ── Stellar Gaming Design System — OKLCH tokens ── */
+  /* Hex refs: bg=#001023, card=#001830, primary=#d9f22a, cream=#fdffdf, blue=#1840eb */
 
   --radius: 0.75rem;
-  --background: hsl(210 100% 7%);
-  --foreground: hsl(60 100% 93%);
-  --card: hsl(210 80% 10%);
-  --card-foreground: hsl(60 100% 93%);
-  --popover: hsl(210 80% 10%);
-  --popover-foreground: hsl(60 100% 93%);
-  --primary: hsl(66 87% 55%);
-  --primary-foreground: hsl(210 100% 7%);
-  --secondary: hsl(210 60% 14%);
-  --secondary-foreground: hsl(60 100% 93%);
-  --muted: hsl(210 50% 16%);
-  --muted-foreground: hsl(210 20% 55%);
-  --accent: hsl(228 85% 50%);
-  --accent-foreground: hsl(60 100% 93%);
-  --destructive: hsl(0 84% 60%);
-  --destructive-foreground: hsl(60 100% 93%);
-  --border: hsl(210 40% 18%);
-  --input: hsl(210 40% 18%);
-  --ring: hsl(66 87% 55%);
-  --chart-1: hsl(228 85% 50%);
-  --chart-2: hsl(66 87% 55%);
-  --chart-3: hsl(210 80% 10%);
-  --chart-4: hsl(210 60% 14%);
-  --chart-5: hsl(210 40% 18%);
-  --sidebar: hsl(210 90% 8%);
-  --sidebar-foreground: hsl(210 20% 55%);
-  --sidebar-primary: hsl(66 87% 55%);
-  --sidebar-primary-foreground: hsl(210 100% 7%);
-  --sidebar-accent: hsl(210 60% 14%);
-  --sidebar-accent-foreground: hsl(60 100% 93%);
-  --sidebar-border: hsl(210 40% 15%);
-  --sidebar-ring: hsl(66 87% 55%);
+
+  /* Core palette */
+  --background:            oklch(7.5% 0.035 240);    /* #001023 */
+  --foreground:            oklch(91%  0.015 100);    /* #e8f0fe — azulado suave */
+  --card:                  oklch(10%  0.045 240);    /* #001830 */
+  --card-foreground:       oklch(91%  0.015 100);
+  --popover:               oklch(12%  0.05  240);    /* #002040 */
+  --popover-foreground:    oklch(91%  0.015 100);
+
+  /* Primary: verde-limão #d9f22a */
+  --primary:               oklch(92%  0.22  112);
+  --primary-foreground:    oklch(7.5% 0.035 240);
+
+  /* Secondary */
+  --secondary:             oklch(18%  0.05  240);
+  --secondary-foreground:  oklch(91%  0.015 100);
+
+  /* Muted */
+  --muted:                 oklch(15%  0.045 240);
+  --muted-foreground:      oklch(55%  0.06  240);
+
+  /* Accent: azul-vivo #1840eb */
+  --accent:                oklch(40%  0.22  264);
+  --accent-foreground:     oklch(97%  0.01  100);
+
+  /* Destructive */
+  --destructive:           oklch(60%  0.22  25);
+  --destructive-foreground: oklch(97% 0.01  100);
+
+  /* Borders & inputs — verde-limão com baixa opacidade */
+  --border:                oklch(92%  0.22  112 / 0.14);
+  --input:                 oklch(92%  0.22  112 / 0.10);
+  --ring:                  oklch(92%  0.22  112 / 0.45);
+
+  /* Charts */
+  --chart-1:               oklch(40%  0.22  264);
+  --chart-2:               oklch(92%  0.22  112);
+  --chart-3:               oklch(10%  0.045 240);
+  --chart-4:               oklch(18%  0.05  240);
+  --chart-5:               oklch(55%  0.06  240);
+
+  /* Sidebar */
+  --sidebar:               oklch(8.5% 0.04  240);
+  --sidebar-foreground:    oklch(55%  0.06  240);
+  --sidebar-primary:       oklch(92%  0.22  112);
+  --sidebar-primary-foreground: oklch(7.5% 0.035 240);
+  --sidebar-accent:        oklch(15%  0.045 240);
+  --sidebar-accent-foreground: oklch(91% 0.015 100);
+  --sidebar-border:        oklch(92%  0.22  112 / 0.10);
+  --sidebar-ring:          oklch(92%  0.22  112 / 0.45);
 }
 
 /* Dark mode inherits from :root — Stellar Space is always dark */

@@ -4,49 +4,21 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import {
   LayoutDashboard, BookOpen, Trophy, Shield, LogOut,
-  Menu, X, ChevronDown, ChevronRight, Search
+  Menu, X, ChevronDown, ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BETINHA_AVATAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-avatar_0d442e08.jpg";
+const BETINHA_FULL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-thumbsup_fb782d87.png";
 
-// Ícone S estilizado idêntico ao StellarHub
-function StellarIcon({ className = "w-8 h-8" }: { className?: string }) {
+function Star4({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M8 10C8 7.79 9.79 6 12 6H20C22.21 6 24 7.79 24 10C24 12.21 22.21 14 20 14H12C9.79 14 8 15.79 8 18C8 20.21 9.79 22 12 22H20C22.21 22 24 20.21 24 18"
-        stroke="hsl(66 87% 55%)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" />
     </svg>
   );
 }
-
-interface NavItem {
-  href: string;
-  icon: React.ElementType;
-  label: string;
-  children?: { href: string; label: string }[];
-}
-
-const navItems: NavItem[] = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Meu Painel" },
-  {
-    href: "/trilhas",
-    icon: BookOpen,
-    label: "Trilhas de Aprendizado",
-    children: [
-      { href: "/trilhas", label: "Trilha de Onboarding: Gente e Cultura" },
-      { href: "/trilhas", label: "Trilha de Onboarding: Departamento Pessoal" },
-      { href: "/trilhas", label: "Trilha de Onboarding: Segurança do Trabalho" },
-    ],
-  },
-  { href: "/ranking", icon: Trophy, label: "Ranking" },
-];
 
 interface PlatformLayoutProps {
   children: React.ReactNode;
@@ -72,47 +44,47 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
   const isActive = (href: string) =>
     location === href || location.startsWith(href + "/");
 
-  const SidebarContent = () => (
-    <>
-      {/* Logo + Onboarding badge */}
-      <div className="px-4 pt-5 pb-3 flex flex-col gap-2">
-        <img
-          src="/manus-storage/stellar-gaming-logo_7a539a02.svg"
-          alt="Stellar Gaming"
-          className="h-10 w-auto object-contain"
-        />
-        <div
-          className="w-full flex items-center justify-center py-2 rounded"
-          style={{ backgroundColor: "#d9f22a" }}
-        >
-          <span className="text-xs font-black tracking-widest uppercase" style={{ color: "#0d1117", letterSpacing: "0.12em" }}>Onboarding 2.0</span>
-        </div>
-      </div>
+  const isTrilhasActive =
+    location.startsWith("/trilhas") ||
+    location.startsWith("/modulo") ||
+    location.startsWith("/quiz");
 
-      {/* Search */}
-      <div className="px-3 pb-3">
-        <div
-          className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
-          style={{
-            background: "hsl(210 60% 14%)",
-            color: "hsl(210 20% 55%)",
-          }}
-        >
-          <Search className="w-4 h-4 flex-shrink-0" />
-          <span>Buscar conteúdo...</span>
+  const contractLabel = (user as any)?.contractType === "pj" ? "PJ" : (user as any)?.contractType === "clt" ? "CLT" : null;
+
+  const SidebarContent = () => (
+    <div className="flex flex-col h-full">
+      {/* Logo area */}
+      <div className="px-4 pt-5 pb-3 space-y-2 border-b border-border/50">
+        <div className="flex items-center gap-2">
+          <Star4 className="w-5 h-5 text-primary flex-shrink-0" />
+          <span
+            className="font-black text-foreground uppercase tracking-wider text-sm"
+            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            Stellar Gaming
+          </span>
+        </div>
+        <div className="w-full flex items-center justify-center py-1.5 rounded-md bg-primary">
+          <span
+            className="text-xs font-black tracking-widest uppercase text-primary-foreground"
+            style={{ letterSpacing: "0.12em" }}
+          >
+            Onboarding 2.0
+          </span>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto">
         {/* Meu Painel */}
         <Link href="/dashboard">
           <div
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 cursor-pointer"
             style={{
-              background: isActive("/dashboard") ? "hsl(210 60% 14%)" : "transparent",
-              color: isActive("/dashboard") ? "hsl(66 87% 55%)" : "hsl(210 20% 55%)",
+              background: isActive("/dashboard") ? "rgba(217,242,42,0.08)" : "transparent",
+              color: isActive("/dashboard") ? "#d9f22a" : "var(--muted-foreground)",
               fontWeight: isActive("/dashboard") ? 600 : 400,
+              borderLeft: isActive("/dashboard") ? "2px solid #d9f22a" : "2px solid transparent",
             }}
           >
             <LayoutDashboard className="w-4 h-4 flex-shrink-0" />
@@ -125,15 +97,18 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
           <button
             className="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 cursor-pointer"
             style={{
-              background: (location.startsWith("/trilhas") || location.startsWith("/modulo") || location.startsWith("/quiz")) ? "hsl(210 60% 14%)" : "transparent",
-              color: (location.startsWith("/trilhas") || location.startsWith("/modulo") || location.startsWith("/quiz")) ? "hsl(66 87% 55%)" : "hsl(210 20% 55%)",
-              fontWeight: (location.startsWith("/trilhas") || location.startsWith("/modulo") || location.startsWith("/quiz")) ? 600 : 400,
+              background: isTrilhasActive ? "rgba(217,242,42,0.08)" : "transparent",
+              color: isTrilhasActive ? "#d9f22a" : "var(--muted-foreground)",
+              fontWeight: isTrilhasActive ? 600 : 400,
+              borderLeft: isTrilhasActive ? "2px solid #d9f22a" : "2px solid transparent",
             }}
             onClick={() => setTrilhasOpen(!trilhasOpen)}
           >
             <BookOpen className="w-4 h-4 flex-shrink-0" />
             <span className="flex-1 text-left">Trilhas</span>
-            {trilhasOpen ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+            {trilhasOpen
+              ? <ChevronDown className="w-3 h-3 opacity-60" />
+              : <ChevronRight className="w-3 h-3 opacity-60" />}
           </button>
           <AnimatePresence>
             {trilhasOpen && (
@@ -141,40 +116,27 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.18 }}
                 className="overflow-hidden"
               >
                 <div className="pl-7 pt-0.5 space-y-0.5">
-                  <Link href="/trilhas/gente-cultura">
-                    <div
-                      className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: isActive("/trilhas/gente-cultura") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/gente-cultura") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
-                    >
-                      Gente e Cultura
-                    </div>
-                  </Link>
-                  <Link href="/trilhas/departamento-pessoal">
-                    <div
-                      className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: isActive("/trilhas/departamento-pessoal") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/departamento-pessoal") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
-                    >
-                      Departamento Pessoal
-                    </div>
-                  </Link>
-                  <Link href="/trilhas/seguranca-trabalho">
-                    <div
-                      className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
-                      style={{ color: isActive("/trilhas/seguranca-trabalho") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "hsl(60 100% 93%)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = isActive("/trilhas/seguranca-trabalho") ? "hsl(66 87% 55%)" : "hsl(210 20% 65%)")}
-                    >
-                      Segurança do Trabalho
-                    </div>
-                  </Link>
+                  {[
+                    { href: "/trilhas/gente-cultura", label: "Gente e Cultura" },
+                    { href: "/trilhas/departamento-pessoal", label: "Departamento Pessoal" },
+                    { href: "/trilhas/seguranca-trabalho", label: "Segurança do Trabalho" },
+                  ].map((item) => (
+                    <Link key={item.href} href={item.href}>
+                      <div
+                        className="px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors"
+                        style={{
+                          color: isActive(item.href) ? "#d9f22a" : "var(--muted-foreground)",
+                          fontWeight: isActive(item.href) ? 600 : 400,
+                        }}
+                      >
+                        {item.label}
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </motion.div>
             )}
@@ -186,9 +148,10 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
           <div
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 cursor-pointer"
             style={{
-              background: isActive("/ranking") ? "hsl(210 60% 14%)" : "transparent",
-              color: isActive("/ranking") ? "hsl(66 87% 55%)" : "hsl(210 20% 55%)",
+              background: isActive("/ranking") ? "rgba(217,242,42,0.08)" : "transparent",
+              color: isActive("/ranking") ? "#d9f22a" : "var(--muted-foreground)",
               fontWeight: isActive("/ranking") ? 600 : 400,
+              borderLeft: isActive("/ranking") ? "2px solid #d9f22a" : "2px solid transparent",
             }}
           >
             <Trophy className="w-4 h-4 flex-shrink-0" />
@@ -202,9 +165,10 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
             <div
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 cursor-pointer mt-2"
               style={{
-                background: isActive("/admin") ? "hsl(210 60% 14%)" : "transparent",
-                color: isActive("/admin") ? "hsl(66 87% 55%)" : "hsl(210 20% 55%)",
+                background: isActive("/admin") ? "rgba(217,242,42,0.08)" : "transparent",
+                color: isActive("/admin") ? "#d9f22a" : "var(--muted-foreground)",
                 fontWeight: isActive("/admin") ? 600 : 400,
+                borderLeft: isActive("/admin") ? "2px solid #d9f22a" : "2px solid transparent",
               }}
             >
               <Shield className="w-4 h-4 flex-shrink-0" />
@@ -216,46 +180,57 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
 
       {/* User info + logout */}
       {isAuthenticated && (
-        <div className="px-3 py-4 border-t" style={{ borderColor: "hsl(210 40% 15%)" }}>
+        <div className="px-3 py-4 border-t border-border/50">
           <div className="flex items-center gap-3 mb-3">
-            <Avatar className="w-8 h-8">
-              <AvatarFallback
-                className="text-xs font-bold"
-                style={{
-                  background: "hsl(66 87% 55% / 0.2)",
-                  color: "hsl(66 87% 55%)",
-                }}
-              >
+            <Avatar className="w-8 h-8 flex-shrink-0">
+              <AvatarFallback className="text-xs font-bold bg-primary/20 text-primary">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold truncate" style={{ color: "hsl(60 100% 93%)" }}>
-                {user?.name || "Colaborador"}
-              </p>
-              <p className="text-xs" style={{ color: "hsl(210 20% 55%)" }}>
+              <div className="flex items-center gap-1.5">
+                <p className="text-sm font-semibold text-foreground truncate">
+                  {user?.name || "Colaborador"}
+                </p>
+                {contractLabel && (
+                  <span
+                    className="text-xs font-black px-1.5 py-0.5 rounded flex-shrink-0"
+                    style={{
+                      background: "rgba(217,242,42,0.12)",
+                      color: "#d9f22a",
+                      border: "1px solid rgba(217,242,42,0.25)",
+                      fontFamily: "'Barlow Condensed', sans-serif",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {contractLabel}
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">
                 {stats?.totalPoints ?? 0} pts · Nível {stats?.level ?? 1}
               </p>
             </div>
           </div>
+
+          {/* Level mini-bar */}
           {stats && (
             <div className="mb-3">
-              <div className="w-full rounded-full h-1" style={{ background: "hsl(210 40% 18%)" }}>
+              <div className="w-full rounded-full h-1 bg-border">
                 <div
                   className="h-1 rounded-full transition-all duration-500"
                   style={{
                     width: `${Math.min(100, Math.max(5, 100 - (stats.pointsToNextLevel / (stats.level * 500)) * 100))}%`,
-                    background: "hsl(66 87% 55%)",
+                    background: "#d9f22a",
+                    boxShadow: "0 0 6px rgba(217,242,42,0.4)",
                   }}
                 />
               </div>
             </div>
           )}
+
           <button
-            className="flex items-center gap-2 text-xs w-full px-2 py-1.5 rounded-lg transition-colors"
-            style={{ color: "hsl(210 20% 55%)" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "hsl(0 84% 60%)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "hsl(210 20% 55%)")}
+            className="flex items-center gap-2 text-xs w-full px-2 py-1.5 rounded-lg transition-colors text-muted-foreground hover:text-destructive"
             onClick={logout}
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -265,38 +240,41 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       )}
 
       {/* Footer */}
-      <div className="px-4 py-3">
-        <p className="text-xs" style={{ color: "hsl(210 20% 40%)" }}>© 2026 Stellar Gaming</p>
+      <div className="px-4 py-3 border-t border-border/30">
+        <p className="text-xs text-muted-foreground/40">© 2026 Stellar Gaming</p>
       </div>
-    </>
+    </div>
   );
 
   return (
-    <div className="min-h-screen flex" style={{ background: "hsl(210 100% 7%)", fontFamily: "'Barlow', sans-serif" }}>
+    <div className="min-h-screen flex bg-background" style={{ fontFamily: "'Barlow', sans-serif" }}>
+      {/* Atmospheric background */}
+      <div className="fixed inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, rgba(24,64,235,0.08) 0%, transparent 70%)", transform: "translate(-40%, -40%)" }} />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, rgba(217,242,42,0.04) 0%, transparent 70%)", transform: "translate(30%, 30%)" }} />
+      </div>
+
       {/* Desktop Sidebar */}
       <aside
-        className="hidden lg:flex flex-col w-64 fixed h-full z-30"
-        style={{
-          background: "hsl(210 90% 8%)",
-          borderRight: "1px solid hsl(210 40% 15%)",
-        }}
+        className="hidden lg:flex flex-col w-60 fixed h-full z-30 bg-card border-r border-border"
       >
         <SidebarContent />
       </aside>
 
       {/* Mobile header */}
-      <div
-        className="lg:hidden fixed top-0 left-0 right-0 z-40 px-4 py-3 flex items-center justify-between"
-        style={{
-          background: "hsl(210 90% 8%)",
-          borderBottom: "1px solid hsl(210 40% 15%)",
-        }}
-      >
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 px-4 py-3 flex items-center justify-between bg-card border-b border-border">
         <div className="flex items-center gap-2">
-          <StellarIcon className="w-7 h-7" />
-          <span className="font-bold text-sm" style={{ color: "hsl(60 100% 93%)" }}>Stellar Gaming</span>
+          <Star4 className="w-5 h-5 text-primary" />
+          <span
+            className="font-black text-foreground uppercase tracking-wider text-sm"
+            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            Stellar Gaming
+          </span>
         </div>
-        <button onClick={() => setMobileOpen(!mobileOpen)} style={{ color: "hsl(60 100% 93%)" }}>
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground">
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
@@ -305,11 +283,11 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: -300 }}
+            initial={{ opacity: 0, x: -280 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -300 }}
-            className="lg:hidden fixed inset-0 z-30 flex flex-col pt-14"
-            style={{ background: "hsl(210 90% 8%)" }}
+            exit={{ opacity: 0, x: -280 }}
+            transition={{ duration: 0.22 }}
+            className="lg:hidden fixed inset-0 z-30 flex flex-col pt-14 bg-card"
           >
             <SidebarContent />
           </motion.div>
@@ -317,43 +295,33 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       </AnimatePresence>
 
       {/* Main content */}
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 min-h-screen">
+      <main className="flex-1 lg:ml-60 pt-14 lg:pt-0 min-h-screen relative">
         {!isAuthenticated ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-center space-y-6 max-w-sm mx-auto px-6">
-              <div className="flex justify-center">
-                <StellarIcon className="w-16 h-16" />
-              </div>
+              <Star4 className="w-12 h-12 text-primary mx-auto" />
               <div>
-                <h1 className="text-2xl font-bold mb-1" style={{ color: "hsl(60 100% 93%)" }}>
+                <h1
+                  className="text-2xl font-black text-foreground uppercase"
+                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                >
                   Stellar Gaming
                 </h1>
-                <p className="text-sm" style={{ color: "hsl(210 20% 55%)" }}>
-                  Plataforma de Treinamentos
-                </p>
+                <p className="text-sm text-muted-foreground mt-1">Plataforma de Treinamentos</p>
               </div>
               <div className="flex justify-center">
                 <img
-                  src={BETINHA_AVATAR}
+                  src={BETINHA_FULL}
                   alt="Betinha"
-                  className="w-24 h-24 rounded-full object-cover object-top border-2"
-                  style={{ borderColor: "hsl(66 87% 55%)" }}
+                  className="w-32 h-auto object-contain"
                 />
               </div>
               <div>
-                <h2 className="text-lg font-semibold mb-2" style={{ color: "hsl(60 100% 93%)" }}>
-                  Olá! Eu sou a Betinha 👋
-                </h2>
-                <p className="text-sm" style={{ color: "hsl(210 20% 55%)" }}>
-                  Faça login para começar sua jornada de aprendizado
-                </p>
+                <h2 className="text-lg font-bold text-foreground mb-1">Olá! Eu sou a Betinha 👋</h2>
+                <p className="text-sm text-muted-foreground">Faça login para começar sua jornada de aprendizado</p>
               </div>
               <Button
-                className="w-full font-semibold"
-                style={{
-                  background: "hsl(66 87% 55%)",
-                  color: "hsl(210 100% 7%)",
-                }}
+                className="w-full font-bold bg-primary text-primary-foreground hover:bg-primary/90"
                 onClick={() => window.location.href = "/"}
               >
                 Entrar na Plataforma

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BETINHA_AVATAR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-avatar_0d442e08.jpg";
+// Betinha full-body (thumbs up)
+const BETINHA_FULL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-thumbsup_fb782d87.png";
 
 interface BetinhaProps {
   speech: string;
-  autoPlay?: boolean; // kept for API compatibility, no longer used
+  autoPlay?: boolean;
   size?: "sm" | "md" | "lg";
   position?: "left" | "right";
   showBubble?: boolean;
@@ -22,10 +23,11 @@ export function Betinha({
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
+  // Height map for full-body image
   const sizeMap = {
-    sm: "w-16 h-16",
-    md: "w-24 h-24",
-    lg: "w-32 h-32",
+    sm: "h-16 w-auto",
+    md: "h-24 w-auto",
+    lg: "h-36 w-auto",
   };
 
   // Typewriter effect
@@ -42,23 +44,28 @@ export function Betinha({
         setIsTyping(false);
         clearInterval(interval);
       }
-    }, 18);
+    }, 16);
     return () => clearInterval(interval);
   }, [speech, showBubble]);
 
   return (
     <div className={`flex items-end gap-3 ${position === "right" ? "flex-row-reverse" : "flex-row"} ${className}`}>
-      {/* Avatar */}
+      {/* Betinha full-body */}
       <div className="relative flex-shrink-0">
+        {/* Glow */}
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-6 rounded-full blur-xl opacity-40"
+          style={{ background: "#d9f22a" }}
+        />
         <motion.div
-          className={`${sizeMap[size]} rounded-full overflow-hidden border-2 border-primary/60 animate-pulse-glow`}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, y: -2 }}
           transition={{ type: "spring", stiffness: 300 }}
+          className="relative"
         >
           <img
-            src={BETINHA_AVATAR}
+            src={BETINHA_FULL}
             alt="Betinha"
-            className="w-full h-full object-cover object-top"
+            className={`${sizeMap[size]} object-contain drop-shadow-lg`}
           />
         </motion.div>
       </div>
@@ -68,19 +75,24 @@ export function Betinha({
         <AnimatePresence mode="wait">
           <motion.div
             key={speech.slice(0, 20)}
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            initial={{ opacity: 0, scale: 0.92, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.25 }}
             className="betinha-bubble px-4 py-3 max-w-sm flex-1"
           >
             <p className="text-sm text-foreground leading-relaxed">
               {displayedText}
               {isTyping && (
-                <span className="inline-block w-1 h-4 bg-primary ml-0.5 animate-pulse" />
+                <span className="inline-block w-0.5 h-4 bg-primary ml-0.5 animate-pulse" />
               )}
             </p>
-            <p className="text-xs text-primary font-semibold mt-1">Betinha</p>
+            <p
+              className="text-xs text-primary font-black mt-1.5 uppercase tracking-wide"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Betinha · Gente &amp; Cultura
+            </p>
           </motion.div>
         </AnimatePresence>
       )}
