@@ -69,9 +69,8 @@ export default function ModuleViewer() {
     if (data?.progress?.status === "completed") {
       setCompleted(true);
     }
-    if (data?.progress?.currentSlide) {
-      setCurrentSlide(data.progress.currentSlide);
-    }
+    // Always start from slide 0
+    setCurrentSlide(0);
   }, [data?.module?.id]);
 
   const handleSlideChange = (idx: number) => {
@@ -211,7 +210,7 @@ export default function ModuleViewer() {
 
               {slide?.layout === "dictionary" && (() => {
                 const parsed = parseDictionaryContent(slide.content);
-                return <DictionarySlide title={slide.title ?? undefined} entries={parsed.entries} />;
+                return <DictionarySlide title={slide.title ?? undefined} description={parsed.description} entries={parsed.entries} />;
               })()}
 
               {slide?.layout === "values" && (() => {
@@ -308,18 +307,18 @@ export default function ModuleViewer() {
 
             {isLastSlide ? (
               <Button
-                onClick={completed ? () => navigate(`/quiz/${moduleId}`) : handleComplete}
+                onClick={completed && moduleId !== 1 ? () => navigate(`/quiz/${moduleId}`) : handleComplete}
                 disabled={completeMutation.isPending}
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {completeMutation.isPending ? (
                   <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin mr-2" />
-                ) : completed ? (
+                ) : completed && moduleId !== 1 ? (
                   <Trophy className="w-4 h-4 mr-2" />
                 ) : (
                   <CheckCircle className="w-4 h-4 mr-2" />
                 )}
-                {completed ? "Fazer Quiz" : "Concluir Módulo"}
+                {completed && moduleId !== 1 ? "Fazer Quiz" : "Concluir Módulo"}
               </Button>
             ) : (
               <Button
@@ -398,13 +397,15 @@ export default function ModuleViewer() {
                 >
                   Ver Trilha
                 </Button>
-                <Button
-                  className="flex-1 bg-primary text-primary-foreground"
-                  onClick={() => { setShowCompletionModal(false); navigate(`/quiz/${moduleId}`); }}
-                >
-                  <Trophy className="w-4 h-4 mr-2" />
-                  Fazer Quiz
-                </Button>
+                {moduleId !== 1 && (
+                  <Button
+                    className="flex-1 bg-primary text-primary-foreground"
+                    onClick={() => { setShowCompletionModal(false); navigate(`/quiz/${moduleId}`); }}
+                  >
+                    <Trophy className="w-4 h-4 mr-2" />
+                    Fazer Quiz
+                  </Button>
+                )}
               </div>
             </motion.div>
           </motion.div>

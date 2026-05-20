@@ -87,7 +87,7 @@ export function DictionarySlide({ title, description, entries }: DictionarySlide
                               </span>
                             )}
                             <span className="font-bold text-foreground text-sm">{entry.term}</span>
-                            <span className="text-xs text-muted-foreground ml-auto">toque para ver</span>
+                            <span className="text-xs text-muted-foreground ml-auto italic">clique para ver a definição</span>
                           </div>
                         ) : (
                           <motion.div
@@ -112,7 +112,7 @@ export function DictionarySlide({ title, description, entries }: DictionarySlide
   );
 }
 
-export function parseDictionaryContent(content: string): { entries: DictionaryEntry[] } {
+export function parseDictionaryContent(content: string): { entries: DictionaryEntry[]; description?: string } {
   try {
     return JSON.parse(content);
   } catch {
