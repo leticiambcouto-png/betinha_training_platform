@@ -133,7 +133,7 @@ export default function ModuleViewer() {
               <div className="flex items-center gap-2 mb-1">
                 <BookOpen className="w-4 h-4 text-primary" />
                 <span className="text-sm font-semibold text-foreground">{mod.title}</span>
-                {mod.subtitle && <span className="text-xs text-muted-foreground hidden sm:block">— {mod.subtitle}</span>}
+                {mod.subtitle && <span className="text-xs text-muted-foreground hidden sm:block">{mod.subtitle}</span>}
               </div>
               <Progress value={progressPct} className="h-1.5" />
             </div>

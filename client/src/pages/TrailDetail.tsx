@@ -255,7 +255,7 @@ export default function TrailDetail() {
                     <div className="flex items-center gap-2 flex-wrap">
                       <h3 className="font-semibold text-foreground text-sm">{mod.title}</h3>
                       {mod.subtitle && (
-                        <span className="text-xs text-muted-foreground">— {mod.subtitle}</span>
+                        <span className="text-xs text-muted-foreground">{mod.subtitle}</span>
                       )}
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5 truncate">{mod.description}</p>

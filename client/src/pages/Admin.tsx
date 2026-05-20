@@ -46,7 +46,7 @@ export default function Admin() {
     setGeneratingFor(moduleId);
     try {
       const result = await generateQuizMutation.mutateAsync({ moduleId });
-      toast.success(`Quiz gerado para "${moduleName}" — ${result.count} perguntas criadas!`);
+      toast.success(`Quiz gerado para "${moduleName}": ${result.count} perguntas criadas!`);
     } catch {
       toast.error("Erro ao gerar quiz. Tente novamente.");
     } finally {
@@ -124,7 +124,7 @@ export default function Admin() {
                       </Avatar>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-foreground truncate">{u.name ?? "Sem nome"}</p>
-                        <p className="text-xs text-muted-foreground truncate">{u.email ?? "—"}</p>
+                        <p className="text-xs text-muted-foreground truncate">{u.email ?? "Sem e-mail"}</p>
                       </div>
                       <div className="flex flex-col items-end gap-1 flex-shrink-0">
                         <div className="flex items-center gap-1">

@@ -168,7 +168,7 @@ export default function Quiz() {
               speech={
                 passed
                   ? `Incrível! Você tirou ${score}% no quiz! Estou muito orgulhosa de você! Continue assim e logo você vai completar toda a trilha!`
-                  : `Não desanime! Você tirou ${score}%. Revise o conteúdo do módulo e tente novamente — eu acredito em você!`
+                  : `Não desanime! Você tirou ${score}%. Revise o conteúdo do módulo e tente novamente. Eu acredito em você!`
               }
               size="sm"
             />
@@ -261,7 +261,7 @@ export default function Quiz() {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <Trophy className="w-5 h-5 text-primary" />
-              <span className="font-bold text-foreground">Quiz — {modData?.module.title}</span>
+              <span className="font-bold text-foreground">Quiz: {modData?.module.title}</span>
             </div>
             <span className="text-sm text-muted-foreground">{currentQ + 1} / {questions.length}</span>
           </div>

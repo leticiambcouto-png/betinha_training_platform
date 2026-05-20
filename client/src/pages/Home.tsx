@@ -5,7 +5,7 @@ import { BookOpen, Trophy, Zap, ArrowRight, CheckCircle, Loader2, Sparkles } fro
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
-const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
+const BETINHA_FULL = "/manus-storage/betinha-nova_c4732510.png";
 const STELLAR_LOGO_FULL = "/manus-storage/stellar-gaming-logo_7cfdb94e.svg";
 const STELLAR_ICON = "/manus-storage/stellar-icon_06d397a8.svg";
 
@@ -13,7 +13,7 @@ const features = [
   { icon: BookOpen, title: "Trilhas Interativas", desc: "Módulos dinâmicos com conteúdo rico e apresentações guiadas pela Betinha." },
   { icon: Trophy, title: "Gamificação Completa", desc: "Ganhe pontos, desbloqueie conquistas e suba no ranking da empresa." },
   { icon: Zap, title: "Quizzes Interativos", desc: "Teste seu conhecimento e aprenda de forma interativa." },
-  { icon: Sparkles, title: "Conteúdo por Perfil", desc: "Conteúdo personalizado para CLT e PJ — só o que é relevante para você." },
+  { icon: Sparkles, title: "Conteúdo por Perfil", desc: "Conteúdo personalizado para CLT e PJ, só o que é relevante para você." },
 ];
 
 // Logo completa horizontal (1080x349)
@@ -191,7 +191,7 @@ export default function Home() {
               </motion.div>
 
               {/* Betinha full body */}
-              <div className="relative w-64 lg:w-72">
+              <div className="relative w-80 lg:w-96">
                 <div
                   className="absolute inset-0 rounded-full blur-3xl opacity-20"
                   style={{ background: "radial-gradient(circle, #d9f22a 0%, transparent 70%)", transform: "scale(0.8) translateY(10%)" }}

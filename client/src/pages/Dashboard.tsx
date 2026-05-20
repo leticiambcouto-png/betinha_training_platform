@@ -49,14 +49,14 @@ export default function Dashboard() {
     if (stats.completed === 0) return "Conheça a Stellar Gaming, nossa cultura e nosso jeito de trabalhar através de trilhas interativas. Vamos começar? 🚀";
     if (stats.rank === 1) return `Uau! Você está em 1º lugar no ranking com ${stats.totalPoints} pontos! Que incrível! Continue assim! 🏆`;
     if (stats.completed >= 5) return `Você já completou ${stats.completed} módulos! Está indo muito bem! Continue para subir ainda mais no ranking.`;
-    return `Você já tem ${stats.totalPoints} pontos e completou ${stats.completed} módulos. Continue — cada módulo te deixa mais próximo do topo!`;
+    return `Você já tem ${stats.totalPoints} pontos e completou ${stats.completed} módulos. Continue, cada módulo te deixa mais próximo do topo!`;
   };
 
   const statCards = [
     { icon: Star4, label: "Pontos Totais", value: stats.totalPoints, colorClass: "text-yellow-400", bgClass: "bg-yellow-400/10", borderClass: "border-yellow-400/20" },
     { icon: CheckCircle, label: "Módulos Concluídos", value: stats.completed, colorClass: "text-primary", bgClass: "bg-primary/10", borderClass: "border-primary/20" },
     { icon: TrendingUp, label: "Nível Atual", value: levelName, colorClass: "text-blue-400", bgClass: "bg-blue-400/10", borderClass: "border-blue-400/20" },
-    { icon: Trophy, label: "Posição no Ranking", value: stats.rank > 0 ? `#${stats.rank}` : "—", colorClass: "text-orange-400", bgClass: "bg-orange-400/10", borderClass: "border-orange-400/20" },
+    { icon: Trophy, label: "Posição no Ranking", value: stats.rank > 0 ? `#${stats.rank}` : "N/A", colorClass: "text-orange-400", bgClass: "bg-orange-400/10", borderClass: "border-orange-400/20" },
   ];
 
   return (
@@ -119,7 +119,7 @@ export default function Dashboard() {
             <div className="flex items-center gap-2">
               <Award className="w-5 h-5 text-primary" />
               <span className="font-bold text-foreground text-sm">
-                Nível {stats.level} —{" "}
+                Nível {stats.level}:{" "}
                 <span className="text-primary" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem", fontWeight: 800 }}>
                   {levelName.toUpperCase()}
                 </span>

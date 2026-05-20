@@ -81,7 +81,7 @@ export default function Trails() {
           className="mb-8"
         >
           <Betinha
-            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela Trilha de Onboarding: Gente e Cultura — ela foi feita especialmente para o seu primeiro dia. Depois explore as trilhas de Departamento Pessoal e Saúde e Segurança do Trabalho!"
+            speech="Aqui estão todas as trilhas disponíveis para você! Comece pela Trilha de Onboarding: Gente e Cultura, ela foi feita especialmente para o seu primeiro dia. Depois explore as trilhas de Departamento Pessoal e Saúde e Segurança do Trabalho!"
             size="md"
           />
         </motion.div>
@@ -161,7 +161,7 @@ export default function Trails() {
                 <div className="space-y-1.5 mb-4">
                   <div className="flex justify-between text-xs text-muted-foreground font-medium">
                     <span>
-                      {progress.completed} de {progress.total > 0 ? progress.total : "—"} módulos
+                      {progress.completed} de {progress.total > 0 ? progress.total : "0"} módulos
                     </span>
                     <span style={{ color: trail.color }}>{pct}%</span>
                   </div>

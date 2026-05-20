@@ -182,7 +182,7 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
               <span className="text-3xl font-black text-primary leading-none">{activeData.year}</span>
               {(activeData.title ?? activeData.label) && (
                 <span className="text-sm font-semibold text-foreground/80">
-                  — {activeData.title ?? activeData.label}
+                  {activeData.title ?? activeData.label}
                 </span>
               )}
             </div>
