@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, ChevronLeft, ChevronRight, ImageIcon, Film } from "lucide-react";
+import { Trophy, ChevronLeft, ChevronRight, ImageIcon, Film, X } from "lucide-react";
 
 // 4-pointed star SVG icon
 function Star4({ className }: { className?: string }) {
@@ -27,7 +27,7 @@ export interface TimelineYear {
   title?: string;
   label?: string;
   events: string[];
-  media?: TimelineMedia[];
+  media?: Array<TimelineMedia | string>;
 }
 
 interface TimelineSlideProps {
@@ -36,9 +36,19 @@ interface TimelineSlideProps {
   years: TimelineYear[];
 }
 
+/** Normalise a media item: accept both string URLs and full TimelineMedia objects */
+function normaliseMedia(m: TimelineMedia | string): TimelineMedia {
+  if (typeof m === "string") {
+    const isVideo = /\.(mp4|webm|ogg|mov)$/i.test(m);
+    return { type: isVideo ? "video" : "image", url: m };
+  }
+  return m;
+}
+
 export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
   const [activeYear, setActiveYear] = useState<string>(years[0]?.year ?? "");
-  const [activeMedia, setActiveMedia] = useState<TimelineMedia | null>(null);
+  const [lightboxMedia, setLightboxMedia] = useState<TimelineMedia | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
@@ -47,6 +57,26 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
   };
 
   const activeData = years.find((y) => y.year === activeYear);
+  const activeMediaList: TimelineMedia[] = (activeData?.media ?? []).map(normaliseMedia);
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxMedia(activeMediaList[index]);
+  };
+
+  const closeLightbox = () => setLightboxMedia(null);
+
+  const prevMedia = () => {
+    const newIdx = (lightboxIndex - 1 + activeMediaList.length) % activeMediaList.length;
+    setLightboxIndex(newIdx);
+    setLightboxMedia(activeMediaList[newIdx]);
+  };
+
+  const nextMedia = () => {
+    const newIdx = (lightboxIndex + 1) % activeMediaList.length;
+    setLightboxIndex(newIdx);
+    setLightboxMedia(activeMediaList[newIdx]);
+  };
 
   return (
     <div className="w-full select-none">
@@ -86,7 +116,8 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
             {years.map((yr, yi) => {
               const isActive = yr.year === activeYear;
               const isAbove = yi % 2 === 0;
-              const hasMedia = yr.media && yr.media.length > 0;
+              const mediaList = (yr.media ?? []).map(normaliseMedia);
+              const hasMedia = mediaList.length > 0;
 
               return (
                 <div
@@ -108,13 +139,9 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                         {yr.title ?? yr.label ?? ""}
                       </p>
                       {hasMedia && (
-                        <div className="flex gap-1 mt-1">
-                          {yr.media!.some(m => m.type === "image") && (
-                            <ImageIcon className="w-3 h-3 text-muted-foreground/60" />
-                          )}
-                          {yr.media!.some(m => m.type === "video") && (
-                            <Film className="w-3 h-3 text-muted-foreground/60" />
-                          )}
+                        <div className="flex gap-1 mt-1 items-center">
+                          <Trophy className="w-3 h-3 text-yellow-400" />
+                          <span className="text-[10px] text-yellow-400/80 font-medium">{mediaList.length} prêmio{mediaList.length > 1 ? "s" : ""}</span>
                         </div>
                       )}
                     </div>
@@ -152,13 +179,9 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
                         {yr.title ?? yr.label ?? ""}
                       </p>
                       {hasMedia && (
-                        <div className="flex gap-1 mt-1">
-                          {yr.media!.some(m => m.type === "image") && (
-                            <ImageIcon className="w-3 h-3 text-muted-foreground/60" />
-                          )}
-                          {yr.media!.some(m => m.type === "video") && (
-                            <Film className="w-3 h-3 text-muted-foreground/60" />
-                          )}
+                        <div className="flex gap-1 mt-1 items-center">
+                          <Trophy className="w-3 h-3 text-yellow-400" />
+                          <span className="text-[10px] text-yellow-400/80 font-medium">{mediaList.length} prêmio{mediaList.length > 1 ? "s" : ""}</span>
                         </div>
                       )}
                     </div>
@@ -223,34 +246,46 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
               })}
             </div>
 
-            {/* Media gallery */}
-            {activeData.media && activeData.media.length > 0 && (
+            {/* Awards photo gallery */}
+            {activeMediaList.length > 0 && (
               <div>
-                <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2 flex items-center gap-1">
-                  <ImageIcon className="w-3 h-3" /> Galeria de mídia
+                <p className="text-xs text-yellow-400 font-bold uppercase tracking-wide mb-3 flex items-center gap-1.5">
+                  <Trophy className="w-3.5 h-3.5" />
+                  Prêmios conquistados em {activeData.year}
                 </p>
-                <div className="flex gap-2 flex-wrap">
-                  {activeData.media.map((m, mi) => (
-                    <button
+                <div className="grid grid-cols-3 gap-2">
+                  {activeMediaList.map((m, mi) => (
+                    <motion.button
                       key={mi}
-                      onClick={() => setActiveMedia(m)}
-                      className="relative w-20 h-16 rounded-lg overflow-hidden border border-border/50 hover:border-primary/50 transition-colors group"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: mi * 0.06 }}
+                      onClick={() => openLightbox(mi)}
+                      className="relative aspect-[4/3] rounded-lg overflow-hidden border border-yellow-500/20 hover:border-yellow-400/60 transition-all duration-200 group shadow-md hover:shadow-yellow-500/10"
                     >
                       {m.type === "image" ? (
-                        <img src={m.url} alt={m.caption ?? ""} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                        <img
+                          src={m.url}
+                          alt={m.caption ?? `Prêmio ${mi + 1} de ${activeData.year}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
                       ) : (
                         <div className="w-full h-full bg-muted/40 flex items-center justify-center">
                           <Film className="w-6 h-6 text-primary" />
                         </div>
                       )}
-                    </button>
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-yellow-400/0 group-hover:bg-yellow-400/10 transition-colors duration-200 flex items-center justify-center">
+                        <ImageIcon className="w-5 h-5 text-white opacity-0 group-hover:opacity-80 transition-opacity" />
+                      </div>
+                    </motion.button>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Placeholder for future media uploads */}
-            {(!activeData.media || activeData.media.length === 0) && (
+            {/* Placeholder for years without media */}
+            {activeMediaList.length === 0 && (
               <div className="flex items-center gap-2 text-xs text-muted-foreground/50 border border-dashed border-border/30 rounded-lg px-3 py-2">
                 <ImageIcon className="w-3 h-3" />
                 <span>Fotos e vídeos deste ano serão adicionados em breve</span>
@@ -262,14 +297,40 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
 
       {/* Media lightbox */}
       <AnimatePresence>
-        {activeMedia && (
+        {lightboxMedia && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-            onClick={() => setActiveMedia(null)}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={closeLightbox}
           >
+            {/* Close button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+
+            {/* Prev / Next */}
+            {activeMediaList.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => { e.stopPropagation(); prevMedia(); }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); nextMedia(); }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
+              </>
+            )}
+
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -277,13 +338,25 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
               className="max-w-2xl w-full rounded-xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              {activeMedia.type === "image" ? (
-                <img src={activeMedia.url} alt={activeMedia.caption ?? ""} className="w-full h-auto" />
+              {lightboxMedia.type === "image" ? (
+                <img
+                  src={lightboxMedia.url}
+                  alt={lightboxMedia.caption ?? ""}
+                  className="w-full h-auto rounded-xl"
+                />
               ) : (
-                <video src={activeMedia.url} controls className="w-full" />
+                <video src={lightboxMedia.url} controls className="w-full rounded-xl" />
               )}
-              {activeMedia.caption && (
-                <div className="bg-card px-4 py-2 text-sm text-muted-foreground">{activeMedia.caption}</div>
+              {lightboxMedia.caption && (
+                <div className="bg-card px-4 py-2 text-sm text-muted-foreground text-center">
+                  {lightboxMedia.caption}
+                </div>
+              )}
+              {/* Counter */}
+              {activeMediaList.length > 1 && (
+                <div className="text-center text-xs text-white/50 mt-2">
+                  {lightboxIndex + 1} / {activeMediaList.length}
+                </div>
               )}
             </motion.div>
           </motion.div>
@@ -303,7 +376,8 @@ export function TimelineSlide({ title, intro, years }: TimelineSlideProps) {
 /** Parse JSON content from slide into TimelineSlide props */
 export function parseTimelineContent(content: string): { intro?: string; years: TimelineYear[] } {
   try {
-    return JSON.parse(content);
+    const parsed = JSON.parse(content);
+    return parsed;
   } catch {
     return { years: [] };
   }

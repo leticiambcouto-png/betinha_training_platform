@@ -118,3 +118,12 @@
 - [x] ModuleViewer passa contractType para CardDeckSlide
 - [x] 26 testes Vitest passando
 - [x] Checkpoint salvo
+
+## Ajustes de Conteúdo (Sessão de Continuação)
+
+- [x] Adicionar fotos dos prêmios na timeline: campo 'media' adicionado ao JSON do slide id=3 (2022: 2 imgs, 2023: 2 imgs, 2024: 3 imgs, 2025: 2 imgs)
+- [x] Atualizar TimelineSlide para suportar media como array de strings (URLs) ou objetos TimelineMedia
+- [x] Galeria de prêmios com lightbox e navegação prev/next na timeline
+- [x] Excluir slides desnecessários do Módulo 1: id=1 (Bem-vindo) e id=30001 (Betinha intro) — mantido apenas o vídeo do CEO
+- [x] Excluir slide "Prêmios e Reconhecimentos" (card-deck, id=4) do Módulo 2
+- [x] Ajustar texto do slide de vídeo do CEO: remover ponto antes do emoji, adicionar "Betinha · Gente & Cultura" como assinatura no campo note
