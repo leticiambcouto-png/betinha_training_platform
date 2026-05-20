@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 export interface DictionaryEntry {
@@ -87,7 +87,7 @@ export function DictionarySlide({ title, description, entries }: DictionarySlide
                               </span>
                             )}
                             <span className="font-bold text-foreground text-sm">{entry.term}</span>
-                            <span className="text-xs text-muted-foreground ml-auto italic">clique para ver a definição</span>
+                            <ChevronDown className="w-4 h-4 text-muted-foreground ml-auto flex-shrink-0" />
                           </div>
                         ) : (
                           <motion.div
