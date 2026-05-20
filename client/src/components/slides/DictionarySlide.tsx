@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Betinha } from "@/components/Betinha";
+
+const BETINHA_FULL = "/manus-storage/betinha-nova_c4732510.png";
 
 export interface DictionaryEntry {
   term: string;
@@ -43,10 +44,33 @@ export function DictionarySlide({ title, description, entries, betinhaSpeech }: 
 
   return (
     <div className="w-full">
-      {/* Betinha above title */}
+      {/* Betinha above title — text left, image right, larger */}
       {betinhaSpeech && (
-        <div className="mb-4">
-          <Betinha speech={betinhaSpeech} size="sm" autoPlay={false} />
+        <div className="flex items-end gap-4 mb-5">
+          {/* Speech bubble */}
+          <div
+            className="betinha-bubble px-4 py-3 flex-1 min-w-0"
+          >
+            <p className="text-sm text-foreground leading-relaxed">{betinhaSpeech}</p>
+            <p
+              className="text-xs text-primary font-black mt-1.5 uppercase tracking-wide"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Betinha &middot; Gente &amp; Cultura
+            </p>
+          </div>
+          {/* Betinha image — larger */}
+          <div className="relative flex-shrink-0">
+            <div
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-8 rounded-full blur-xl opacity-40"
+              style={{ background: "#d9f22a" }}
+            />
+            <img
+              src={BETINHA_FULL}
+              alt="Betinha"
+              className="h-32 w-auto object-contain drop-shadow-lg relative"
+            />
+          </div>
         </div>
       )}
 
