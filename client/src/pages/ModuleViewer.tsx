@@ -18,6 +18,7 @@ import { CardDeckSlide, parseCardDeckContent } from "@/components/slides/CardDec
 import { DictionarySlide, parseDictionaryContent } from "@/components/slides/DictionarySlide";
 import { ValuesSlide, parseValuesContent } from "@/components/slides/ValuesSlide";
 import { VideoPlaceholderSlide, parseVideoContent } from "@/components/slides/VideoPlaceholderSlide";
+import { BetinhaIntroSlide, parseBetinhaIntroContent } from "@/components/slides/BetinhaIntroSlide";
 
 const profileConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
   todos: { label: "Todos", color: "text-blue-400", icon: <Users className="w-3 h-3" /> },
@@ -217,9 +218,13 @@ export default function ModuleViewer() {
                 const parsed = parseVideoContent(slide.content);
                 return <VideoPlaceholderSlide title={slide.title ?? undefined} data={parsed} />;
               })()}
+              {slide?.layout === "betinha-intro" && (() => {
+                const parsed = parseBetinhaIntroContent(slide.content);
+                return <BetinhaIntroSlide speech={parsed.speech} imageUrl={parsed.imageUrl} />;
+              })()}
 
               {/* Standard text layouts */}
-              {(!slide?.layout || !["timeline","card-deck","dictionary","values","video-placeholder"].includes(slide.layout)) && (
+              {(!slide?.layout || !["timeline","card-deck","dictionary","values","video-placeholder","betinha-intro"].includes(slide.layout)) && (
                 <>
                   {slide?.title && (
                     <h2 className={`text-2xl lg:text-3xl font-black mb-6 ${

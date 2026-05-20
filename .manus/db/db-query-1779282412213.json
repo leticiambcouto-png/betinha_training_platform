@@ -1,0 +1,28 @@
+{
+  "query": "SELECT id, title, layout, content, betinhaSpeech FROM slides WHERE moduleId = 1 ORDER BY orderIndex;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute SELECT id, title, layout, content, betinhaSpeech FROM slides WHERE moduleId = 1 ORDER BY orderIndex;",
+  "rows": [
+    {
+      "id": "30001",
+      "title": "Oi, eu sou a Betinha!",
+      "layout": "highlight",
+      "content": "Oi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar: nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀",
+      "betinhaSpeech": "NULL"
+    },
+    {
+      "id": "2",
+      "title": "Vídeo de Boas-vindas do João",
+      "layout": "video-placeholder",
+      "content": "{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"João Gerçossimo, CEO da Stellar Gaming\",\"description\":\"Esse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. 😄\",\"note\":\"\"}",
+      "betinhaSpeech": "Esse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. Não pula, tá? 😄"
+    }
+  ],
+  "messages": [
+    "1\tBem-vindo(a) à Stellar Gaming!\thighlight\tQue alegria ter você aqui!",
+    "Você acaba de entrar em uma das empresas mais inovadoras do mercado de entretenimento digital. A Stellar Gaming é a empresa por trás da EstrelaBet, Vupi, Pay2free e HypeTec.",
+    "Essa trilha vai te apresentar quem somos, como trabalhamos, o que valorizamos e tudo que você precisa saber para começar sua jornada com o pé direito.\tOi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar — nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀"
+  ],
+  "stdout": "id\ttitle\tlayout\tcontent\tbetinhaSpeech\n1\tBem-vindo(a) à Stellar Gaming!\thighlight\tQue alegria ter você aqui!\n\nVocê acaba de entrar em uma das empresas mais inovadoras do mercado de entretenimento digital. A Stellar Gaming é a empresa por trás da EstrelaBet, Vupi, Pay2free e HypeTec.\n\nEssa trilha vai te apresentar quem somos, como trabalhamos, o que valorizamos e tudo que você precisa saber para começar sua jornada com o pé direito.\tOi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar — nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀\n30001\tOi, eu sou a Betinha!\thighlight\tOi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar: nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀\tNULL\n2\tVídeo de Boas-vindas do João\tvideo-placeholder\t{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"João Gerçossimo, CEO da Stellar Gaming\",\"description\":\"Esse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. 😄\",\"note\":\"\"}\tEsse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. Não pula, tá? 😄\n",
+  "stderr": "",
+  "execution_time_ms": 271
+}

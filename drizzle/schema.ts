@@ -97,7 +97,7 @@ export const slides = mysqlTable("slides", {
   layout: mysqlEnum("layout", [
     "default", "highlight", "list", "quote",
     "image-left", "image-right", "full-image",
-    "timeline", "card-deck", "dictionary", "values", "video-placeholder"
+    "timeline", "card-deck", "dictionary", "values", "video-placeholder", "betinha-intro"
   ]).default("default").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
