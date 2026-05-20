@@ -121,6 +121,10 @@
 
 ## Ajustes de Conteúdo (Sessão de Continuação)
 
+- [x] Atualizar imagem da Betinha na página inicial para nova foto (betinha-nova_c4732510.png) e aumentar tamanho
+- [x] Remover todos os travessões visíveis dos textos da interface (Home, Trails, TrailDetail, ModuleViewer, Quiz, Dashboard, Admin, TimelineSlide)
+- [x] Adicionar 51 novos termos ao Dicionário do iGaming (78 termos totais em 7 categorias: Básico, Mercados, Financeiro, Estratégia, Técnico, Cassino, Indicadores do Negócio)
+
 - [x] Adicionar fotos dos prêmios na timeline: campo 'media' adicionado ao JSON do slide id=3 (2022: 2 imgs, 2023: 2 imgs, 2024: 3 imgs, 2025: 2 imgs)
 - [x] Atualizar TimelineSlide para suportar media como array de strings (URLs) ou objetos TimelineMedia
 - [x] Galeria de prêmios com lightbox e navegação prev/next na timeline
