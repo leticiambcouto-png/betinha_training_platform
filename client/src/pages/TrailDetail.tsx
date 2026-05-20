@@ -4,9 +4,10 @@ import { useLocation, useParams } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, CheckCircle, Clock, Lock, Play,
-  Star, Zap, Trophy, ChevronRight, ChevronDown,
+  Zap, Trophy, ChevronRight, ChevronDown,
   Users, UserCheck, Briefcase, Crown, BookOpen
 } from "lucide-react";
+import { StellarStar } from "@/components/StellarStar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -155,7 +156,7 @@ export default function TrailDetail() {
               className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: `${trail.color ?? '#00C853'}20`, border: `1px solid ${trail.color ?? '#00C853'}40` }}
             >
-              <Star className="w-8 h-8" style={{ color: trail.color ?? '#00C853' }} />
+              <StellarStar size={32} color={trail.color ?? '#00C853'} />
             </div>
             <div className="flex-1">
               <h1 className="text-2xl font-black text-foreground mb-1">{trail.title}</h1>
@@ -181,7 +182,7 @@ export default function TrailDetail() {
           <Betinha
             speech={
               completed === 0
-                ? `Boa sorte na trilha "${trail.title}"! Comece pelo primeiro módulo e avance no seu ritmo. Estou aqui para te ajudar!`
+                ? `Confira aqui toda a Trilha de Onboarding: ${trail.title}. Comece pelo primeiro módulo e avance no seu ritmo. Estou aqui para te ajudar!`
                 : completed === mods.length
                 ? `Parabéns! Você concluiu toda a trilha "${trail.title}"! Você é incrível! 🎉`
                 : `Você já completou ${completed} módulos! Continue assim, você está indo muito bem! Falta pouco para concluir a trilha.`
@@ -270,7 +271,7 @@ export default function TrailDetail() {
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <div className="text-right hidden sm:block">
                       <div className="flex items-center gap-1 justify-end">
-                        <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                        <StellarStar size={12} color="#d9f22a" />
                         <span className="text-xs font-semibold text-foreground">{mod.pointsReward}</span>
                       </div>
                       {mod.bonusPoints > 0 && (

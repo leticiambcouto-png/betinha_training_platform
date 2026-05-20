@@ -11,12 +11,17 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
+const STELLAR_LOGO = "/manus-storage/stellar-gaming-logo_0b30ffde.svg";
 
-function Star4({ className }: { className?: string }) {
+function StellarLogo({ size = 28 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" />
-    </svg>
+    <img
+      src={STELLAR_LOGO}
+      alt="Stellar Gaming"
+      width={size}
+      height={size}
+      className="object-contain flex-shrink-0"
+    />
   );
 }
 
@@ -56,7 +61,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       {/* Logo area */}
       <div className="px-4 pt-5 pb-3 space-y-2 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <Star4 className="w-5 h-5 text-primary flex-shrink-0" />
+          <StellarLogo size={24} />
           <span
             className="font-black text-foreground uppercase tracking-wider text-sm"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
@@ -266,7 +271,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
       {/* Mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 px-4 py-3 flex items-center justify-between bg-card border-b border-border">
         <div className="flex items-center gap-2">
-          <Star4 className="w-5 h-5 text-primary" />
+          <StellarLogo size={24} />
           <span
             className="font-black text-foreground uppercase tracking-wider text-sm"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
@@ -299,7 +304,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
         {!isAuthenticated ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-center space-y-6 max-w-sm mx-auto px-6">
-              <Star4 className="w-12 h-12 text-primary mx-auto" />
+              <StellarLogo size={56} />
               <div>
                 <h1
                   className="text-2xl font-black text-foreground uppercase"

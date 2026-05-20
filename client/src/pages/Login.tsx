@@ -8,17 +8,13 @@ import { Label } from "@/components/ui/label";
 import { ArrowRight, Loader2, BookOpen, Trophy, Zap, CheckCircle, UserCheck, Briefcase } from "lucide-react";
 import { toast } from "sonner";
 
-// Betinha full-body (thumbs up) uploaded to CDN
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
+const STELLAR_LOGO = "/manus-storage/stellar-gaming-logo_0b30ffde.svg";
 
 type ContractType = "clt" | "pj";
 
-function Star4({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" />
-    </svg>
-  );
+function StellarLogo({ size = 24 }: { size?: number }) {
+  return <img src={STELLAR_LOGO} alt="Stellar Gaming" width={size} height={size} className="object-contain flex-shrink-0" />;
 }
 
 const CONTRACT_OPTIONS: { value: ContractType; label: string; icon: React.ReactNode; desc: string }[] = [
@@ -74,7 +70,7 @@ export default function Login() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-3"
         >
-          <Star4 className="w-6 h-6 text-primary" />
+          <StellarLogo size={28} />
           <span
             className="font-black text-foreground uppercase tracking-wider"
             style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.15rem" }}
@@ -174,7 +170,7 @@ export default function Login() {
 
         {/* Mobile logo */}
         <div className="lg:hidden flex items-center gap-2 mb-8">
-          <Star4 className="w-5 h-5 text-primary" />
+          <StellarLogo size={22} />
           <span className="font-black text-foreground uppercase tracking-wider" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
             Stellar Gaming
           </span>

@@ -3,7 +3,8 @@ import { trpc } from "@/lib/trpc";
 import { PlatformLayout } from "@/components/PlatformLayout";
 import { useLocation, useParams } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, XCircle, Trophy, ArrowRight, Loader2, Sparkles, Star } from "lucide-react";
+import { CheckCircle, XCircle, Trophy, ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { StellarStar } from "@/components/StellarStar";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Betinha } from "@/components/Betinha";
@@ -339,7 +340,7 @@ export default function Quiz() {
               {submitMutation.isPending ? (
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               ) : (
-                <Star className="w-4 h-4 mr-2" />
+                <StellarStar size={16} color="#d9f22a" className="mr-2" />
               )}
               Enviar Respostas
             </Button>

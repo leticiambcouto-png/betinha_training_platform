@@ -1,7 +1,8 @@
 import { trpc } from "@/lib/trpc";
 import { PlatformLayout } from "@/components/PlatformLayout";
 import { motion } from "framer-motion";
-import { Trophy, Star, Crown, Medal } from "lucide-react";
+import { Trophy, Crown, Medal } from "lucide-react";
+import { StellarStar } from "@/components/StellarStar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Betinha } from "@/components/Betinha";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -154,7 +155,7 @@ export default function Ranking() {
                   <p className="text-xs text-muted-foreground">Nível {u.level}</p>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
-                  <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                  <StellarStar size={14} color="#d9f22a" />
                   <span className="text-sm font-bold text-foreground">{u.totalPoints}</span>
                 </div>
               </motion.div>

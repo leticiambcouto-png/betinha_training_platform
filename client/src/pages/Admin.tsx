@@ -5,10 +5,11 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
 import {
-  Users, BookOpen, Star, Sparkles,
+  Users, BookOpen, Sparkles,
   CheckCircle, Clock, BarChart3, Shield,
   Loader2
 } from "lucide-react";
+import { StellarStar } from "@/components/StellarStar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -127,7 +128,7 @@ export default function Admin() {
                       </div>
                       <div className="flex flex-col items-end gap-1 flex-shrink-0">
                         <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                          <StellarStar size={12} color="#d9f22a" />
                           <span className="text-xs font-bold text-foreground">{u.totalPoints ?? 0}</span>
                         </div>
                         {u.role === "admin" && (

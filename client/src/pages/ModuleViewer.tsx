@@ -4,10 +4,11 @@ import { PlatformLayout } from "@/components/PlatformLayout";
 import { useLocation, useParams } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft, ArrowRight, CheckCircle, Star, Zap,
+  ArrowLeft, ArrowRight, CheckCircle, Zap,
   ChevronLeft, ChevronRight, BookOpen, Trophy,
   Users, UserCheck, Briefcase, Crown, List, X
 } from "lucide-react";
+import { StellarStar } from "@/components/StellarStar";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Betinha } from "@/components/Betinha";
@@ -355,7 +356,7 @@ export default function ModuleViewer() {
               <div className="flex justify-center gap-4 mb-6">
                 <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-3">
                   <div className="flex items-center gap-1.5 justify-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <StellarStar size={16} color="#d9f22a" />
                     <span className="font-bold text-foreground">+{earnedPoints}</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5">Pontos</p>
