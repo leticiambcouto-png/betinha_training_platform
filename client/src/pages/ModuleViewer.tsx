@@ -197,8 +197,8 @@ export default function ModuleViewer() {
               transition={{ duration: 0.3 }}
               className={`rounded-2xl border p-6 lg:p-10 mb-6 min-h-64 relative ${getLayoutClass(slide?.layout ?? "default")}`}
             >
-              {/* Betinha — top-right corner, aligned with title */}
-              {slide?.betinhaSpeech && (
+              {/* Betinha — top-right corner ONLY for dictionary layout */}
+              {slide?.betinhaSpeech && slide?.layout === "dictionary" && (
                 <motion.div
                   key={`betinha-${currentSlide}`}
                   initial={{ opacity: 0, y: -8 }}
@@ -286,7 +286,18 @@ export default function ModuleViewer() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Betinha speech — moved to top-right inside slide card */}
+          {/* Betinha speech — below card for all layouts except dictionary */}
+          {slide?.betinhaSpeech && slide?.layout !== "dictionary" && (
+            <motion.div
+              key={`betinha-${currentSlide}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6"
+            >
+              <Betinha speech={slide.betinhaSpeech} size="sm" autoPlay={false} />
+            </motion.div>
+          )}
 
           {/* Navigation */}
           <div className="flex items-center justify-between gap-4">
