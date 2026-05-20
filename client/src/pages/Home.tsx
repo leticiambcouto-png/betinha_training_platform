@@ -6,7 +6,8 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
+const STELLAR_LOGO_FULL = "/manus-storage/stellar-gaming-logo_7cfdb94e.svg";
+const STELLAR_ICON = "/manus-storage/stellar-icon_06d397a8.svg";
 
 const features = [
   { icon: BookOpen, title: "Trilhas Interativas", desc: "Módulos dinâmicos com conteúdo rico e apresentações guiadas pela Betinha." },
@@ -15,8 +16,14 @@ const features = [
   { icon: Sparkles, title: "Conteúdo por Perfil", desc: "Conteúdo personalizado para CLT e PJ — só o que é relevante para você." },
 ];
 
-function StellarLogo({ size = 20 }: { size?: number }) {
-  return <img src={STELLAR_LOGO} alt="Stellar Gaming" width={size} height={size} className="object-contain flex-shrink-0" />;
+// Logo completa horizontal (1080x349)
+function StellarLogo({ width = 140 }: { width?: number }) {
+  const height = Math.round(width * (349 / 1080));
+  return <img src={STELLAR_LOGO_FULL} alt="Stellar Gaming" width={width} height={height} className="object-contain flex-shrink-0" />;
+}
+// Ícone quadrado da estrela
+function StellarIcon({ size = 20 }: { size?: number }) {
+  return <img src={STELLAR_ICON} alt="Stellar" width={size} height={size} className="object-contain flex-shrink-0" />;
 }
 
 export default function Home() {
@@ -61,8 +68,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
-            <StellarLogo size={36} />
-            <span className="text-muted-foreground text-xs hidden sm:block border-l border-border pl-3">Plataforma de Treinamentos</span>
+            <StellarLogo width={130} />
           </div>
           <Button
             size="sm"
@@ -93,7 +99,7 @@ export default function Home() {
                 transition={{ delay: 0.1 }}
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/25 text-primary text-xs font-bold uppercase tracking-widest"
               >
-                <StellarLogo size={14} />
+                <StellarIcon size={14} />
                 Onboarding Stellar Gaming
               </motion.div>
 
@@ -274,7 +280,7 @@ export default function Home() {
             <div className="absolute inset-0 pointer-events-none"
               style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(217,242,42,0.06) 0%, transparent 60%)" }} />
             <div className="relative">
-              <StellarLogo size={40} />
+              <StellarLogo width={160} />
               <h2 className="text-2xl lg:text-3xl font-black text-foreground mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                 PRONTO PARA COMEÇAR?
               </h2>
@@ -301,7 +307,7 @@ export default function Home() {
       <footer className="border-t border-border py-6 px-4">
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <StellarLogo size={28} />
+            <StellarLogo width={110} />
           </div>
           <p className="text-xs text-muted-foreground">© 2026 · Plataforma de Onboarding</p>
         </div>

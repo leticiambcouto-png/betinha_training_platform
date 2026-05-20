@@ -11,13 +11,29 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
+const STELLAR_LOGO_FULL = "/manus-storage/stellar-gaming-logo_7cfdb94e.svg";
+const STELLAR_ICON = "/manus-storage/stellar-icon_06d397a8.svg";
 
-function StellarLogo({ size = 28 }: { size?: number }) {
+// Logo completa horizontal (1080x349) — usar em headers e sidebars
+function StellarLogo({ width = 140 }: { width?: number }) {
+  const height = Math.round(width * (349 / 1080));
   return (
     <img
-      src={STELLAR_LOGO}
+      src={STELLAR_LOGO_FULL}
       alt="Stellar Gaming"
+      width={width}
+      height={height}
+      className="object-contain flex-shrink-0"
+    />
+  );
+}
+
+// Ícone quadrado da estrela — usar em badges e ícones pequenos
+function StellarIcon({ size = 24 }: { size?: number }) {
+  return (
+    <img
+      src={STELLAR_ICON}
+      alt="Stellar"
       width={size}
       height={size}
       className="object-contain flex-shrink-0"
@@ -60,8 +76,8 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
     <div className="flex flex-col h-full">
       {/* Logo area */}
       <div className="px-4 pt-5 pb-3 space-y-2 border-b border-border/50">
-        <div className="flex items-center gap-2">
-          <StellarLogo size={40} />
+        <div className="flex items-center">
+          <StellarLogo width={148} />
         </div>
         <div className="w-full flex items-center justify-center py-1.5 rounded-md bg-primary">
           <span
@@ -264,7 +280,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
 
       {/* Mobile header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 px-4 py-3 flex items-center justify-between bg-card border-b border-border">
-        <StellarLogo size={36} />
+        <StellarLogo width={120} />
         <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground">
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -290,7 +306,7 @@ export function PlatformLayout({ children }: PlatformLayoutProps) {
         {!isAuthenticated ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-center space-y-6 max-w-sm mx-auto px-6">
-              <StellarLogo size={72} />
+              <StellarLogo width={180} />
               <p className="text-sm text-muted-foreground mt-1">Plataforma de Treinamentos</p>
               <div className="flex justify-center">
                 <img

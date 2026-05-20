@@ -9,12 +9,19 @@ import { ArrowRight, Loader2, BookOpen, Trophy, Zap, CheckCircle, UserCheck, Bri
 import { toast } from "sonner";
 
 const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
-const STELLAR_LOGO = "/manus-storage/stellar-icon_06d397a8.svg";
+const STELLAR_LOGO_FULL = "/manus-storage/stellar-gaming-logo_7cfdb94e.svg";
+const STELLAR_ICON = "/manus-storage/stellar-icon_06d397a8.svg";
 
 type ContractType = "clt" | "pj";
 
-function StellarLogo({ size = 24 }: { size?: number }) {
-  return <img src={STELLAR_LOGO} alt="Stellar Gaming" width={size} height={size} className="object-contain flex-shrink-0" />;
+// Logo completa horizontal (1080x349)
+function StellarLogo({ width = 140 }: { width?: number }) {
+  const height = Math.round(width * (349 / 1080));
+  return <img src={STELLAR_LOGO_FULL} alt="Stellar Gaming" width={width} height={height} className="object-contain flex-shrink-0" />;
+}
+// Ícone quadrado da estrela
+function StellarIcon({ size = 20 }: { size?: number }) {
+  return <img src={STELLAR_ICON} alt="Stellar" width={size} height={size} className="object-contain flex-shrink-0" />;
 }
 
 const CONTRACT_OPTIONS: { value: ContractType; label: string; icon: React.ReactNode; desc: string }[] = [
@@ -70,8 +77,7 @@ export default function Login() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-3"
         >
-          <StellarLogo size={40} />
-          <span className="text-muted-foreground text-xs border-l border-border pl-3">Plataforma de Onboarding</span>
+          <StellarLogo width={150} />
         </motion.div>
 
         {/* Hero copy + Betinha */}
@@ -164,7 +170,7 @@ export default function Login() {
 
         {/* Mobile logo */}
         <div className="lg:hidden flex items-center gap-2 mb-8">
-          <StellarLogo size={36} />
+          <StellarLogo width={130} />
         </div>
 
         <motion.div
