@@ -20,6 +20,7 @@ import { DictionarySlide, parseDictionaryContent } from "@/components/slides/Dic
 import { ValuesSlide, parseValuesContent } from "@/components/slides/ValuesSlide";
 import { VideoPlaceholderSlide, parseVideoContent } from "@/components/slides/VideoPlaceholderSlide";
 import { BetinhaIntroSlide } from "@/components/slides/BetinhaIntroSlide";
+import { SocialChecklistSlide } from "@/components/slides/SocialChecklistSlide";
 
 function parseBetinhaIntroContent(content: string): { speech: string; imageUrl?: string } {
   try { return JSON.parse(content); } catch { return { speech: content }; }
@@ -228,8 +229,12 @@ export default function ModuleViewer() {
                 return <BetinhaIntroSlide speech={parsed.speech} imageUrl={parsed.imageUrl} />;
               })()}
 
+              {slide?.layout === "social-checklist" && (() => {
+                return <SocialChecklistSlide content={slide.content} />;
+              })()}
+
               {/* Standard text layouts */}
-              {(!slide?.layout || !["timeline","card-deck","dictionary","values","video-placeholder","betinha-intro"].includes(slide.layout)) && (
+              {(!slide?.layout || !["timeline","card-deck","dictionary","values","video-placeholder","betinha-intro","social-checklist"].includes(slide.layout)) && (
                 <>
                   {slide?.title && (
                     <h2 className={`text-2xl lg:text-3xl font-black mb-6 ${

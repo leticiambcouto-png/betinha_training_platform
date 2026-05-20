@@ -43,6 +43,13 @@
       "when": 1779282446973,
       "tag": "0005_lively_blue_blade",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1779301607360,
+      "tag": "0006_freezing_silk_fever",
+      "breakpoints": true
     }
   ]
 }

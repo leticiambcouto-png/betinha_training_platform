@@ -1,0 +1,18 @@
+{
+  "query": "SHOW COLUMNS FROM slides WHERE Field = 'layout';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute SHOW COLUMNS FROM slides WHERE Field = 'layout';",
+  "rows": [
+    {
+      "Field": "layout",
+      "Type": "enum('default','highlight','list','quote','image-left','image-right','full-image','timeline','card-deck','dictionary','values','video-placeholder','betinha-intro')",
+      "Null": "NO",
+      "Key": "",
+      "Default": "default",
+      "Extra": ""
+    }
+  ],
+  "messages": [],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nlayout\tenum('default','highlight','list','quote','image-left','image-right','full-image','timeline','card-deck','dictionary','values','video-placeholder','betinha-intro')\tNO\t\tdefault\t\n",
+  "stderr": "",
+  "execution_time_ms": 263
+}

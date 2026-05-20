@@ -1,0 +1,1 @@
+ALTER TABLE `slides` MODIFY COLUMN `layout` enum('default','highlight','list','quote','image-left','image-right','full-image','timeline','card-deck','dictionary','values','video-placeholder','betinha-intro','social-checklist') NOT NULL DEFAULT 'default';
