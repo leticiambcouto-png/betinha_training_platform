@@ -195,8 +195,35 @@ export default function ModuleViewer() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3 }}
-              className={`rounded-2xl border p-6 lg:p-10 mb-6 min-h-64 ${getLayoutClass(slide?.layout ?? "default")}`}
+              className={`rounded-2xl border p-6 lg:p-10 mb-6 min-h-64 relative ${getLayoutClass(slide?.layout ?? "default")}`}
             >
+              {/* Betinha — top-right corner, aligned with title */}
+              {slide?.betinhaSpeech && (
+                <motion.div
+                  key={`betinha-${currentSlide}`}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="absolute top-4 right-4 lg:top-6 lg:right-8 z-10 flex flex-row-reverse items-start gap-2 max-w-[260px]"
+                >
+                  {/* Avatar */}
+                  <div className="relative flex-shrink-0">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-4 rounded-full blur-lg opacity-40" style={{ background: "#d9f22a" }} />
+                    <img
+                      src="/manus-storage/betinha-thumbsup_b1cb02fa.png"
+                      alt="Betinha"
+                      className="h-14 w-auto object-contain drop-shadow-lg relative"
+                    />
+                  </div>
+                  {/* Bubble */}
+                  <div className="betinha-bubble betinha-bubble-right px-3 py-2 text-right">
+                    <p className="text-xs text-foreground leading-relaxed">{slide.betinhaSpeech}</p>
+                    <p className="text-[10px] text-primary font-black mt-1 uppercase tracking-wide" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      Betinha · Gente &amp; Cultura
+                    </p>
+                  </div>
+                </motion.div>
+              )}
               {/* Rich slide layouts */}
               {slide?.layout === "timeline" && (() => {
                 const parsed = parseTimelineContent(slide.content);
@@ -259,18 +286,7 @@ export default function ModuleViewer() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Betinha speech */}
-          {slide?.betinhaSpeech && (
-            <motion.div
-              key={`betinha-${currentSlide}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-6"
-            >
-              <Betinha speech={slide.betinhaSpeech} size="sm" autoPlay={false} />
-            </motion.div>
-          )}
+          {/* Betinha speech — moved to top-right inside slide card */}
 
           {/* Navigation */}
           <div className="flex items-center justify-between gap-4">

@@ -221,6 +221,32 @@
   border-top: 11px solid hsl(210 50% 16%);
 }
 
+/* Right-side variant: tail points right toward the avatar */
+.betinha-bubble-right::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: 24px;
+  left: auto;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid hsl(66 87% 55% / 0.4);
+}
+.betinha-bubble-right::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 25px;
+  left: auto;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 11px solid hsl(210 50% 16%);
+}
+
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: hsl(210 90% 8%); }
 ::-webkit-scrollbar-thumb { background: hsl(210 40% 25%); border-radius: 3px; }
