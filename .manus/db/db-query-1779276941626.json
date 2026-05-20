@@ -1,0 +1,32 @@
+{
+  "query": "\nSELECT m.id, m.title, m.slug, s.id as slide_id, s.title as slide_title, s.layout, s.orderIndex, LEFT(s.content, 100) as content_preview\nFROM modules m\nLEFT JOIN slides s ON s.moduleId = m.id\nWHERE m.slug LIKE '%boas-vindas%' OR m.title LIKE '%Boas-vindas%'\nORDER BY m.id, s.orderIndex;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute \nSELECT m.id, m.title, m.slug, s.id as slide_id, s.title as slide_title, s.layout, s.orderIndex, LEFT(s.content, 100) as content_preview\nFROM modules m\nLEFT JOIN slides s ON s.moduleId = m.id\nWHERE m.slug LIKE '%boas-vindas%' OR m.title LIKE '%Boas-vindas%'\nORDER BY m.id, s.orderIndex;\n",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Módulo 1: Boas-vindas à Stellar!",
+      "slug": "gc-boas-vindas",
+      "slide_id": "1",
+      "slide_title": "Bem-vindo(a) à Stellar Gaming! 🌟",
+      "layout": "highlight",
+      "orderIndex": "0",
+      "content_preview": "Que alegria ter você aqui!"
+    },
+    {
+      "id": "1",
+      "title": "Módulo 1: Boas-vindas à Stellar!",
+      "slug": "gc-boas-vindas",
+      "slide_id": "2",
+      "slide_title": "Vídeo de Boas-vindas do CEO",
+      "layout": "video-placeholder",
+      "orderIndex": "1",
+      "content_preview": "{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"CEO da Stellar Gaming\",\"description\":\"O "
+    }
+  ],
+  "messages": [
+    "Você acaba de entrar em uma das empresas mais inovadoras do mercado de e"
+  ],
+  "stdout": "id\ttitle\tslug\tslide_id\tslide_title\tlayout\torderIndex\tcontent_preview\n1\tMódulo 1: Boas-vindas à Stellar!\tgc-boas-vindas\t1\tBem-vindo(a) à Stellar Gaming! 🌟\thighlight\t0\tQue alegria ter você aqui!\n\nVocê acaba de entrar em uma das empresas mais inovadoras do mercado de e\n1\tMódulo 1: Boas-vindas à Stellar!\tgc-boas-vindas\t2\tVídeo de Boas-vindas do CEO\tvideo-placeholder\t1\t{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"CEO da Stellar Gaming\",\"description\":\"O \n",
+  "stderr": "",
+  "execution_time_ms": 264
+}

@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, title, content FROM slides WHERE id = 2;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute SELECT id, title, content FROM slides WHERE id = 2;",
+  "rows": [
+    {
+      "id": "2",
+      "title": "Vídeo de Boas-vindas do CEO",
+      "content": "{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"CEO da Stellar Gaming\",\"description\":\"O CEO da Stellar Gaming grava uma mensagem especial para cada nova estrela que entra na constelação. Assista e sinta o espírito da Stellar!\",\"note\":\"Vídeo gravado especialmente para novos colaboradores\"}"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tcontent\n2\tVídeo de Boas-vindas do CEO\t{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"CEO da Stellar Gaming\",\"description\":\"O CEO da Stellar Gaming grava uma mensagem especial para cada nova estrela que entra na constelação. Assista e sinta o espírito da Stellar!\",\"note\":\"Vídeo gravado especialmente para novos colaboradores\"}\n",
+  "stderr": "",
+  "execution_time_ms": 265
+}

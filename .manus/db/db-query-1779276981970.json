@@ -1,0 +1,9 @@
+{
+  "query": "\n-- Empurrar o slide de vídeo para orderIndex 2\nUPDATE slides SET orderIndex = 2 WHERE id = 2;\n\n-- Inserir o slide da Betinha como orderIndex 1\nINSERT INTO slides (moduleId, title, content, layout, orderIndex)\nVALUES (\n  1,\n  'Oi, eu sou a Betinha!',\n  'Oi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar: nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀',\n  'highlight',\n  1\n);\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute \n-- Empurrar o slide de vídeo para orderIndex 2\nUPDATE slides SET orderIndex = 2 WHERE id = 2;\n\n-- Inserir o slide da Betinha como orderIndex 1\nINSERT INTO slides (moduleId, title, content, layout, orderIndex)\nVALUES (\n  1,\n  'Oi, eu sou a Betinha!',\n  'Oi, eu sou a Betinha! Vou ser sua guia nessa jornada de onboarding. Prepare-se para conhecer tudo sobre a Stellar: nossa história, nossos valores e o nosso jeito único de trabalhar. Vamos juntos? 🚀',\n  'highlight',\n  1\n);\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 280
+}

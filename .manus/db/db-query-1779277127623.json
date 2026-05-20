@@ -1,0 +1,9 @@
+{
+  "query": "\nUPDATE slides\nSET\n  title = 'Vídeo de Boas-vindas do João',\n  content = '{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"João Gerçossimo, CEO da Stellar Gaming\",\"description\":\"Esse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. 😄\",\"note\":\"\"}'\nWHERE id = 2;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute \nUPDATE slides\nSET\n  title = 'Vídeo de Boas-vindas do João',\n  content = '{\"videoTitle\":\"Mensagem de Boas-vindas do CEO\",\"presenter\":\"João Gerçossimo, CEO da Stellar Gaming\",\"description\":\"Esse vídeo é especial! O nosso CEO gravou uma mensagem só pra você. 😄\",\"note\":\"\"}'\nWHERE id = 2;\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 269
+}

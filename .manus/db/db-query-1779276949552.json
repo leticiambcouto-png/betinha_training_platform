@@ -1,0 +1,9 @@
+{
+  "query": "\nUPDATE slides\nSET \n  title = 'Bem-vindo(a) à Stellar Gaming!',\n  content = 'Que alegria ter você aqui!\\n\\nVocê acaba de entrar em uma das empresas mais inovadoras do mercado de entretenimento digital. A Stellar Gaming é a empresa por trás da EstrelaBet, Vupi, Pay2free e HypeTec.\\n\\nEssa trilha vai te apresentar quem somos, como trabalhamos, o que valorizamos e tudo que você precisa saber para começar sua jornada com o pé direito.',\n  layout = 'highlight'\nWHERE id = 1;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute \nUPDATE slides\nSET \n  title = 'Bem-vindo(a) à Stellar Gaming!',\n  content = 'Que alegria ter você aqui!\\n\\nVocê acaba de entrar em uma das empresas mais inovadoras do mercado de entretenimento digital. A Stellar Gaming é a empresa por trás da EstrelaBet, Vupi, Pay2free e HypeTec.\\n\\nEssa trilha vai te apresentar quem somos, como trabalhamos, o que valorizamos e tudo que você precisa saber para começar sua jornada com o pé direito.',\n  layout = 'highlight'\nWHERE id = 1;\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 266
+}

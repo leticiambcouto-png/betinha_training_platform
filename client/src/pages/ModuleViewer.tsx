@@ -195,7 +195,7 @@ export default function ModuleViewer() {
               {/* Rich slide layouts */}
               {slide?.layout === "timeline" && (() => {
                 const parsed = parseTimelineContent(slide.content);
-                return <TimelineSlide title={slide.title ?? undefined} years={parsed.years} />;
+                return <TimelineSlide title={slide.title ?? undefined} intro={parsed.intro} years={parsed.years} />;
               })()}
 
               {slide?.layout === "card-deck" && (() => {

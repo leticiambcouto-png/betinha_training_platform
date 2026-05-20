@@ -1,0 +1,24 @@
+{
+  "query": "\nSELECT s.id, s.title, s.layout, s.orderIndex, m.slug as module_slug\nFROM slides s\nJOIN modules m ON m.id = s.moduleId\nWHERE m.slug LIKE '%historia%' OR m.slug LIKE '%hist%' OR m.title LIKE '%Hist%'\nORDER BY m.id, s.orderIndex;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3pH99uQXZRcw3eE.3f61958d5b07 --database NbLekrCupyKcetotbNsyPG --execute \nSELECT s.id, s.title, s.layout, s.orderIndex, m.slug as module_slug\nFROM slides s\nJOIN modules m ON m.id = s.moduleId\nWHERE m.slug LIKE '%historia%' OR m.slug LIKE '%hist%' OR m.title LIKE '%Hist%'\nORDER BY m.id, s.orderIndex;\n",
+  "rows": [
+    {
+      "id": "3",
+      "title": "Nossa História: De 2019 até Hoje",
+      "layout": "timeline",
+      "orderIndex": "0",
+      "module_slug": "gc-historia"
+    },
+    {
+      "id": "4",
+      "title": "Prêmios e Reconhecimentos",
+      "layout": "card-deck",
+      "orderIndex": "1",
+      "module_slug": "gc-historia"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlayout\torderIndex\tmodule_slug\n3\tNossa História: De 2019 até Hoje\ttimeline\t0\tgc-historia\n4\tPrêmios e Reconhecimentos\tcard-deck\t1\tgc-historia\n",
+  "stderr": "",
+  "execution_time_ms": 1038
+}
