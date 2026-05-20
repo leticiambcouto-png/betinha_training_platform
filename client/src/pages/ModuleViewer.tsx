@@ -275,15 +275,19 @@ export default function ModuleViewer() {
 
           {/* Navigation */}
           <div className="flex items-center justify-between gap-4">
-            <Button
-              variant="outline"
-              onClick={() => handleSlideChange(Math.max(0, currentSlide - 1))}
-              disabled={currentSlide === 0}
-              className="border-border"
-            >
-              <ChevronLeft className="w-4 h-4 mr-1" />
-              Anterior
-            </Button>
+            {moduleId !== 1 ? (
+              <Button
+                variant="outline"
+                onClick={() => handleSlideChange(Math.max(0, currentSlide - 1))}
+                disabled={currentSlide === 0}
+                className="border-border"
+              >
+                <ChevronLeft className="w-4 h-4 mr-1" />
+                Anterior
+              </Button>
+            ) : (
+              <div />
+            )}
 
             {/* Slide dots */}
             <div className="flex gap-1.5 flex-wrap justify-center">
