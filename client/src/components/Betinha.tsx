@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Betinha full-body (thumbs up)
-const BETINHA_FULL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-thumbsup_fb782d87.png";
+const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
 
 interface BetinhaProps {
   speech: string;

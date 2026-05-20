@@ -5,10 +5,10 @@ interface BetinhaIntroSlideProps {
   imageUrl?: string;
 }
 
-const BETINHA_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-avatar_0d442e08.jpg";
+const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
 
 export function BetinhaIntroSlide({ speech, imageUrl }: BetinhaIntroSlideProps) {
-  const src = imageUrl ?? BETINHA_FALLBACK;
+  const src = imageUrl ?? BETINHA_FULL;
 
   return (
     <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 w-full min-h-[280px]">
@@ -23,7 +23,7 @@ export function BetinhaIntroSlide({ speech, imageUrl }: BetinhaIntroSlideProps) 
           src={src}
           alt="Betinha"
           className="w-full h-auto object-contain drop-shadow-2xl"
-          style={{ filter: "drop-shadow(0 0 24px rgba(0,200,83,0.18))" }}
+          style={{ filter: "drop-shadow(0 0 24px rgba(217,242,42,0.22))" }}
         />
       </motion.div>
 
@@ -56,17 +56,14 @@ export function BetinhaIntroSlide({ speech, imageUrl }: BetinhaIntroSlideProps) 
           <p className="text-base sm:text-lg text-foreground leading-relaxed font-medium">
             {speech}
           </p>
-          <p className="text-xs text-primary font-bold mt-3 tracking-wide uppercase">Betinha · Gente &amp; Cultura</p>
+          <p
+            className="text-xs text-primary font-black mt-3 tracking-widest uppercase"
+            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            Betinha · Gente &amp; Cultura
+          </p>
         </div>
       </motion.div>
     </div>
   );
-}
-
-export function parseBetinhaIntroContent(content: string): { speech: string; imageUrl?: string } {
-  try {
-    return JSON.parse(content);
-  } catch {
-    return { speech: content };
-  }
 }

@@ -18,7 +18,11 @@ import { CardDeckSlide, parseCardDeckContent } from "@/components/slides/CardDec
 import { DictionarySlide, parseDictionaryContent } from "@/components/slides/DictionarySlide";
 import { ValuesSlide, parseValuesContent } from "@/components/slides/ValuesSlide";
 import { VideoPlaceholderSlide, parseVideoContent } from "@/components/slides/VideoPlaceholderSlide";
-import { BetinhaIntroSlide, parseBetinhaIntroContent } from "@/components/slides/BetinhaIntroSlide";
+import { BetinhaIntroSlide } from "@/components/slides/BetinhaIntroSlide";
+
+function parseBetinhaIntroContent(content: string): { speech: string; imageUrl?: string } {
+  try { return JSON.parse(content); } catch { return { speech: content }; }
+}
 
 const profileConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
   todos: { label: "Todos", color: "text-blue-400", icon: <Users className="w-3 h-3" /> },

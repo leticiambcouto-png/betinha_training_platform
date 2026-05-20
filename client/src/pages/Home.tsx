@@ -5,7 +5,7 @@ import { BookOpen, Trophy, Zap, ArrowRight, CheckCircle, Loader2, Sparkles } fro
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
-const BETINHA_FULL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663204027059/NbLekrCupyKcetotbNsyPG/betinha-thumbsup_fb782d87.png";
+const BETINHA_FULL = "/manus-storage/betinha-thumbsup_b1cb02fa.png";
 
 const features = [
   { icon: BookOpen, title: "Trilhas Interativas", desc: "Módulos dinâmicos com conteúdo rico e apresentações guiadas pela Betinha." },
